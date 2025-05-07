@@ -1,0 +1,38 @@
+# dependencies
+/node_modules
+
+# metro and bundler
+/.expo/
+/web-build/
+/dist/
+
+# ios
+/ios/build/
+/ios/Pods/
+
+# android
+/android/.gradle/
+/android/app/build/
+/android/app/.idea/
+
+# vscode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# detox
+/coverage/
+.eslintcache
+.jest/
+.rncache
+.babelrc
+
+# misc
+*.iml
+.env.*
+!.env
+.packager.env
+?*.js.map
+.sourcemaps/

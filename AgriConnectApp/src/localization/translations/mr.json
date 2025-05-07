@@ -1,0 +1,54 @@
+{
+  "common": {
+    "ok": "ठीक आहे",
+    "cancel": "रद्द करा",
+    "save": "जतन करा",
+    "edit": "संपादित करा",
+    "delete": "हटवा",
+    "back": "मागे",
+    "next": "पुढील",
+    "submit": "सादर करा",
+    "loading": "लोड होत आहे...",
+    "error": "त्रुटी"
+  },
+  "screens": {
+    "home": "होम",
+    "marketplace": "मार्केटप्लेस",
+    "prices": "किंमती",
+    "advisory": "सल्ला",
+    "postHarvest": "कापणीनंतर",
+    "transport": "वाहतूक"
+  },
+  "errors": {
+    "unknownError": "एक अज्ञात त्रुटी आली.",
+    "networkError": "नेटवर्क विनंती अयशस्वी झाली. कृपया आपले इंटरनेट कनेक्शन तपासा."
+  },
+  "navigation": {
+    "home": "होम",
+    "marketplace": "मार्केटप्लेस",
+    "prices": "किंमती",
+    "advisory": "सल्ला",
+    "postHarvest": "कापणीनंतर",
+    "transport": "वाहतूक"
+  },
+  "postHarvest": {
+    "home": {
+      "title": "कापणीनंतर मार्गदर्शन",
+      "placeholder": "कापणीनंतर मुख्य स्क्रीन सामग्री येथे येते."
+    },
+    "details": {
+      "title": "कापणीनंतर तपशील",
+      "placeholder": "कापणीनंतर तपशील स्क्रीन सामग्री येथे येते."
+    },
+    "cropStorage": {
+      "title": "पीक साठवण मार्गदर्शन",
+      "placeholder": "पीक साठवण स्क्रीन सामग्री येथे येते."
+    },
+    "cropSelector": {
+      "label": "पीक निवडा"
+    },
+    "storageCard": {
+      "imageUrlAlt": "साठवण पद्धतीची प्रतिमा"
+    }
+  }
+}

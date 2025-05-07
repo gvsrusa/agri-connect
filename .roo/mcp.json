@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "supabase": {
+      "url": "https://mcp.composio.dev/composio/server/d726b06a-80d0-44bf-bd53-f110385e4a94"
+    },
+    "perplexityai": {
+      "url": "https://mcp.composio.dev/composio/server/1f4ca616-02b7-4b40-8a97-12d883c98b20"
+    },
+    "firecrawl": {
+      "url": "https://mcp.composio.dev/composio/server/5692c410-7eb6-4adf-b453-0d89a5d74200"
+    }
+  }
+}

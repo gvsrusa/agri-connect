@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "AgriConnectApp",
+    "slug": "AgriConnectApp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "GOOGLE_WEB_CLIENT_ID": "YOUR_WEB_CLIENT_ID",
+      "GOOGLE_IOS_CLIENT_ID": "YOUR_IOS_CLIENT_ID",
+      "GOOGLE_ANDROID_CLIENT_ID": "YOUR_ANDROID_CLIENT_ID",
+      "eas": {
+        "projectId": "3acebeff-ec2b-48f9-bfce-7e25532f181c"
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "common": {
+    "ok": "ठीक है",
+    "cancel": "रद्द करें",
+    "save": "सहेजें",
+    "edit": "संपादित करें",
+    "delete": "मिटाएँ",
+    "back": "वापस",
+    "next": "अगला",
+    "submit": "जमा करें",
+    "loading": "लोड हो रहा है...",
+    "error": "त्रुटि"
+  },
+  "screens": {
+    "home": "होम",
+    "marketplace": "मार्केटप्लेस",
+    "prices": "कीमतें",
+    "advisory": "सलाह",
+    "postHarvest": "फसल कटाई के बाद",
+    "transport": "परिवहन"
+  },
+  "errors": {
+    "unknownError": "एक अज्ञात त्रुटि हुई।",
+    "networkError": "नेटवर्क अनुरोध विफल रहा। कृपया अपना इंटरनेट कनेक्शन जांचें।"
+  },
+  "navigation": {
+    "home": "होम",
+    "marketplace": "मार्केटप्लेस",
+    "prices": "कीमतें",
+    "advisory": "सलाह",
+    "postHarvest": "फसल कटाई के बाद",
+    "transport": "परिवहन"
+  },
+  "postHarvest": {
+    "home": {
+      "title": "फसल कटाई के बाद मार्गदर्शन",
+      "placeholder": "फसल कटाई के बाद होम स्क्रीन सामग्री यहाँ आती है।"
+    },
+    "details": {
+      "title": "फसल कटाई के बाद विवरण",
+      "placeholder": "फसल कटाई के बाद विवरण स्क्रीन सामग्री यहाँ आती है।"
+    },
+    "cropStorage": {
+      "title": "फसल भंडारण मार्गदर्शन",
+      "placeholder": "फसल भंडारण स्क्रीन सामग्री यहाँ आती है।"
+    },
+    "cropSelector": {
+      "label": "फसल चुनें"
+    },
+    "storageCard": {
+      "imageUrlAlt": "भंडारण विधि की छवि"
+    }
+  }
+}

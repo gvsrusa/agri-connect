@@ -1,0 +1,54 @@
+{
+  "common": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "error": "Error"
+  },
+  "screens": {
+    "home": "Home",
+    "marketplace": "Marketplace",
+    "prices": "Prices",
+    "advisory": "Advisory",
+    "postHarvest": "Post Harvest",
+    "transport": "Transport"
+  },
+  "errors": {
+    "unknownError": "An unknown error occurred.",
+    "networkError": "Network request failed. Please check your internet connection."
+  },
+  "navigation": {
+    "home": "Home",
+    "marketplace": "Marketplace",
+    "prices": "Prices",
+    "advisory": "Advisory",
+    "postHarvest": "Post Harvest",
+    "transport": "Transport"
+  },
+  "postHarvest": {
+    "home": {
+      "title": "Post-Harvest Guidance",
+      "placeholder": "Post-harvest home screen content goes here."
+    },
+    "details": {
+      "title": "Post-Harvest Details",
+      "placeholder": "Post-harvest details screen content goes here."
+    },
+    "cropStorage": {
+      "title": "Crop Storage Guidance",
+      "placeholder": "Crop storage screen content goes here."
+    },
+    "cropSelector": {
+      "label": "Select Crop"
+    },
+    "storageCard": {
+      "imageUrlAlt": "Image of storage method"
+    }
+  }
+}
