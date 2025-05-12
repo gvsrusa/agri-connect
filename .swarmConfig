@@ -38,5 +38,169 @@
       "ask-ultimate-guide-v2",
       "tutorial-taskd-test-first-ai-workflow"
     ]
-  }
+  },
+  "categoryMapping": {
+    "feature_status": "feature_status",
+    "code_quality": "code_quality",
+    "integration": "integration",
+    "documentation": "documentation",
+    "error": "error",
+    "tasking": "tasking",
+    "default": "general"
+  },
+  "pheromoneDynamics": {
+    "defaultSignalStrength": 1.0,
+    "evaporationRates": {
+      "feature_status": 0.05,
+      "code_quality": 0.1,
+      "integration": 0.08,
+      "documentation": 0.02,
+      "error": 0.15,
+      "tasking": 0.1,
+      "general": 0.1
+    },
+    "repeatedSignalBoost": 0.2,
+    "maxAmplification": 3.0,
+    "signalPruneThreshold": 0.1,
+    "maxPheromoneSizeLines": 500
+  },
+  "interpretationLogic": [
+    {
+      "condition": {
+        "handoff_reason_code": "task_complete_coder_success"
+      },
+      "actions": [
+        {
+          "type": "create_signal",
+          "category": "feature_status",
+          "description": "Feature implementation part completed successfully by coder.",
+          "data_keys": ["feature_name", "modified_code_paths"]
+        },
+        {
+          "type": "create_signal",
+          "category": "code_quality",
+          "description": "Coder reported passing tests for the implemented part.",
+          "data_keys": ["feature_name", "final_test_output"]
+        },
+        {
+          "type": "create_signal",
+          "category": "integration",
+          "description": "Completed code is ready for integration.",
+          "data_keys": ["feature_name", "modified_code_paths"]
+        }
+      ]
+    },
+    {
+      "condition": {
+        "summary_keywords": ["further development required", "next steps", "User Story 2"]
+      },
+      "actions": [
+        {
+          "type": "create_signal",
+          "category": "tasking",
+          "description": "Further development or next steps identified for the feature.",
+          "data_keys": ["feature_name"]
+        }
+      ]
+    },
+     {
+      "condition": {
+        "summary_keywords": ["challenge", "issue", "resolved"]
+      },
+      "actions": [
+        {
+          "type": "create_signal",
+          "category": "code_quality",
+          "description": "Challenges encountered and resolved during development.",
+          "data_keys": ["feature_name"]
+        }
+      ]
+    },
+    {
+      "condition": {
+        "handoff_reason_code": "task_complete_debugger_success"
+      },
+      "actions": [
+        {
+          "type": "create_signal",
+          "category": "feature_status",
+          "description": "Debugging completed successfully.",
+          "data_keys": ["feature_name", "modified_code_paths"]
+        },
+        {
+          "type": "create_signal",
+          "category": "code_quality",
+          "description": "Tests passing after debugging.",
+          "data_keys": ["feature_name", "final_test_output"]
+        }
+      ]
+    },
+    {
+      "condition": {
+        "handoff_reason_code": "task_failed_needs_debug"
+      },
+      "actions": [
+        {
+          "type": "create_signal",
+          "category": "error",
+          "description": "Task failed, requires debugging.",
+          "strength": 1.5,
+          "data_keys": ["feature_name", "error_details"]
+        },
+        {
+          "type": "create_signal",
+          "category": "tasking",
+          "description": "Debugging task required for feature.",
+           "strength": 1.2,
+          "data_keys": ["feature_name"]
+        }
+      ]
+    }
+  ],
+  "registryUpdatesLogic": [
+    {
+      "condition": {
+        "summary_regex": "\\[`(?<text>[^`]+)`\\]\\((?<path>[^)]+\\.md)\\)"
+      },
+      "action": {
+        "type": "add_or_update_entry",
+        "key_template": "docs/markdown/{text}",
+        "value_template": "{path}",
+        "timestamp": true
+      }
+    },
+    {
+       "condition": {
+        "summary_regex": "\\[`(?<text>[^`]+)`\\]\\((?<path>[^)]+\\.(tsx|ts|js|jsx))(?::\\d+)?\\)"
+       },
+       "action": {
+        "type": "add_or_update_entry",
+        "key_template": "code/{text}",
+        "value_template": "{path}",
+        "timestamp": true
+       }
+    },
+    {
+      "condition": {
+        "data_field": "modified_code_paths"
+      },
+      "action": {
+        "type": "add_or_update_entry",
+        "key_template": "feature/{feature_name}/modified_files",
+        "value_template": "{modified_code_paths}",
+        "timestamp": true
+      }
+    },
+     {
+      "condition": {
+        "data_field": "original_user_blueprint_or_change_request_path"
+      },
+      "action": {
+        "type": "add_or_update_entry",
+        "key_template": "feature/{feature_name}/blueprint",
+        "value_template": "{original_user_blueprint_or_change_request_path}",
+        "timestamp": true
+      }
+    }
+  ]
 }

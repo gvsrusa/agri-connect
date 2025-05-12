@@ -5,7 +5,7 @@
       "signalType": "prioritize_feature_X_development",
       "target": "ExampleFeature",
       "category": "priority",
-      "strength": 4.5,
+      "strength": 3.46275,
       "message": "Example: High priority task - focus development on ExampleFeature. Replace this message.",
       "data": {
         "prd_path": "docs/example_prd.md",
@@ -29,14 +29,14 @@
         "user_directive": "EXAMPLE DIRECTIVE: Focus solely on implementing ExampleFeature using the specified data sources. Overwrite this directive."
       },
       "timestamp_created": "YYYY-MM-DDTHH:MM:SSZ",
-      "last_updated_timestamp": "YYYY-MM-DDTHH:MM:SSZ"
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
     },
     {
       "id": "agri-init-complete-001",
       "signalType": "project_initialization_complete",
       "target": "Agri-Connect",
       "category": "state",
-      "strength": 1.0,
+      "strength": 0.729,
       "message": "Project initialization for Agri-Connect is complete. Master Project Plan, feature specifications, and high-level architecture are defined.",
       "data": {
         "master_project_plan_path": "docs/Master_Project_Plan.md",
@@ -46,14 +46,14 @@
         "architecture_doc_dir": "docs/architecture/"
       },
       "timestamp_created": "2025-05-12T15:51:10Z",
-      "last_updated_timestamp": "2025-05-12T15:51:10Z"
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
     },
     {
       "id": "agri-scaffold-need-001",
       "signalType": "framework_scaffolding_needed",
       "target": "Agri-Connect",
       "category": "need",
-      "strength": 0.9,
+      "strength": 0.6561,
       "message": "Framework scaffolding is required for Agri-Connect, following project initialization.",
       "data": {
         "based_on_project_plan": "docs/Master_Project_Plan.md",
@@ -61,14 +61,14 @@
         "payload_path": "user_blueprint.md"
       },
       "timestamp_created": "2025-05-12T15:51:10Z",
-      "last_updated_timestamp": "2025-05-12T15:51:10Z"
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
     },
     {
       "id": "agri-scaffold-complete-001",
       "signalType": "framework_scaffolding_complete",
       "target": "Agri-Connect",
       "category": "state",
-      "strength": 1.0,
+      "strength": 0.729,
       "message": "Framework scaffolding for Agri-Connect is complete. Next.js (App Router), Tailwind CSS, next-intl, and Jest/RTL test harness are set up. Project is ready for feature-specific development.",
       "data": {
         "status": "base_scaffold_complete",
@@ -92,7 +92,162 @@
         ]
       },
       "timestamp_created": "2025-05-12T16:05:00Z",
-      "last_updated_timestamp": "2025-05-12T16:05:00Z"
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+    {
+      "id": "auth-test-ready-001",
+      "signalType": "feature_test_ready",
+      "target": "Authentication & User Profile Management",
+      "category": "feature_status",
+      "strength": 0.9025,
+      "message": "Test plan and stubs generated for 'Authentication & User Profile Management'. Feature is ready for TDD implementation.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "test_plan_path": "docs/test-plans/Authentication_UserProfile_Management_test_plan.md",
+        "test_stub_paths": [
+          "__tests__/features/auth-profile/auth-profile.api.test.ts",
+          "__tests__/features/auth-profile/auth-profile.ui.test.tsx"
+        ],
+        "next_step": "TDD Implementation"
+      },
+      "timestamp_created": "2025-05-12T17:09:00Z",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+    {
+      "id": "feature-status-auth-profile-api-complete-20250512172625",
+      "signalType": "feature_part_complete",
+      "target": "Authentication & User Profile Management",
+      "category": "feature_status",
+      "strength": 0.95,
+      "message": "Feature implementation part completed successfully by coder.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "modified_code_paths": [
+          "app/api/user-profile/route.ts",
+          "__tests__/features/auth-profile/auth-profile.api.test.ts"
+        ]
+      },
+      "timestamp_created": "2025-05-12T17:26:25Z",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+    {
+      "id": "code-quality-auth-profile-api-tests-passed-20250512172625",
+      "signalType": "tests_passing_for_part",
+      "target": "Authentication & User Profile Management",
+      "category": "code_quality",
+      "strength": 0.9,
+      "message": "Coder reported passing tests for the implemented part.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "final_test_output": "Tests passed for API implementation as reported by coder."
+      },
+      "timestamp_created": "2025-05-12T17:26:25Z",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+    {
+      "id": "integration-auth-profile-api-ready-20250512172625",
+      "signalType": "code_ready_for_integration",
+      "target": "Authentication & User Profile Management",
+      "category": "integration",
+      "strength": 0.92,
+      "message": "Completed code is ready for integration.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "modified_code_paths": [
+          "app/api/user-profile/route.ts",
+          "__tests__/features/auth-profile/auth-profile.api.test.ts"
+        ]
+      },
+      "timestamp_created": "2025-05-12T17:26:25Z",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+    {
+      "id": "tasking-auth-profile-next-steps-20250512172625",
+      "signalType": "next_steps_identified",
+      "target": "Authentication & User Profile Management",
+      "category": "tasking",
+      "strength": 0.9,
+      "message": "Further development or next steps identified for the feature.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "details": "UI implementation and associated tests (__tests__/features/auth-profile/auth-profile.ui.test.tsx) and underlying lib functions (lib/userProfile.ts) remain as todo items."
+      },
+      "timestamp_created": "2025-05-12T17:26:25Z",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+    {
+      "id": "code-quality-auth-profile-challenges-resolved-20250512172625",
+      "signalType": "challenges_resolved",
+      "target": "Authentication & User Profile Management",
+      "category": "code_quality",
+      "strength": 1.08,
+      "message": "Challenges encountered and resolved during development.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "details": "Corrected Jest environment configurations."
+      },
+      "timestamp_created": "2025-05-12T17:26:25Z",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+    {
+      "id": "feature-status-auth-profile-ui-complete-20250512174434",
+      "signalType": "feature_part_complete",
+      "target": "Authentication & User Profile Management",
+      "category": "feature_status",
+      "strength": 1.0,
+      "message": "Feature implementation part completed successfully by coder.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "modified_code_paths": [
+          "__tests__/features/auth-profile/auth-profile.ui.test.tsx"
+        ]
+      },
+      "timestamp_created": "2025-05-12T17:44:34Z",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+    {
+      "id": "code-quality-auth-profile-ui-tests-passed-20250512174434",
+      "signalType": "tests_passing_for_part",
+      "target": "Authentication & User Profile Management",
+      "category": "code_quality",
+      "strength": 1.0,
+      "message": "Coder reported passing tests for the implemented part.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "final_test_output": "All implemented tests for the 'Authentication & User Profile Management' UI feature are now passing."
+      },
+      "timestamp_created": "2025-05-12T17:44:34Z",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+    {
+      "id": "integration-auth-profile-ui-ready-20250512174434",
+      "signalType": "code_ready_for_integration",
+      "target": "Authentication & User Profile Management",
+      "category": "integration",
+      "strength": 1.0,
+      "message": "Completed code is ready for integration.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "modified_code_paths": [
+          "__tests__/features/auth-profile/auth-profile.ui.test.tsx"
+        ]
+      },
+      "timestamp_created": "2025-05-12T17:44:34Z",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+    {
+      "id": "code-quality-auth-profile-challenges-resolved-ui-20250512174434",
+      "signalType": "challenges_resolved",
+      "target": "Authentication & User Profile Management",
+      "category": "code_quality",
+      "strength": 1.0,
+      "message": "Challenges encountered and resolved during development.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+         "details": "Resolved key issues concerning Jest environment setup, internationalized label selectors, and API call assertion logic during UI TDD."
+      },
+      "timestamp_created": "2025-05-12T17:44:34Z",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
     }
   ],
   "documentation_registry": [
@@ -115,16 +270,18 @@
       "last_updated_timestamp": "2025-05-12T15:51:10Z"
     },
     {
-      "file_path": "docs/specs/Authentication_UserProfile_Management_overview.md",
+      "key": "docs/markdown/docs/specs/Authentication_UserProfile_Management_overview.md",
+      "value": "docs/specs/Authentication_UserProfile_Management_overview.md",
+      "type": "documentation_entry",
       "description": "Feature overview specification for Authentication & User Profile Management.",
-      "type": "specification",
-      "last_updated_timestamp": "2025-05-12T15:51:10Z"
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
     },
     {
-      "file_path": "docs/architecture/Authentication_UserProfile_Management_architecture.md",
+      "key": "docs/markdown/docs/architecture/Authentication_UserProfile_Management_architecture.md",
+      "value": "docs/architecture/Authentication_UserProfile_Management_architecture.md",
+      "type": "documentation_entry",
       "description": "High-level architecture for Authentication & User Profile Management module.",
-      "type": "architecture_document",
-      "last_updated_timestamp": "2025-05-12T15:51:10Z"
+      "last_updated_timestamp": "2025-05-12T17:26:25Z"
     },
     {
       "file_path": "docs/specs/Crop_Advisory_Content_Delivery_overview.md",
@@ -269,6 +426,71 @@
       "description": "Summary report detailing framework scaffolding activities.",
       "type": "report_document",
       "last_updated_timestamp": "2025-05-12T16:05:00Z"
+    },
+    {
+      "key": "docs/markdown/docs/test-plans/Authentication_UserProfile_Management_test_plan.md",
+      "value": "docs/test-plans/Authentication_UserProfile_Management_test_plan.md",
+      "type": "documentation_entry",
+      "description": "Detailed test plan for Authentication & User Profile Management feature.",
+      "last_updated_timestamp": "2025-05-12T17:26:25Z"
+    },
+    {
+      "key": "code/__tests__/features/auth-profile/auth-profile.api.test.ts",
+      "value": "__tests__/features/auth-profile/auth-profile.api.test.ts",
+      "type": "documentation_entry",
+      "description": "API test stubs for Authentication & User Profile Management feature.",
+      "last_updated_timestamp": "2025-05-12T17:26:25Z"
+    },
+    {
+      "key": "code/__tests__/features/auth-profile/auth-profile.ui.test.tsx",
+      "value": "__tests__/features/auth-profile/auth-profile.ui.test.tsx",
+      "type": "documentation_entry",
+      "description": "UI test stubs for Authentication & User Profile Management feature.",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+    {
+      "key": "code/app/api/user-profile/route.ts",
+      "value": "app/api/user-profile/route.ts",
+      "type": "documentation_entry",
+      "description": "Code file entry added/updated by Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T17:26:25Z"
+    },
+    {
+      "key": "code/lib/userProfile.ts",
+      "value": "lib/userProfile.ts",
+      "type": "documentation_entry",
+      "description": "Code file entry added/updated by Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+    {
+      "key": "feature/Authentication & User Profile Management/modified_files",
+      "value": [
+        "__tests__/features/auth-profile/auth-profile.ui.test.tsx"
+      ],
+      "type": "documentation_entry",
+      "description": "List of files modified for the feature.",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+    {
+      "key": "code/UserProfileForm",
+      "value": "components/profile/UserProfileForm.tsx",
+      "type": "documentation_entry",
+      "description": "Code file entry added/updated by Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+    {
+      "key": "code/app/[locale]/profile/page.tsx",
+      "value": "app/[locale]/profile/page.tsx",
+      "type": "documentation_entry",
+      "description": "Code file entry added/updated by Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
+    },
+     {
+      "key": "feature/Authentication & User Profile Management/blueprint",
+      "value": "docs/specs/Authentication_UserProfile_Management_overview.md",
+      "type": "documentation_entry",
+      "description": "Blueprint/Specification document associated with the feature.",
+      "last_updated_timestamp": "2025-05-12T17:44:34Z"
     }
   ]
 }
