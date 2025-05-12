@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "pheromone_file_path": "./.pheromone",
+  "scribe_settings": {
+    "default_interpretation_mode": "standard"
+  },
+  "modes": {
+    "enabled": [
+      "code",
+      "architect",
+      "ask",
+      "debug",
+      "orchestrator",
+      "orchestrator-pheromone-scribe",
+      "head-orchestrator",
+      "uber-orchestrator",
+      "orchestrator-project-initialization",
+      "architect-highlevel-module",
+      "orchestrator-framework-scaffolding",
+      "tester-tdd-master",
+      "orchestrator-test-specification-and-generation",
+      "coder-test-driven",
+      "orchestrator-feature-implementation-tdd",
+      "orchestrator-integration-and-system-testing",
+      "orchestrator-refinement-and-maintenance",
+      "research-planner-strategic",
+      "spec-writer-feature-overview",
+      "spec-to-testplan-converter",
+      "debugger-targeted",
+      "integrator-module",
+      "code-comprehension-assistant-v2",
+      "security-reviewer-module",
+      "optimizer-module",
+      "docs-writer-feature",
+      "devops-foundations-setup",
+      "coder-framework-boilerplate",
+      "devops-pipeline-manager",
+      "ask-ultimate-guide-v2",
+      "tutorial-taskd-test-first-ai-workflow"
+    ]
+  }
+}
