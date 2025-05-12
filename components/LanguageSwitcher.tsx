@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale, useTranslations } from 'next-intl';
-import { useRouter, usePathname } from 'next/navigation'; // Use standard Next.js navigation
+import { useRouter, usePathname } from 'next/navigation'; // Reverted: Use standard Next.js navigation
 import { ChangeEvent, useTransition } from 'react';
 import { locales as supportedLocales } from '@/i18n'; // Import supported locales
 
@@ -27,15 +27,20 @@ export default function LanguageSwitcher() {
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const nextLocale = event.target.value;
     startTransition(() => {
-      // Manually construct the new path with the selected locale
+      // Manually construct the new path since next-intl navigation setup is not present
       if (pathname) {
         const segments = pathname.split('/');
-        // Assuming locale is the first segment after the initial '/' (e.g., /en/dashboard -> segments[1] is 'en')
-        // If the default locale is not prefixed, this logic needs adjustment.
-        // For now, assume prefixing for all locales including default.
-        segments[1] = nextLocale;
-        const newPath = segments.join('/');
-        router.push(newPath); // Use standard push with the full new path
+        // Assuming locale is the second segment (index 1)
+        // e.g., /en/some/path -> segments = ['', 'en', 'some', 'path']
+        if (segments.length > 1) {
+          segments[1] = nextLocale; // Replace the locale segment
+          const newPath = segments.join('/');
+          router.push(newPath); // Push the full new path
+        } else {
+          // Handle cases where pathname might not have a locale prefix (e.g., root '/')
+          // This might need adjustment based on actual routing setup
+          router.push(`/${nextLocale}${pathname}`);
+        }
       }
     });
 

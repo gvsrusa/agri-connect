@@ -10,21 +10,19 @@ const createJestConfig = nextJest({
 const config = {
   // Add more setup options before each test is run
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  // testEnvironment: 'jest-environment-jsdom', // Remove this line to use default Node env for API tests
-  // preset: 'ts-jest', // next/jest handles TS transformation via Babel
+  testEnvironment: 'jest-environment-jsdom', // Enable jsdom for React component testing
+  // preset: 'ts-jest', // Keep commented out
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)
-    // https://jestjs.io/docs/webpack#handling-static-assets
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
 
     // Handle CSS imports (without CSS modules)
     '^.+\\.(css|sass|scss)$': '<rootDir>/__mocks__/styleMock.js',
 
     // Handle image imports
-    // https://jestjs.io/docs/webpack#handling-static-assets
     '^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i': `<rootDir>/__mocks__/fileMock.js`,
 
-    // Handle module aliases (this will be automatically configured based on jsconfig.json/tsconfig.json)
+    // Handle module aliases
     '^@/components/(.*)$': '<rootDir>/components/$1',
     '^@/styles/(.*)$': '<rootDir>/styles/$1',
     '^@/lib/(.*)$': '<rootDir>/lib/$1',
@@ -32,17 +30,25 @@ const config = {
     '^@/app/(.*)$': '<rootDir>/app/$1',
   },
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
-  transformIgnorePatterns: [
-    // Ignore node_modules except for specific ESM packages that need transformation
-    '/node_modules/(?!(next-intl))/', // Ensure next-intl is NOT ignored
-    '^.+\\.module\\.(css|sass|scss)$', // Keep ignoring CSS modules
-  ],
+  // transformIgnorePatterns removed from here
   transform: {
     // Use babel-jest to transpile tests with the next/babel preset
-    // https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object
     '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
   },
 }
 
-// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
-export default createJestConfig(config)
+// Create the async config function from next/jest
+const asyncConfig = createJestConfig(config);
+
+// Export an async function that modifies the config after creation
+export default async () => {
+  const finalConfig = await asyncConfig();
+  // Apply transformIgnorePatterns after the base config is created
+  finalConfig.transformIgnorePatterns = [
+    // Allow transformation of next-intl
+    '/node_modules/(?!(next-intl))/',
+    // Keep ignoring CSS modules
+    '^.+\\.module\\.(css|sass|scss)$',
+  ];
+  return finalConfig;
+};

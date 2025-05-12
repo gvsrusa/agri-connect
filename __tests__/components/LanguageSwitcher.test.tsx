@@ -2,11 +2,11 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import LanguageSwitcher from '@/components/LanguageSwitcher'; // Adjust path if needed
-import { usePathname, useRouter } from 'next/navigation'; // Mock these
+import { usePathname, useRouter } from 'next/navigation'; // Mock these (Reverted)
 import { useLocale, useTranslations } from 'next-intl'; // Mock these
 
 // Mock next/navigation
-jest.mock('next/navigation', () => ({
+jest.mock('next/navigation', () => ({ // Reverted
   useRouter: jest.fn(),
   usePathname: jest.fn(),
 }));
@@ -41,7 +41,7 @@ describe('LanguageSwitcher Component', () => {
   beforeEach(() => {
     // Reset mocks for each test
     mockRouter = { push: jest.fn() };
-    mockPathname = '/some/path';
+    mockPathname = '/en/some/path'; // Include locale prefix in mock
     mockLocale = 'en'; // Default locale for testing
     mockT = jest.fn((key) => {
         // Simple mock translation for keys like 'languageSwitcherLabel'
@@ -89,7 +89,9 @@ describe('LanguageSwitcher Component', () => {
     // We expect the router's push method (mocked here) to be called with the *original* pathname
     // and the new locale option, letting next-intl handle the prefixing.
     expect(mockRouter.push).toHaveBeenCalledTimes(1);
-    expect(mockRouter.push).toHaveBeenCalledWith(mockPathname, { locale: targetLocale, scroll: false });
+    // Expect the manually constructed path: /<new_locale>/<rest_of_path>
+    const expectedPath = `/${targetLocale}/some/path`; // Construct expected path based on mockPathname
+    expect(mockRouter.push).toHaveBeenCalledWith(expectedPath);
   });
 
   // Add more tests later:

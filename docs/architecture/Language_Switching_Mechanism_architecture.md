@@ -33,7 +33,7 @@ The architecture leverages `next-intl` for managing translations and locale hand
 
 *   **`LanguageSelector` (Client Component):**
     *   **Responsibility:** Displays the list of available languages (fetched dynamically or configured statically) and allows the user to select one. Likely implemented as a dropdown menu, placed in a shared layout component (e.g., Header or Footer).
-    *   **Interaction:** On selection, it triggers navigation to the same page but with the new locale prefix in the URL path using `next-intl`'s navigation utilities (which handle cookie updates implicitly). If the user is logged in, it also triggers an asynchronous API call to update the user's profile.
+    *   **Interaction:** On selection, it constructs the new path with the selected locale and uses standard `next/navigation` utilities (e.g., `router.push()` from `next/navigation`). The `next-intl` middleware subsequently processes this path-based locale, and `next-intl`'s mechanisms are responsible for cookie updates. If the user is logged in, it also triggers an asynchronous API call to update the user's profile.
 *   **Shared Layout Component (Server Component - e.g., `RootLayout`):**
     *   **Responsibility:** Integrates the `NextIntlClientProvider`, fetching the appropriate locale and messages server-side based on the middleware's detection. Includes the `LanguageSelector` component.
 
@@ -70,7 +70,7 @@ The middleware will then redirect or rewrite the URL to include the determined l
 1.  **User Action:** User clicks on a language (e.g., "हिन्दी") in the `LanguageSelector` component.
 2.  **Client-Side:**
     *   The `LanguageSelector` component's event handler is triggered.
-    *   It calls `next-intl`'s navigation function (e.g., `router.push(pathname, { locale: 'hi' })`) to navigate to the current page with the new locale prefix. This implicitly updates the `NEXT_LOCALE` cookie.
+    *   It constructs the new path with the selected locale (e.g., `/${newLocale}/${currentPathWithoutLocale}`) and uses standard `next/navigation` utilities (e.g., `router.push(newPath)` from `next/navigation`) to navigate. The `next-intl` middleware subsequently processes this path-based locale, and `next-intl`'s mechanisms are responsible for cookie updates based on the path.
     *   *(If Logged In)*: Concurrently, it makes an asynchronous `PUT` request to `/api/user/profile` with the payload `{ "preferred_language": "hi" }`, using the user's authentication token (handled by Clerk/NextAuth).
 3.  **API Call (If Logged In):**
     *   The `/api/user/profile` endpoint receives the request.
@@ -98,6 +98,18 @@ The middleware will then redirect or rewrite the URL to include the determined l
 *   **Authentication & User Profile Module:** Relies on the existence and functionality of the user profile API ([`PUT /api/user/profile`](docs/architecture/Authentication_UserProfile_Management_architecture.md:39)) and the `preferred_language` field in the `user_profiles` table ([`docs/architecture/Authentication_UserProfile_Management_architecture.md:83`](docs/architecture/Authentication_UserProfile_Management_architecture.md:83)).
 *   **Shared UI Components:** Requires a global layout (Header/Footer) to place the `LanguageSelector`.
 
+## 10. Testing Considerations & Jest Configuration
+
+A `SyntaxError` related to ESM module processing by Jest for `next-intl` was encountered. This was resolved through the following modifications to the Jest setup:
+
+*   **`jest.config.mjs`:**
+    *   The `transformIgnorePatterns` array was updated to correctly process `next-intl` and other `next` related packages. Specifically, `"/node_modules/(?!next-intl|@next|next)/"` ensures that `next-intl` and `next` packages are transformed.
+    *   The `testEnvironment` was set to `'jsdom'` to provide a browser-like environment for tests, which can be beneficial for components interacting with browser APIs, although not strictly required for this specific `next-intl` issue, it's a common good practice for React component testing.
+*   **Component Refactoring for Testability:**
+    *   The [`LanguageSwitcher.tsx`](components/LanguageSwitcher.tsx:1) component and its corresponding test file [`__tests__/components/LanguageSwitcher.test.tsx`](__tests__/components/LanguageSwitcher.test.tsx:1) were refactored.
+    *   Due to complexities in mocking or setting up `next-intl`'s navigation context for Jest, the component was modified to use standard `next/navigation` hooks (`useRouter`, `usePathname`) for navigation. This simplified testing as standard Next.js navigation is more straightforward to mock or handle in Jest environments. The `next-intl` middleware remains responsible for handling the path-based locale changes triggered by these standard navigation actions.
+
+These changes ensure that components using `next-intl` can be reliably tested with Jest, and that the `LanguageSwitcher` component itself is testable using standard Next.js testing practices.
 ## 10. Scalability & Maintainability
 
 *   **Adding Languages:** Adding support for new languages primarily involves:
