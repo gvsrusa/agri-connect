@@ -71,10 +71,11 @@ export async function POST(request: Request) {
     return NextResponse.json(newProfile, { status: 201 });
 
   } catch (error) {
-    console.error('API POST /api/user-profile Error:', error);
     if ((error as Error).name === 'SyntaxError') {
+        console.warn('API POST /api/user-profile Warning: Invalid JSON body received.', error);
         return new NextResponse('Invalid JSON body', { status: 400 });
     }
+    console.error('API POST /api/user-profile Error:', error); // Keep error for unexpected issues
     return new NextResponse('Internal Server Error', { status: 500 });
   }
 }
@@ -134,10 +135,11 @@ export async function PUT(request: Request) {
     return NextResponse.json(updatedProfile, { status: 200 });
 
   } catch (error) {
-    console.error('API PUT /api/user-profile Error:', error);
     if ((error as Error).name === 'SyntaxError') {
+      console.warn('API PUT /api/user-profile Warning: Invalid JSON body received.', error);
       return new NextResponse('Invalid JSON body', { status: 400 });
     }
+    console.error('API PUT /api/user-profile Error:', error); // Keep error for unexpected issues
     // Consider specific error types from updateUserProfile if any
     return new NextResponse('Internal Server Error', { status: 500 });
   }

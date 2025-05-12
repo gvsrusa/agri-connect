@@ -41,7 +41,7 @@ const UserProfileFormWrapper: React.FC<UserProfileFormWrapperProps> = ({ initial
 
       if (!response.ok) {
         const errorData = await response.text();
-        console.error('API Error Response:', errorData);
+        console.warn('API Error Response:', errorData); // Changed from error to warn
         throw new Error(errorData || `Failed to update profile. Status: ${response.status}`);
       }
 
@@ -74,7 +74,7 @@ const UserProfileFormWrapper: React.FC<UserProfileFormWrapperProps> = ({ initial
 
 
     } catch (err: any) {
-      console.error('UserProfileFormWrapper: Submission error:', err);
+      console.warn('UserProfileFormWrapper: Submission error:', err); // Changed from error to warn
       setError(err.message || 'An unexpected error occurred.');
       setSuccess(null);
     } finally {

@@ -21,6 +21,7 @@ The following core features have undergone initial specification and high-level 
 *   **Authentication & User Profile Management:**
     *   Specification: [`docs/specs/Authentication_UserProfile_Management_overview.md`](docs/specs/Authentication_UserProfile_Management_overview.md)
     *   Architecture: [`docs/architecture/Authentication_UserProfile_Management_architecture.md`](docs/architecture/Authentication_UserProfile_Management_architecture.md)
+*   Status: Initial implementation complete. CR-ConsoleError-AuthProfile-20250512 (Console error fix) completed 2025-05-12.
 *   **Marketplace & Price Discovery:**
     *   Specification: [`docs/specs/Marketplace_Price_Discovery_overview.md`](docs/specs/Marketplace_Price_Discovery_overview.md)
     *   Architecture: [`docs/architecture/Marketplace_Price_Discovery_architecture.md`](docs/architecture/Marketplace_Price_Discovery_architecture.md)

@@ -42,9 +42,21 @@ const mockProfile: UserProfile = {
 
 describe('UserProfileForm Component', () => {
   let mockOnSubmit: jest.Mock;
+  let consoleErrorSpy: jest.SpyInstance;
+
+  beforeAll(() => {
+    // Mock to silence console.error output during tests unless explicitly checked
+    consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
 
   beforeEach(() => {
     mockOnSubmit = jest.fn().mockResolvedValue(undefined); // Mock the submit handler
+    consoleErrorSpy.mockClear(); // Clear spy history before each test
+  });
+
+  afterAll(() => {
+    // Restore original console.error after all tests
+    consoleErrorSpy.mockRestore();
   });
 
   test('renders correctly with initial profile data', () => {
@@ -61,6 +73,7 @@ describe('UserProfileForm Component', () => {
     expect(screen.getByLabelText(/Preferred Language/)).toHaveValue(mockProfile.preferred_language);
     expect(screen.getByLabelText(/Farm Location/)).toHaveValue(mockProfile.farm_location);
     expect(screen.getByRole('button', { name: 'Save Profile' })).toBeInTheDocument();
+    expect(consoleErrorSpy).not.toHaveBeenCalled();
   });
 
   test('renders correctly for initial setup (null profile)', () => {
@@ -76,6 +89,7 @@ describe('UserProfileForm Component', () => {
     expect(screen.getByLabelText('Display Name')).toHaveValue('');
     expect(screen.getByLabelText(/Preferred Language/)).toHaveValue(''); // Changed expected default to empty string
     expect(screen.getByLabelText(/Farm Location/)).toHaveValue('');
+    expect(consoleErrorSpy).not.toHaveBeenCalled();
   });
 
   test('calls onSubmit with correct data when form is submitted', async () => {
@@ -111,6 +125,7 @@ describe('UserProfileForm Component', () => {
       preferred_language: 'es',
       farm_location: 'New Farm, Spain',
     });
+    expect(consoleErrorSpy).not.toHaveBeenCalled();
   });
 
    test('trims whitespace and sends null for empty location', async () => {
@@ -140,10 +155,11 @@ describe('UserProfileForm Component', () => {
       preferred_language: 'hi',
       farm_location: null, // Should be null after trimming
     }));
+    expect(consoleErrorSpy).not.toHaveBeenCalled();
   });
 
 
-  test('displays validation errors for required fields', async () => {
+  test('displays validation errors for required fields and does not log to console.error', async () => {
     render(
       <UserProfileForm
         userProfile={null}
@@ -163,6 +179,7 @@ describe('UserProfileForm Component', () => {
 
     // Ensure onSubmit was NOT called
     expect(mockOnSubmit).not.toHaveBeenCalled();
+    expect(consoleErrorSpy).not.toHaveBeenCalled(); // Key assertion for this CR
   });
 
   test('disables submit button when isSubmitting is true', () => {
@@ -176,5 +193,6 @@ describe('UserProfileForm Component', () => {
 
     const submitButton = screen.getByRole('button', { name: 'Saving...' });
     expect(submitButton).toBeDisabled();
+    expect(consoleErrorSpy).not.toHaveBeenCalled();
   });
 });

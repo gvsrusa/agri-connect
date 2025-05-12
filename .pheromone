@@ -5,38 +5,25 @@
       "signalType": "prioritize_feature_X_development",
       "target": "ExampleFeature",
       "category": "priority",
-      "strength": 3.3,
+      "strength": 2.4057,
       "message": "Example: High priority task - focus development on ExampleFeature. Replace this message.",
       "data": {
         "prd_path": "docs/example_prd.md",
-        "relevant_prd_sections": [
-          "Section 1.A",
-          "Section 5.B (Critical Example)",
-          "FR-EXAMPLE-001",
-          "FR-EXAMPLE-002"
-        ],
-        "specific_data_paths_to_use": [
-          "data/example_data_source_1/",
-          "data/example_data_source_2/"
-        ],
+        "relevant_prd_sections": ["Section 1.A", "Section 5.B (Critical Example)", "FR-EXAMPLE-001", "FR-EXAMPLE-002"],
+        "specific_data_paths_to_use": ["data/example_data_source_1/", "data/example_data_source_2/"],
         "data_source_instruction": "EXAMPLE INSTRUCTION: Use only specified data sources. DO NOT use placeholder data in actual runs. This is an example.",
-        "env_details": {
-          "NEO4J_URI": "bolt://example-host:7687",
-          "NEO4J_USER": "user_placeholder",
-          "NEO4J_PASSWORD": "password_placeholder",
-          "NEO4J_DATABASE": "example_db"
-        },
+        "env_details": {"NEO4J_URI": "bolt://example-host:7687", "NEO4J_USER": "user_placeholder", "NEO4J_PASSWORD": "password_placeholder", "NEO4J_DATABASE": "example_db"},
         "user_directive": "EXAMPLE DIRECTIVE: Focus solely on implementing ExampleFeature using the specified data sources. Overwrite this directive."
       },
       "timestamp_created": "YYYY-MM-DDTHH:MM:SSZ",
-      "last_updated_timestamp": "2025-05-12T17:55:00Z"
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
     },
     {
       "id": "integration-auth-profile-system-success-2025-05-12T17-55-00Z",
       "signalType": "feature_integration_successful",
       "target": "Authentication & User Profile Management",
       "category": "integration",
-      "strength": 0.92,
+      "strength": 0.71639296,
       "message": "Integration of 'Authentication & User Profile Management' into main_codebase reported as successful. Files were already present.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -44,14 +31,14 @@
         "original_user_blueprint_or_change_request_path": "docs/specs/Authentication_UserProfile_Management_overview.md"
       },
       "timestamp_created": "2025-05-12T17:55:00Z",
-      "last_updated_timestamp": "2025-05-12T17:55:00Z"
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
     },
     {
       "id": "system-test-passed-auth-profile-2025-05-12T17-55-00Z",
       "signalType": "system_tests_passed",
       "target": "Authentication & User Profile Management",
       "category": "code_quality",
-      "strength": 0.90,
+      "strength": 0.6561,
       "message": "System-wide tests (npm test) passed after integrating 'Authentication & User Profile Management'. 53/53 tests passed, 1 skipped, 17 todo.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -59,14 +46,14 @@
         "test_summary": "9 suites, 53 passed, 1 skipped, 17 todo"
       },
       "timestamp_created": "2025-05-12T17:55:00Z",
-      "last_updated_timestamp": "2025-05-12T17:55:00Z"
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
     },
     {
       "id": "system-test-warnings-auth-profile-2025-05-12T17-55-00Z",
       "signalType": "system_test_warnings_observed",
       "target": "Authentication & User Profile Management",
       "category": "error",
-      "strength": 1.02,
+      "strength": 0.6264075,
       "message": "Console.error messages observed during system tests for 'Authentication & User Profile Management', particularly in API interactions. Potential instability noted.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -75,21 +62,165 @@
         "affected_files": ["__tests__/features/auth-profile/auth-profile.ui.test.tsx", "__tests__/features/auth-profile/auth-profile.api.test.ts"]
       },
       "timestamp_created": "2025-05-12T17:55:00Z",
-      "last_updated_timestamp": "2025-05-12T17:55:00Z"
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
     },
     {
       "id": "tasking-investigate-test-warnings-auth-profile-2025-05-12T17-55-00Z",
       "signalType": "investigation_needed_test_warnings",
       "target": "Authentication & User Profile Management",
       "category": "tasking",
-      "strength": 1.08,
+      "strength": 0.78732,
       "message": "Investigation required for console.error warnings observed during system tests for 'Authentication & User Profile Management' to ensure full robustness.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
         "reason": "Console errors during system tests indicate potential underlying issues despite passing status."
       },
       "timestamp_created": "2025-05-12T17:55:00Z",
-      "last_updated_timestamp": "2025-05-12T17:55:00Z"
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+    },
+    {
+      "id": "tasking-auth-profile-next-steps-20250512T181319Z",
+      "signalType": "tasking_next_steps_identified",
+      "target": "Authentication & User Profile Management",
+      "category": "tasking",
+      "strength": 0.81,
+      "message": "Further development or next steps identified for 'Authentication & User Profile Management' based on summary: refining API unit tests, standardizing UI error logging, adjust system test sensitivity.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "change_request_id": "CR-ConsoleError-AuthProfile-20250512",
+        "recommended_actions": [
+          "Refine API unit tests for error logging in generic catch blocks.",
+          "Standardize UI error logging practices.",
+          "Potentially adjust system test sensitivity to console.error output."
+        ],
+        "source_document": "[`docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md`](docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md:1)"
+      },
+      "timestamp_created": "2025-05-12T18:13:19Z",
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+    },
+    {
+      "id": "codequality-auth-profile-console-noise-20250512T181319Z",
+      "signalType": "code_quality_issue_identified",
+      "target": "Authentication & User Profile Management",
+      "category": "code_quality",
+      "strength": 0.81,
+      "message": "Code quality challenge identified for 'Authentication & User Profile Management': potential for continued console.error noise. Status: completed_with_issues.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "change_request_id": "CR-ConsoleError-AuthProfile-20250512",
+        "issue_description": "Potential for continued console.error noise in sensitive system tests from API ([`app/api/user-profile/route.ts`](app/api/user-profile/route.ts:1)) and UI diagnostic logging.",
+        "affected_files": ["[app/api/user-profile/route.ts](app/api/user-profile/route.ts:1)"],
+        "relevant_doc": "[`docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md`](docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md:1)"
+      },
+      "timestamp_created": "2025-05-12T18:13:19Z",
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+    },
+    {
+      "id": "featurestatus-auth-profile-cr-completed-issues-20250512T181319Z",
+      "signalType": "change_request_completed_with_issues",
+      "target": "Authentication & User Profile Management",
+      "category": "feature_status",
+      "strength": 0.9025,
+      "message": "Change Request CR-ConsoleError-AuthProfile-20250512 for 'Authentication & User Profile Management' is completed with issues.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "change_request_id": "CR-ConsoleError-AuthProfile-20250512",
+        "status_details": "Overall status is 'completed_with_issues' due to potential for continued console noise in sensitive system tests, although the root cause is understood and documented.",
+        "documentation_references": [
+          "[`docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md`](docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md:1)",
+          "[`docs/test-plans/Authentication_UserProfile_Management_test_plan.md`](docs/test-plans/Authentication_UserProfile_Management_test_plan.md:1)"
+        ]
+      },
+      "timestamp_created": "2025-05-12T18:13:19Z",
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+    },
+    {
+      "id": "featurestatus-auth-profile-cr-completed-success-20250512T183210Z",
+      "signalType": "change_request_completed_successfully",
+      "target": "Authentication & User Profile Management",
+      "category": "feature_status",
+      "strength": 0.95,
+      "message": "Refinement cycle CR-ConsoleError-AuthProfile-20250512 completed successfully for 'Authentication & User Profile Management'.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "change_request_id": "CR-ConsoleError-AuthProfile-20250512",
+        "modified_code_paths": ["app/api/user-profile/route.ts", "components/profile/UserProfileFormWrapper.tsx"]
+      },
+      "timestamp_created": "2025-05-12T18:32:10Z",
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+    },
+    {
+      "id": "codequality-auth-profile-issue-resolved-20250512T183210Z",
+      "signalType": "code_issue_resolved",
+      "target": "Authentication & User Profile Management",
+      "category": "code_quality",
+      "strength": 0.9,
+      "message": "Console error noise issue resolved in 'Authentication & User Profile Management' by switching to console.warn.",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "change_request_id": "CR-ConsoleError-AuthProfile-20250512",
+        "resolution": "Switched console.error to console.warn for handled errors."
+      },
+      "timestamp_created": "2025-05-12T18:32:10Z",
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+    },
+    {
+      "id": "codequality-auth-profile-tests-passed-20250512T183210Z",
+      "signalType": "tests_passed_post_refinement",
+      "target": "Authentication & User Profile Management",
+      "category": "code_quality",
+      "strength": 0.9,
+      "message": "All tests passed after refinement for 'Authentication & User Profile Management' (CR-ConsoleError-AuthProfile-20250512).",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "change_request_id": "CR-ConsoleError-AuthProfile-20250512",
+        "test_paths": ["__tests__/features/auth-profile/auth-profile.api.test.ts", "__tests__/features/auth-profile/auth-profile.ui.test.tsx", "__tests__/components/profile/UserProfileForm.test.tsx"]
+      },
+      "timestamp_created": "2025-05-12T18:32:10Z",
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+    },
+    {
+      "id": "documentation-auth-profile-updated-20250512T183210Z",
+      "signalType": "documentation_updated",
+      "target": "Authentication & User Profile Management",
+      "category": "documentation",
+      "strength": 0.98,
+      "message": "Documentation updated for 'Authentication & User Profile Management' reflecting refined logging strategy (CR-ConsoleError-AuthProfile-20250512).",
+      "data": {
+        "feature_name": "Authentication & User Profile Management",
+        "change_request_id": "CR-ConsoleError-AuthProfile-20250512",
+        "updated_doc_paths": ["docs/architecture/Authentication_UserProfile_Management_architecture.md", "docs/test-plans/Authentication_UserProfile_Management_test_plan.md", "docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md", "docs/comprehension_reports/auth_profile_error_logging_analysis_CR-ConsoleError-AuthProfile-20250512.md"]
+      },
+      "timestamp_created": "2025-05-12T18:32:10Z",
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+    },
+    {
+      "id": "feature-spec-ready-lang-switch-20250512T185208Z",
+      "signalType": "feature_spec_ready",
+      "target": "Language Switching Mechanism",
+      "category": "documentation",
+      "strength": 0.98,
+      "message": "Feature specification document is ready for Language Switching Mechanism.",
+      "data": {
+        "feature_name": "Language Switching Mechanism",
+        "spec_path": "docs/specs/Language_Switching_Mechanism_overview.md"
+      },
+      "timestamp_created": "2025-05-12T18:52:08Z",
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+    },
+    {
+      "id": "feature-arch-ready-lang-switch-20250512T185208Z",
+      "signalType": "feature_architecture_ready",
+      "target": "Language Switching Mechanism",
+      "category": "documentation",
+      "strength": 0.98,
+      "message": "Feature architecture document is ready for Language Switching Mechanism.",
+      "data": {
+        "feature_name": "Language Switching Mechanism",
+        "architecture_path": "docs/architecture/Language_Switching_Mechanism_architecture.md"
+      },
+      "timestamp_created": "2025-05-12T18:52:08Z",
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
     }
   ],
   "documentation_registry": [
@@ -105,7 +236,7 @@
       "value": "app/api/user-profile/route.ts",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T17:55:00Z"
+      "last_updated_timestamp": "2025-05-12T18:32:10Z"
     },
     {
       "key": "docs/markdown/docs/reports/integration/Integration_Status_Report_Authentication_UserProfile_Management_to_main_codebase.md",
@@ -119,14 +250,14 @@
       "value": "docs/Master_Project_Plan.md",
       "type": "documentation_entry",
       "description": "Documentation entry for Master Project Plan.",
-      "last_updated_timestamp": "2025-05-12T17:55:00Z"
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
     },
     {
       "key": "code/__tests__/components/profile/UserProfileForm.test.tsx",
       "value": "__tests__/components/profile/UserProfileForm.test.tsx",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T17:55:00Z"
+      "last_updated_timestamp": "2025-05-12T18:32:10Z"
     },
     {
       "key": "code/components/profile/UserProfileForm.tsx",
@@ -140,7 +271,7 @@
       "value": "components/profile/UserProfileFormWrapper.tsx",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T17:55:00Z"
+      "last_updated_timestamp": "2025-05-12T18:32:10Z"
     },
     {
       "key": "code/types/userProfile.ts",
@@ -155,6 +286,76 @@
       "type": "documentation_entry",
       "description": "Blueprint/Specification document associated with the feature.",
       "last_updated_timestamp": "2025-05-12T17:55:00Z"
+    },
+    {
+      "key": "docs/markdown/docs/comprehension_reports/auth_profile_error_analysis.md",
+      "value": "docs/comprehension_reports/auth_profile_error_analysis.md",
+      "type": "documentation_entry",
+      "description": "Documentation entry updated via Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T18:13:19Z"
+    },
+    {
+      "key": "code/__tests__/features/auth-profile/auth-profile.api.test.ts",
+      "value": "__tests__/features/auth-profile/auth-profile.api.test.ts",
+      "type": "documentation_entry",
+      "description": "Code file entry added/updated by Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T18:32:10Z"
+    },
+    {
+      "key": "code/__tests__/features/auth-profile/auth-profile.ui.test.tsx",
+      "value": "__tests__/features/auth-profile/auth-profile.ui.test.tsx",
+      "type": "documentation_entry",
+      "description": "Code file entry added/updated by Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T18:32:10Z"
+    },
+    {
+      "key": "docs/markdown/docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md",
+      "value": "docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md",
+      "type": "documentation_entry",
+      "description": "Documentation entry updated via Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T18:32:10Z"
+    },
+    {
+      "key": "docs/markdown/docs/test-plans/Authentication_UserProfile_Management_test_plan.md",
+      "value": "docs/test-plans/Authentication_UserProfile_Management_test_plan.md",
+      "type": "documentation_entry",
+      "description": "Documentation entry updated via Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T18:32:10Z"
+    },
+    {
+      "key": "feature/Authentication & User Profile Management/modified_files",
+      "value": ["app/api/user-profile/route.ts", "components/profile/UserProfileFormWrapper.tsx"],
+      "type": "documentation_entry",
+      "description": "List of files modified for the feature during the last update.",
+      "last_updated_timestamp": "2025-05-12T18:32:10Z"
+    },
+     {
+      "key": "docs/markdown/docs/architecture/Authentication_UserProfile_Management_architecture.md",
+      "value": "docs/architecture/Authentication_UserProfile_Management_architecture.md",
+      "type": "documentation_entry",
+      "description": "Documentation entry updated via Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T18:32:10Z"
+    },
+    {
+      "key": "docs/markdown/docs/comprehension_reports/auth_profile_error_logging_analysis_CR-ConsoleError-AuthProfile-20250512.md",
+      "value": "docs/comprehension_reports/auth_profile_error_logging_analysis_CR-ConsoleError-AuthProfile-20250512.md",
+      "type": "documentation_entry",
+      "description": "Documentation entry updated via Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T18:32:10Z"
+    },
+    {
+      "key": "docs/markdown/docs/specs/Language_Switching_Mechanism_overview.md",
+      "value": "docs/specs/Language_Switching_Mechanism_overview.md",
+      "type": "documentation_entry",
+      "description": "Documentation entry added via Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+    },
+    {
+      "key": "docs/markdown/docs/architecture/Language_Switching_Mechanism_architecture.md",
+      "value": "docs/architecture/Language_Switching_Mechanism_architecture.md",
+      "type": "documentation_entry",
+      "description": "Documentation entry added via Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T18:52:08Z"
     }
   ]
 }

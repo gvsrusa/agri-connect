@@ -105,6 +105,25 @@ beforeEach(() => {
 
 describe('Authentication & User Profile Management UI/Component Tests', () => {
 
+  // Spy on console.error before all tests in this suite
+  let consoleErrorSpy: jest.SpyInstance;
+
+  beforeAll(() => {
+    // Mock to silence console.error output during tests unless explicitly checked
+    consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    // Clear spy history after each test
+    consoleErrorSpy.mockClear();
+  });
+
+  afterAll(() => {
+    // Restore original console.error after all tests
+    consoleErrorSpy.mockRestore();
+  });
+
+
   describe('Initial Profile Setup Flow', () => {
     // Note: Some of these might be better as E2E tests depending on implementation
     it('TC-PROF-001: should guide user to setup flow on first login (if profile incomplete)', () => {
@@ -292,9 +311,10 @@ describe('Authentication & User Profile Management UI/Component Tests', () => {
 
         // Check router refresh was called
         expect(mockRouterRefresh).toHaveBeenCalledTimes(1);
+        expect(consoleErrorSpy).not.toHaveBeenCalled(); // Ensure no errors logged on success
       });
 
-    it('TC-UI-006: should show visual feedback on save failure', async () => {
+    it('TC-UI-006: should show visual feedback on save failure and not log to console.error', async () => {
         // Mock fetch to return an error
         const errorMessage = 'API Save Failed';
         (global.fetch as jest.Mock).mockResolvedValueOnce({
@@ -320,6 +340,7 @@ describe('Authentication & User Profile Management UI/Component Tests', () => {
         expect(screen.queryByText('Profile updated successfully!')).not.toBeInTheDocument();
         // Ensure router refresh was NOT called on failure
         expect(mockRouterRefresh).not.toHaveBeenCalled();
+        expect(consoleErrorSpy).not.toHaveBeenCalled(); // Assert no console.error for handled API error
       });
 
     it('TC-UI-007: should respect selected preferred_language for the entire profile page UI', () => {
@@ -368,9 +389,10 @@ describe('Authentication & User Profile Management UI/Component Tests', () => {
             expect(global.fetch).toHaveBeenCalledTimes(1);
         });
         expect(mockRouterRefresh).not.toHaveBeenCalled();
+        expect(consoleErrorSpy).not.toHaveBeenCalled(); // Assert no console.error for handled network error
       });
 
-    it('TC-NEG-004: should handle API 500 error during save gracefully (UI feedback)', async () => {
+    it('TC-NEG-004: should handle API 500 error during save gracefully (UI feedback) and not log to console.error', async () => {
         // This is effectively the same as TC-UI-006, just confirming the naming
         const errorMessage = 'Internal Server Error';
         (global.fetch as jest.Mock).mockResolvedValueOnce({
@@ -384,6 +406,7 @@ describe('Authentication & User Profile Management UI/Component Tests', () => {
         expect(await screen.findByText(errorMessage)).toBeInTheDocument();
         await waitFor(() => { expect(global.fetch).toHaveBeenCalledTimes(1); });
         expect(mockRouterRefresh).not.toHaveBeenCalled();
+        expect(consoleErrorSpy).not.toHaveBeenCalled(); // Assert no console.error for handled API 500 error
       });
 
     it('TC-EDGE-003: should handle accessing profile page immediately after login (data fetching state)', async () => {

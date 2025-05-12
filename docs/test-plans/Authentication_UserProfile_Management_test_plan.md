@@ -156,6 +156,20 @@ A combination of manual and automated testing will be employed.
 | TC-EDGE-003  | Access profile page immediately after login (potential race condition for fetch)| FR 3.3   | 5.1      | Medium   | Manual/E2E |
 | TC-EDGE-004  | User exists in Clerk but Supabase profile row is manually deleted - verify behavior (e.g., triggers setup) | FR 3.3 | 5.1, 5.3 | Medium | Manual/DB |
 
+## 7. Notes on Test Observations
+
+### 7.1. Expected Console Logging Behavior (Ref: CR-ConsoleError-AuthProfile-20250512)
+
+During testing, console messages related to error handling will originate from the Authentication & User Profile Management feature. Following the refinement implemented for CR-ConsoleError-AuthProfile-20250512 ([`docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md`](../debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md:1)), the logging strategy has been adjusted:
+
+*   **Handled Errors (`console.warn`):** Errors that are caught and handled gracefully within the application logic (e.g., validation errors, expected API failures caught in `try...catch` blocks in [`app/api/user-profile/route.ts`](../../app/api/user-profile/route.ts:1) or [`components/profile/UserProfileFormWrapper.tsx`](../../components/profile/UserProfileFormWrapper.tsx:1)) should now primarily log diagnostic information using `console.warn`. This change aims to reduce console noise for non-critical, handled issues.
+*   **Unhandled/Unexpected Errors (`console.error`):** Genuine unexpected errors (e.g., uncaught exceptions, critical server failures) should still result in `console.error` messages. These indicate more severe problems requiring investigation.
+*   **Test Evaluation:** Test execution reports should evaluate console output based on this distinction. The presence of `console.warn` messages during tests simulating handled error conditions is expected. The presence of `console.error` should be correlated with tests designed to trigger unhandled exceptions or indicate potential bugs.
+*   **Unit Test Assertions:** Unit tests for the API ([`__tests__/features/auth-profile/auth-profile.api.test.ts`](../../__tests__/features/auth-profile/auth-profile.api.test.ts:1)) and UI ([`__tests__/features/auth-profile/auth-profile.ui.test.tsx`](../../__tests__/features/auth-profile/auth-profile.ui.test.tsx:1)) should ideally assert the correct logging method (`console.warn` or `console.error`) based on the specific error scenario being tested.
+
+This updated logging behavior should be considered the standard for evaluating test results related to this feature.
+
+*Documentation updated to reflect the implemented logging changes for CR-ConsoleError-AuthProfile-20250512.*
 ## 7. Requirements Traceability
 
 Traceability is maintained by linking test cases directly to User Story Acceptance Criteria (AC), Functional Requirements (FR), Non-Functional Requirements (NFR) from the specification ([`docs/specs/Authentication_UserProfile_Management_overview.md`](../specs/Authentication_UserProfile_Management_overview.md)), and relevant sections of the architecture document ([`docs/architecture/Authentication_UserProfile_Management_architecture.md`](../architecture/Authentication_UserProfile_Management_architecture.md)) as indicated in the test case tables above. This ensures comprehensive test coverage considerations for all specified requirements.

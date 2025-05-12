@@ -41,6 +41,7 @@ Secure endpoints are required to manage the `user_profiles` data in Supabase. Th
     *   **Auth:** Requires authenticated user session.
     *   **Logic:** Uses Clerk/NextAuth server helpers to get `userId`. Validates request body payload (language code, location format). Executes `UPDATE user_profiles SET preferred_language = $1, farm_location = $2, updated_at = now() WHERE clerk_user_id = userId` in Supabase. RLS policies provide the core security guarantee.
     *   **Response:** Success (200/204) or error (400 Bad Request, 401 Unauthorized, 403 Forbidden, 500 Internal Server Error).
+*   **Logging:** Handled errors within the API logic (e.g., validation failures caught gracefully) should be logged using `console.warn` to reduce noise, while unexpected or unhandled server errors should use `console.error`.
 
 *(Note: Next.js Server Actions could be used as an alternative to API Routes, especially if invoked directly from Server Components).*
 
