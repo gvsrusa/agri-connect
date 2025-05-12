@@ -1,76 +1,70 @@
 'use client';
 
+import React from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { useRouter, usePathname } from 'next/navigation'; // Reverted: Use standard Next.js navigation
-import { ChangeEvent, useTransition } from 'react';
-import { locales as supportedLocales } from '@/i18n'; // Import supported locales
-
-// Define locale names for display
-const localeNames: { [key: string]: string } = {
-  en: 'English',
-  hi: 'हिन्दी',
-  mr: 'मराठी',
-  te: 'తెలుగు',
-  ta: 'தமிழ்',
-  kn: 'ಕನ್ನಡ',
-  ml: 'മലയാളം',
-  pa: 'ਪੰਜਾਬੀ',
-};
+import { usePathname, useRouter } from 'next/navigation'; // Use next/navigation for client components
+import { locales, localeNames } from '@/i18n'; // Assuming locales are defined here
 
 export default function LanguageSwitcher() {
-  const [isPending, startTransition] = useTransition();
+  const t = useTranslations('LanguageSwitcher'); // Assuming a namespace for translations
+  const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
-  const locale = useLocale();
-  const t = useTranslations('LanguageSwitcher'); // Assuming a namespace for translations
 
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const nextLocale = event.target.value;
-    startTransition(() => {
-      // Manually construct the new path since next-intl navigation setup is not present
-      if (pathname) {
-        const segments = pathname.split('/');
-        // Assuming locale is the second segment (index 1)
-        // e.g., /en/some/path -> segments = ['', 'en', 'some', 'path']
-        if (segments.length > 1) {
-          segments[1] = nextLocale; // Replace the locale segment
-          const newPath = segments.join('/');
-          router.push(newPath); // Push the full new path
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newLocale = event.target.value;
+    // Basic path manipulation - might need refinement based on next-intl's best practices
+    // Remove the current locale prefix if it exists
+    const currentPathWithoutLocale = pathname.startsWith(`/${locale}`)
+      ? pathname.substring(`/${locale}`.length)
+      : pathname;
+    // Ensure the path starts with a slash
+    const newPath = `/${newLocale}${currentPathWithoutLocale.startsWith('/') ? currentPathWithoutLocale : '/' + currentPathWithoutLocale}`;
+
+    router.push(newPath);
+
+    // Update user profile preference via API
+    // Note: In a real app, you'd likely only do this if the user is authenticated.
+    // We might need to add Clerk's useAuth() here later if tests require it.
+    const updatePreference = async (newLocale: string) => {
+      try {
+        const response = await fetch('/api/user-profile', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ preferred_language: newLocale }),
+        });
+        if (!response.ok) {
+          console.error('Failed to update language preference:', response.statusText);
+          // Handle error display to user if needed
         } else {
-          // Handle cases where pathname might not have a locale prefix (e.g., root '/')
-          // This might need adjustment based on actual routing setup
-          router.push(`/${nextLocale}${pathname}`);
+          console.log('User language preference updated successfully.');
         }
+      } catch (error) {
+        console.error('Error updating language preference:', error);
+        // Handle error display to user if needed
       }
-    });
+    };
 
-    // TODO: Add API call here to update user profile if logged in
-    // This will require checking auth status (e.g., using Clerk's useAuth)
-    // and making a fetch request.
+    updatePreference(newLocale);
   };
 
   return (
-    <div className="relative">
-      <label htmlFor="language-select" className="sr-only">
-        {t('languageSwitcherLabel')} {/* Example translation key */}
-      </label>
+    <div>
+      <label htmlFor="language-select">{t('languageSwitcherLabel')}: </label>
       <select
         id="language-select"
         value={locale}
         onChange={handleChange}
-        disabled={isPending}
-        className="block appearance-none w-full bg-gray-100 border border-gray-300 text-gray-700 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-        aria-label={t('languageSwitcherLabel')}
+        className="p-1 border rounded" // Basic styling
       >
-        {supportedLocales.map((loc) => (
+        {locales.map((loc) => (
           <option key={loc} value={loc}>
-            {localeNames[loc] || loc} {/* Display name or code as fallback */}
+            {localeNames[loc as keyof typeof localeNames] || loc}
           </option>
         ))}
       </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-      </div>
     </div>
   );
 }

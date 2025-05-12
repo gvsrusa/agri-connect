@@ -32,6 +32,7 @@
     "postcss": "latest",
     "tailwindcss": "latest",
     "ts-jest": "^29.3.2",
-    "typescript": "latest"
+    "typescript": "latest",
+    "whatwg-fetch": "^3.6.20"
   }
 }

@@ -2,13 +2,13 @@ import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { getUserProfile, createUserProfile, updateUserProfile } from '@/lib/userProfile';
 import { UserProfileCreate, UserProfileUpdate } from '@/types/userProfile';
+import { locales as supportedLocales } from '@/i18n'; // Import the canonical list of locales
 
-// Supported languages (example, can be moved to a config)
-const SUPPORTED_LANGUAGES = ['en', 'es', 'fr', 'de', 'hi', 'ta']; // Added 'fr', 'de' for tests
-
-function isValidLanguageCode(lang: string): boolean {
-  return SUPPORTED_LANGUAGES.includes(lang);
-}
+// Remove outdated constant and validation function
+// const SUPPORTED_LANGUAGES = ['en', 'es', 'fr', 'de', 'hi', 'ta'];
+// function isValidLanguageCode(lang: string): boolean {
+//   return SUPPORTED_LANGUAGES.includes(lang);
+// }
 
 export async function GET(request: Request) {
   try {
@@ -51,10 +51,11 @@ export async function POST(request: Request) {
       return new NextResponse('Missing required fields: preferred_language and farm_location', { status: 400 });
     }
 
-    if (preferred_language && !isValidLanguageCode(preferred_language)) {
+    // Validate against imported locales
+    if (preferred_language && !supportedLocales.includes(preferred_language)) {
       return NextResponse.json({ message: 'Invalid preferred_language code' }, { status: 400 });
     }
-    
+
     // Add sanitization for farm_location if needed, e.g. using a library
 
     const profileData: UserProfileCreate = {
@@ -93,8 +94,8 @@ export async function PUT(request: Request) {
 
     const updateData = body as UserProfileUpdate;
 
-    // Validate language code if provided
-    if (updateData.preferred_language && !isValidLanguageCode(updateData.preferred_language)) {
+    // Validate language code if provided against imported locales
+    if (updateData.preferred_language && !supportedLocales.includes(updateData.preferred_language)) {
       return NextResponse.json({ message: 'Invalid preferred_language code' }, { status: 400 });
     }
 

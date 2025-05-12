@@ -28,6 +28,7 @@ const config = {
     '^@/lib/(.*)$': '<rootDir>/lib/$1',
     '^@/messages/(.*)$': '<rootDir>/messages/$1',
     '^@/app/(.*)$': '<rootDir>/app/$1',
+    '^@/i18n$': '<rootDir>/i18n.ts', // Add this line for the root i18n.ts file
   },
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
   // transformIgnorePatterns removed from here

@@ -1,3 +1,4 @@
+/** @jest-environment node */
 // __tests__/features/auth-profile/auth-profile.api.test.ts
 import { GET, POST, PUT } from '@/app/api/user-profile/route'; // Import GET, POST, and PUT handlers
 import { auth } from '@clerk/nextjs/server';
@@ -10,10 +11,21 @@ jest.mock('@clerk/nextjs/server', () => ({
   auth: jest.fn(),
 }));
 
+// Mock i18n to prevent side-effects from its import in the API route
+jest.mock('@/i18n', () => ({
+  __esModule: true, // Important for ES Modules
+  locales: ['en', 'es', 'hi', 'mr', 'te', 'ta', 'kn', 'ml', 'pa'], // Provide a simple array
+  defaultLocale: 'en',
+  // localeNames can be omitted if not directly used by the API route logic being tested
+}));
+
+// Top-level mock for userProfile removed to rely on per-test mocks below
+// Re-add top-level mock for userProfile AFTER i18n mock
 jest.mock('@/lib/userProfile', () => ({
+  __esModule: true, // Important for ES Modules
   getUserProfile: jest.fn(),
-  createUserProfile: jest.fn(), // Add mock for createUserProfile
-  updateUserProfile: jest.fn(), // Add mock for updateUserProfile (for later)
+  createUserProfile: jest.fn(),
+  updateUserProfile: jest.fn(),
 }));
 
 // Helper to create a mock Request
@@ -30,9 +42,29 @@ const createMockRequest = (method: string = 'GET', body: any = null): Request =>
 
 describe('Authentication & User Profile Management API Tests (/api/user-profile)', () => {
 
+  // Ensure the beforeAll doMock block remains commented or removed
+  // beforeAll(() => {
+  //   jest.doMock('@/lib/userProfile', () => ({
+  //     __esModule: true, // Required for ES modules
+  //     getUserProfile: jest.fn(),
+  //     createUserProfile: jest.fn(),
+  //     updateUserProfile: jest.fn(),
+  //   }));
+  // });
+
   // Reset mocks before each test in this suite
   beforeEach(() => {
-    jest.clearAllMocks();
+    // We still need to clear mocks to reset call counts etc. between tests
+    // The mock implementation itself persists due to beforeAll/doMock.
+    // Re-importing the mocked functions might be necessary if references change.
+    // Let's try clearing first. If issues persist, might need dynamic import/require.
+    jest.resetAllMocks(); // Revert back to resetAllMocks for better state clearing
+
+    // Re-assign mocked functions to ensure tests use the correct mock instance
+    // This might be needed if the module is re-evaluated or cached differently.
+    // Let's test without this first, add if necessary.
+    // ({ getUserProfile, createUserProfile, updateUserProfile } = require('@/lib/userProfile'));
+
   });
 
   // Spy on console.error and console.warn before all tests in this suite
@@ -270,7 +302,7 @@ describe('Authentication & User Profile Management API Tests (/api/user-profile)
   describe('PUT (Update Profile)', () => { // Changed to PUT only for clarity
 
     const mockUserId = 'user_clerk_put_test';
-    const updateData = { name: 'Updated Name', preferred_language: 'fr', farm_location: 'Updated Farm' };
+    const updateData = { name: 'Updated Name', preferred_language: 'es', farm_location: 'Updated Farm' }; // Changed 'fr' to 'es'
     const updatedProfile: UserProfile = {
       id: 'profile_uuid_put',
       clerk_user_id: mockUserId,
@@ -280,10 +312,10 @@ describe('Authentication & User Profile Management API Tests (/api/user-profile)
     };
 
     it('TC-PROF-019: should successfully update the profile with valid data', async () => {
-      // 1. Mock auth, existing profile, and successful update
+      // 1. Mock auth, existing profile, and successful update (MOVED INSIDE IT BLOCK)
       (auth as unknown as jest.Mock).mockResolvedValue({ userId: mockUserId });
-      (getUserProfile as jest.Mock).mockResolvedValue({ id: 'existing_profile_id', clerk_user_id: mockUserId }); // Mock existing profile
-      (updateUserProfile as jest.Mock).mockResolvedValue(updatedProfile);
+      (getUserProfile as jest.Mock).mockResolvedValueOnce({ id: 'existing_profile_id', clerk_user_id: mockUserId }); // Mock existing profile check with Once
+      (updateUserProfile as jest.Mock).mockResolvedValueOnce(updatedProfile); // Mock successful update
 
       // 2. Call API
       const request = createMockRequest('PUT', updateData);
@@ -300,10 +332,10 @@ describe('Authentication & User Profile Management API Tests (/api/user-profile)
     });
 
     it('TC-ERR-API-001: should return 500 and log error if updateUserProfile returns null', async () => {
-      // 1. Mock auth, existing profile, and updateUserProfile returning null
+      // 1. Mock auth, existing profile, and updateUserProfile returning null (MOVED INSIDE IT BLOCK)
       (auth as unknown as jest.Mock).mockResolvedValue({ userId: mockUserId });
-      (getUserProfile as jest.Mock).mockResolvedValue({ id: 'existing_profile_id', clerk_user_id: mockUserId }); // Mock existing profile
-      (updateUserProfile as jest.Mock).mockResolvedValue(null); // Simulate update failure returning null
+      (getUserProfile as jest.Mock).mockResolvedValueOnce({ id: 'existing_profile_id', clerk_user_id: mockUserId }); // Mock existing profile check with Once
+      (updateUserProfile as jest.Mock).mockImplementationOnce(async () => null); // Simulate update failure returning null
 
       // 2. Call API
       const request = createMockRequest('PUT', updateData);
@@ -322,11 +354,11 @@ describe('Authentication & User Profile Management API Tests (/api/user-profile)
     });
 
     it('TC-ERR-API-002: should return 500 and log error on unexpected error during update', async () => {
-        // 1. Mock auth, existing profile, and updateUserProfile throwing an error
+        // 1. Mock auth, existing profile, and updateUserProfile throwing an error (MOVED INSIDE IT BLOCK)
         const unexpectedError = new Error('Database connection lost');
         (auth as unknown as jest.Mock).mockResolvedValue({ userId: mockUserId });
-        (getUserProfile as jest.Mock).mockResolvedValue({ id: 'existing_profile_id', clerk_user_id: mockUserId }); // Mock existing profile
-        (updateUserProfile as jest.Mock).mockRejectedValue(unexpectedError); // Simulate unexpected failure
+        (getUserProfile as jest.Mock).mockResolvedValueOnce({ id: 'existing_profile_id', clerk_user_id: mockUserId }); // Mock existing profile check with Once
+        (updateUserProfile as jest.Mock).mockRejectedValueOnce(unexpectedError); // Simulate unexpected failure
 
         // 2. Call API
         const request = createMockRequest('PUT', updateData);
@@ -346,7 +378,7 @@ describe('Authentication & User Profile Management API Tests (/api/user-profile)
     });
 
     it('TC-SEC-002: should fail (401) for unauthenticated requests', async () => {
-      // 1. Mock authentication failure
+      // 1. Mock authentication failure (MOVED INSIDE IT BLOCK)
       (auth as unknown as jest.Mock).mockResolvedValue({ userId: null });
 
       // 2. Call API
@@ -361,7 +393,7 @@ describe('Authentication & User Profile Management API Tests (/api/user-profile)
     });
 
     it('should return 400 for invalid JSON body', async () => {
-        // 1. Mock authentication
+        // 1. Mock authentication (MOVED INSIDE IT BLOCK)
         (auth as unknown as jest.Mock).mockResolvedValue({ userId: mockUserId });
 
         // 2. Call API with invalid JSON
