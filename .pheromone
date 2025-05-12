@@ -5,7 +5,7 @@
       "signalType": "prioritize_feature_X_development",
       "target": "ExampleFeature",
       "category": "priority",
-      "strength": 2.4057,
+      "strength": 2.16513,
       "message": "Example: High priority task - focus development on ExampleFeature. Replace this message.",
       "data": {
         "prd_path": "docs/example_prd.md",
@@ -16,14 +16,14 @@
         "user_directive": "EXAMPLE DIRECTIVE: Focus solely on implementing ExampleFeature using the specified data sources. Overwrite this directive."
       },
       "timestamp_created": "YYYY-MM-DDTHH:MM:SSZ",
-      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     },
     {
       "id": "integration-auth-profile-system-success-2025-05-12T17-55-00Z",
       "signalType": "feature_integration_successful",
       "target": "Authentication & User Profile Management",
       "category": "integration",
-      "strength": 0.71639296,
+      "strength": 0.6590815232,
       "message": "Integration of 'Authentication & User Profile Management' into main_codebase reported as successful. Files were already present.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -31,14 +31,14 @@
         "original_user_blueprint_or_change_request_path": "docs/specs/Authentication_UserProfile_Management_overview.md"
       },
       "timestamp_created": "2025-05-12T17:55:00Z",
-      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     },
     {
       "id": "system-test-passed-auth-profile-2025-05-12T17-55-00Z",
       "signalType": "system_tests_passed",
       "target": "Authentication & User Profile Management",
       "category": "code_quality",
-      "strength": 0.6561,
+      "strength": 0.59049,
       "message": "System-wide tests (npm test) passed after integrating 'Authentication & User Profile Management'. 53/53 tests passed, 1 skipped, 17 todo.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -46,14 +46,14 @@
         "test_summary": "9 suites, 53 passed, 1 skipped, 17 todo"
       },
       "timestamp_created": "2025-05-12T17:55:00Z",
-      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     },
     {
       "id": "system-test-warnings-auth-profile-2025-05-12T17-55-00Z",
       "signalType": "system_test_warnings_observed",
       "target": "Authentication & User Profile Management",
       "category": "error",
-      "strength": 0.6264075,
+      "strength": 0.532446375,
       "message": "Console.error messages observed during system tests for 'Authentication & User Profile Management', particularly in API interactions. Potential instability noted.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -62,28 +62,28 @@
         "affected_files": ["__tests__/features/auth-profile/auth-profile.ui.test.tsx", "__tests__/features/auth-profile/auth-profile.api.test.ts"]
       },
       "timestamp_created": "2025-05-12T17:55:00Z",
-      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     },
     {
       "id": "tasking-investigate-test-warnings-auth-profile-2025-05-12T17-55-00Z",
       "signalType": "investigation_needed_test_warnings",
       "target": "Authentication & User Profile Management",
       "category": "tasking",
-      "strength": 0.78732,
+      "strength": 0.708588,
       "message": "Investigation required for console.error warnings observed during system tests for 'Authentication & User Profile Management' to ensure full robustness.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
         "reason": "Console errors during system tests indicate potential underlying issues despite passing status."
       },
       "timestamp_created": "2025-05-12T17:55:00Z",
-      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     },
     {
       "id": "tasking-auth-profile-next-steps-20250512T181319Z",
       "signalType": "tasking_next_steps_identified",
       "target": "Authentication & User Profile Management",
       "category": "tasking",
-      "strength": 0.81,
+      "strength": 0.729,
       "message": "Further development or next steps identified for 'Authentication & User Profile Management' based on summary: refining API unit tests, standardizing UI error logging, adjust system test sensitivity.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -96,14 +96,14 @@
         "source_document": "[`docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md`](docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md:1)"
       },
       "timestamp_created": "2025-05-12T18:13:19Z",
-      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     },
     {
       "id": "codequality-auth-profile-console-noise-20250512T181319Z",
       "signalType": "code_quality_issue_identified",
       "target": "Authentication & User Profile Management",
       "category": "code_quality",
-      "strength": 0.81,
+      "strength": 0.729,
       "message": "Code quality challenge identified for 'Authentication & User Profile Management': potential for continued console.error noise. Status: completed_with_issues.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -113,14 +113,14 @@
         "relevant_doc": "[`docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md`](docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md:1)"
       },
       "timestamp_created": "2025-05-12T18:13:19Z",
-      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     },
     {
       "id": "featurestatus-auth-profile-cr-completed-issues-20250512T181319Z",
       "signalType": "change_request_completed_with_issues",
       "target": "Authentication & User Profile Management",
       "category": "feature_status",
-      "strength": 0.9025,
+      "strength": 0.857375,
       "message": "Change Request CR-ConsoleError-AuthProfile-20250512 for 'Authentication & User Profile Management' is completed with issues.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -132,14 +132,14 @@
         ]
       },
       "timestamp_created": "2025-05-12T18:13:19Z",
-      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     },
     {
       "id": "featurestatus-auth-profile-cr-completed-success-20250512T183210Z",
       "signalType": "change_request_completed_successfully",
       "target": "Authentication & User Profile Management",
       "category": "feature_status",
-      "strength": 0.95,
+      "strength": 0.9025,
       "message": "Refinement cycle CR-ConsoleError-AuthProfile-20250512 completed successfully for 'Authentication & User Profile Management'.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -147,14 +147,14 @@
         "modified_code_paths": ["app/api/user-profile/route.ts", "components/profile/UserProfileFormWrapper.tsx"]
       },
       "timestamp_created": "2025-05-12T18:32:10Z",
-      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     },
     {
       "id": "codequality-auth-profile-issue-resolved-20250512T183210Z",
       "signalType": "code_issue_resolved",
       "target": "Authentication & User Profile Management",
       "category": "code_quality",
-      "strength": 0.9,
+      "strength": 0.81,
       "message": "Console error noise issue resolved in 'Authentication & User Profile Management' by switching to console.warn.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -162,14 +162,14 @@
         "resolution": "Switched console.error to console.warn for handled errors."
       },
       "timestamp_created": "2025-05-12T18:32:10Z",
-      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     },
     {
       "id": "codequality-auth-profile-tests-passed-20250512T183210Z",
       "signalType": "tests_passed_post_refinement",
       "target": "Authentication & User Profile Management",
       "category": "code_quality",
-      "strength": 0.9,
+      "strength": 0.81,
       "message": "All tests passed after refinement for 'Authentication & User Profile Management' (CR-ConsoleError-AuthProfile-20250512).",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -177,14 +177,14 @@
         "test_paths": ["__tests__/features/auth-profile/auth-profile.api.test.ts", "__tests__/features/auth-profile/auth-profile.ui.test.tsx", "__tests__/components/profile/UserProfileForm.test.tsx"]
       },
       "timestamp_created": "2025-05-12T18:32:10Z",
-      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     },
     {
       "id": "documentation-auth-profile-updated-20250512T183210Z",
       "signalType": "documentation_updated",
       "target": "Authentication & User Profile Management",
       "category": "documentation",
-      "strength": 0.98,
+      "strength": 0.9604,
       "message": "Documentation updated for 'Authentication & User Profile Management' reflecting refined logging strategy (CR-ConsoleError-AuthProfile-20250512).",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -192,35 +192,74 @@
         "updated_doc_paths": ["docs/architecture/Authentication_UserProfile_Management_architecture.md", "docs/test-plans/Authentication_UserProfile_Management_test_plan.md", "docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md", "docs/comprehension_reports/auth_profile_error_logging_analysis_CR-ConsoleError-AuthProfile-20250512.md"]
       },
       "timestamp_created": "2025-05-12T18:32:10Z",
-      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     },
     {
       "id": "feature-spec-ready-lang-switch-20250512T185208Z",
       "signalType": "feature_spec_ready",
       "target": "Language Switching Mechanism",
       "category": "documentation",
-      "strength": 0.98,
+      "strength": 0.9604,
       "message": "Feature specification document is ready for Language Switching Mechanism.",
       "data": {
         "feature_name": "Language Switching Mechanism",
         "spec_path": "docs/specs/Language_Switching_Mechanism_overview.md"
       },
       "timestamp_created": "2025-05-12T18:52:08Z",
-      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     },
     {
       "id": "feature-arch-ready-lang-switch-20250512T185208Z",
       "signalType": "feature_architecture_ready",
       "target": "Language Switching Mechanism",
       "category": "documentation",
-      "strength": 0.98,
+      "strength": 0.9604,
       "message": "Feature architecture document is ready for Language Switching Mechanism.",
       "data": {
         "feature_name": "Language Switching Mechanism",
         "architecture_path": "docs/architecture/Language_Switching_Mechanism_architecture.md"
       },
       "timestamp_created": "2025-05-12T18:52:08Z",
-      "last_updated_timestamp": "2025-05-12T18:52:08Z"
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
+    },
+    {
+      "id": "error-lang-switch-jest-config-20250512T210457Z",
+      "signalType": "task_failed_critical_error",
+      "target": "Language Switching Mechanism",
+      "category": "error",
+      "strength": 1.5,
+      "message": "Task failed for 'Language Switching Mechanism' due to critical coder error: Persistent Jest configuration issue (SyntaxError parsing next-intl). Requires debugging/configuration fix.",
+      "data": {
+        "feature_name": "Language Switching Mechanism",
+        "error_details": "> agri-connect@0.1.0 test\n> jest\n\nDetermining test suites to run...\n[...]\n FAIL  __tests__/components/LanguageSwitcher.test.tsx\n[...]\n  ● Test suite failed to run\n\n    Jest encountered an unexpected token\n\n    Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.\n\n    Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.\n\n    By default \"node_modules\" folder is ignored by transformers.\n\n    Here's what you can do:\n     • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.\n     • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript\n     • To have some of your \"node_modules\" files transformed, you can specify a custom \"transformIgnorePatterns\" in your config.\n     • If you need a custom transformation specify a \"transform\" option in your config.\n     • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the \"moduleNameMapper\" config option.\n\n    You'll find more details and examples of these config options in the docs:\n    https://jestjs.io/docs/configuration\n    For information about custom transformations, see:\n    https://jestjs.io/docs/code-transformation\n\n    Details:\n\n    /workspaces/agri-connect/node_modules/next-intl/dist/esm/production/server.react-client.js:1\n    ({\"Object.<anonymous>\":function(module,exports,require,__dirname,__filename,jest){export{getFormatter,getLocale,getMessages,getNow,getRequestConfig,getTimeZone,getTranslations,setRequestLocale}from\"./server/react-client/index.js\";\n                                                                                      ^^^^^^\n\n    SyntaxError: Unexpected token 'export'\n\n    \n\n      at Runtime.createScriptFromCode (node_modules/jest-runtime/build/index.js:1505:14)\n      at Object.<anonymous> (i18n.ts:22:17)\n      at Object.<anonymous> (components/LanguageSwitcher.tsx:16:15)\n      at Object.<anonymous> (__tests__/components/LanguageSwitcher.test.tsx:19:66)\n\n\nTest Suites: 1 failed, 9 passed, 10 total\nTests:       8 skipped, 17 todo, 51 passed, 76 total\nSnapshots:   0 total\nTime:        7.745 s\nRan all test suites.\n",
+        "modified_code_paths": [
+          "i18n.ts",
+          "__tests__/components/LanguageSwitcher.test.tsx",
+          "components/LanguageSwitcher.tsx",
+          "jest.config.mjs"
+        ]
+      },
+      "timestamp_created": "2025-05-12T21:04:57Z",
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
+    },
+    {
+      "id": "tasking-debug-lang-switch-jest-config-20250512T210457Z",
+      "signalType": "debugging_task_required",
+      "target": "Language Switching Mechanism",
+      "category": "tasking",
+      "strength": 1.2,
+      "message": "Debugging task required for 'Language Switching Mechanism' to resolve Jest configuration error.",
+      "data": {
+        "feature_name": "Language Switching Mechanism",
+        "blocker_description": "Jest SyntaxError parsing next-intl dependency, preventing test execution.",
+        "relevant_files": [
+          "jest.config.mjs",
+          "i18n.ts",
+          "__tests__/components/LanguageSwitcher.test.tsx"
+        ]
+      },
+      "timestamp_created": "2025-05-12T21:04:57Z",
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     }
   ],
   "documentation_registry": [
@@ -324,12 +363,15 @@
     },
     {
       "key": "feature/Authentication & User Profile Management/modified_files",
-      "value": ["app/api/user-profile/route.ts", "components/profile/UserProfileFormWrapper.tsx"],
+      "value": [
+        "app/api/user-profile/route.ts",
+        "components/profile/UserProfileFormWrapper.tsx"
+      ],
       "type": "documentation_entry",
       "description": "List of files modified for the feature during the last update.",
       "last_updated_timestamp": "2025-05-12T18:32:10Z"
     },
-     {
+    {
       "key": "docs/markdown/docs/architecture/Authentication_UserProfile_Management_architecture.md",
       "value": "docs/architecture/Authentication_UserProfile_Management_architecture.md",
       "type": "documentation_entry",
@@ -356,6 +398,25 @@
       "type": "documentation_entry",
       "description": "Documentation entry added via Pheromone Scribe.",
       "last_updated_timestamp": "2025-05-12T18:52:08Z"
+    },
+    {
+      "key": "feature/Language Switching Mechanism/modified_files",
+      "value": [
+        "i18n.ts",
+        "__tests__/components/LanguageSwitcher.test.tsx",
+        "components/LanguageSwitcher.tsx",
+        "jest.config.mjs"
+      ],
+      "type": "documentation_entry",
+      "description": "List of files modified for the feature during the last update.",
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
+    },
+    {
+      "key": "feature/Language Switching Mechanism/blueprint",
+      "value": "docs/specs/Language_Switching_Mechanism_overview.md",
+      "type": "documentation_entry",
+      "description": "Blueprint/Specification document associated with the feature.",
+      "last_updated_timestamp": "2025-05-12T21:04:57Z"
     }
   ]
 }

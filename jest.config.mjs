@@ -11,7 +11,7 @@ const config = {
   // Add more setup options before each test is run
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   // testEnvironment: 'jest-environment-jsdom', // Remove this line to use default Node env for API tests
-  preset: 'ts-jest',
+  // preset: 'ts-jest', // next/jest handles TS transformation via Babel
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)
     // https://jestjs.io/docs/webpack#handling-static-assets
@@ -33,9 +33,15 @@ const config = {
   },
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
   transformIgnorePatterns: [
-    '/node_modules/',
-    '^.+\\.module\\.(css|sass|scss)$',
+    // Ignore node_modules except for specific ESM packages that need transformation
+    '/node_modules/(?!(next-intl))/', // Ensure next-intl is NOT ignored
+    '^.+\\.module\\.(css|sass|scss)$', // Keep ignoring CSS modules
   ],
+  transform: {
+    // Use babel-jest to transpile tests with the next/babel preset
+    // https://jestjs.io/docs/configuration#transform-objectstring-pathtotransformer--pathtotransformer-object
+    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
+  },
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

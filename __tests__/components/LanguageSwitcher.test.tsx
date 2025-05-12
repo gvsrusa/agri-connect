@@ -1,0 +1,98 @@
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import LanguageSwitcher from '@/components/LanguageSwitcher'; // Adjust path if needed
+import { usePathname, useRouter } from 'next/navigation'; // Mock these
+import { useLocale, useTranslations } from 'next-intl'; // Mock these
+
+// Mock next/navigation
+jest.mock('next/navigation', () => ({
+  useRouter: jest.fn(),
+  usePathname: jest.fn(),
+}));
+
+// Mock next-intl
+jest.mock('next-intl', () => ({
+  useLocale: jest.fn(),
+  useTranslations: jest.fn(),
+  // Mock navigation utilities if LanguageSwitcher uses them directly
+}));
+
+// Mock supported locales (should match i18n.ts)
+const locales = ['en', 'hi', 'mr', 'te', 'ta', 'kn', 'ml', 'pa'];
+const localeNames: { [key: string]: string } = {
+  en: 'English',
+  hi: 'हिन्दी',
+  mr: 'मराठी',
+  te: 'తెలుగు',
+  ta: 'தமிழ்',
+  kn: 'ಕನ್ನಡ',
+  ml: 'മലയാളം',
+  pa: 'ਪੰਜਾਬੀ',
+};
+
+
+describe('LanguageSwitcher Component', () => {
+  let mockRouter: { push: jest.Mock };
+  let mockPathname: string;
+  let mockLocale: string;
+  let mockT: jest.Mock;
+
+  beforeEach(() => {
+    // Reset mocks for each test
+    mockRouter = { push: jest.fn() };
+    mockPathname = '/some/path';
+    mockLocale = 'en'; // Default locale for testing
+    mockT = jest.fn((key) => {
+        // Simple mock translation for keys like 'languageSwitcherLabel'
+        if (key === 'languageSwitcherLabel') return 'Language:';
+        return key; // Return key if no translation is mocked
+    });
+
+
+    (useRouter as jest.Mock).mockReturnValue(mockRouter);
+    (usePathname as jest.Mock).mockReturnValue(mockPathname);
+    (useLocale as jest.Mock).mockReturnValue(mockLocale);
+    (useTranslations as jest.Mock).mockReturnValue(mockT);
+
+  });
+
+  test('renders correctly and displays the current language', () => {
+    render(<LanguageSwitcher />);
+
+    // Check if the label (or button text) indicating the current language is present
+    // This assumes the switcher displays the current language name or code
+    // Example: Check for a button/select displaying "English"
+    expect(screen.getByRole('combobox')).toBeInTheDocument(); // Assuming it's a select dropdown
+    expect(screen.getByDisplayValue(localeNames[mockLocale])).toBeInTheDocument(); // Check if the current language is selected
+  });
+
+  test('displays all supported languages in the dropdown', () => {
+    render(<LanguageSwitcher />);
+    const dropdown = screen.getByRole('combobox');
+    fireEvent.mouseDown(dropdown); // Open the dropdown (adjust interaction based on actual component)
+
+    locales.forEach(locale => {
+      expect(screen.getByText(localeNames[locale])).toBeInTheDocument();
+    });
+  });
+
+  test('calls router.push with the correct locale and pathname when a language is selected', () => {
+    render(<LanguageSwitcher />);
+    const dropdown = screen.getByRole('combobox');
+
+    const targetLocale = 'hi'; // Select Hindi
+    fireEvent.change(dropdown, { target: { value: targetLocale } });
+
+    // Verify router.push was called correctly by next-intl's navigation wrapper
+    // next-intl's usePathname and useRouter hooks handle the actual path manipulation
+    // We expect the router's push method (mocked here) to be called with the *original* pathname
+    // and the new locale option, letting next-intl handle the prefixing.
+    expect(mockRouter.push).toHaveBeenCalledTimes(1);
+    expect(mockRouter.push).toHaveBeenCalledWith(mockPathname, { locale: targetLocale, scroll: false });
+  });
+
+  // Add more tests later:
+  // - Test API call for logged-in users (requires mocking auth state)
+  // - Test accessibility attributes
+});
