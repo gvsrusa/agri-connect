@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.19.2",
+    "@prisma/client": "^6.7.0",
+    "dotenv": "^16.5.0",
     "next": "latest",
     "next-intl": "latest",
     "react": "latest",

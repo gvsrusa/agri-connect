@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAuth } from '@clerk/nextjs/server';
-import { db } from '@/lib/db'; // Assuming db client is setup here
-// Removed incorrect Prisma import
-
+import prisma from '@/lib/db';
+import { z } from 'zod';
 export async function POST(req: NextRequest) {
   const { userId } = getAuth(req);
 
@@ -19,7 +18,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const newListing = await db.produceListing.create({
+    const newListing = await prisma.produceListing.create({
       data: {
         sellerUserId: userId,
         cropTypeId,
@@ -53,39 +52,54 @@ export async function GET(req: NextRequest) {
 
   try {
     const url = new URL(req.url);
+    
+    // Language handling
     const lang = url.searchParams.get('lang') || 'en'; // Default to English
     const validLangs = ['en', 'hi', 'mr']; // Define supported languages
     const targetLang = validLangs.includes(lang) ? lang : 'en';
-    // Define language field names dynamically
     const langFieldName = `name_${targetLang}`; // e.g., 'name_hi'
     const fallbackLangFieldName = 'name_en';
-
-    // TODO: Implement pagination and filtering based on query params later
-    const listings = await db.produceListing.findMany({
-      where: { isActive: true },
+    
+    // Filtering
+    const whereClause: any = { isActive: true };
+    
+    // Filter by cropTypeId if provided
+    const cropTypeId = url.searchParams.get('cropTypeId');
+    if (cropTypeId) {
+      whereClause.cropTypeId = cropTypeId;
+    }
+    
+    // Pagination
+    const page = parseInt(url.searchParams.get('page') || '1', 10);
+    const limit = parseInt(url.searchParams.get('limit') || '10', 10);
+    
+    // Ensure page and limit are valid numbers
+    const validPage = page > 0 ? page : 1;
+    const validLimit = limit > 0 ? limit : 10;
+    const skip = (validPage - 1) * validLimit;
+    
+    const listings = await prisma.produceListing.findMany({
+      where: whereClause,
       orderBy: { listingDate: 'desc' },
       include: {
         cropType: true // Include related CropType data needed for localization
-        // TODO: Include seller info (UserProfile) if needed, respecting privacy (NFR4)
       },
-      // Add take/skip for pagination later
+      skip,
+      take: validLimit
     });
 
     // Map listings to include localized crop names and remove nested object
-    // Explicitly type 'listing' based on expected structure from findMany include
-    const localizedListings = listings.map((listing: {
-        cropType: { [key: string]: string | undefined } | null; // Assuming cropType has string names
-        [key: string]: any; // Allow other properties
-    }) => {
+    const localizedListings = listings.map((listing) => {
       const { cropType, ...restOfListing } = listing;
-      // Use type assertion for dynamic field access or check existence
-      const cropName = (cropType && cropType[langFieldName])
-                       || (cropType && cropType[fallbackLangFieldName])
-                       || 'Unknown Crop';
+      // Handle nullable fields safely
+      const cropTypeName = cropType?.[langFieldName as keyof typeof cropType] as string | null | undefined;
+      const fallbackName = cropType?.[fallbackLangFieldName as keyof typeof cropType] as string;
+      
+      const cropName = cropTypeName || fallbackName || 'Unknown Crop';
 
       return {
         ...restOfListing,
-        cropName: cropName, // Add the localized name
+        cropName,
       };
     });
 

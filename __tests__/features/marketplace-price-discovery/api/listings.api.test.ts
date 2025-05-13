@@ -1,30 +1,39 @@
 import { NextRequest } from 'next/server';
 import { POST as listingsPostHandler, GET as listingsGetHandler } from '@/app/api/listings/route';
 import { getAuth } from '@clerk/nextjs/server';
-import { db } from '@/lib/db';
 
 // Mock Clerk's getAuth
 jest.mock('@clerk/nextjs/server', () => ({
   getAuth: jest.fn(),
 }));
 
-// Mock the database client (Prisma/Supabase)
-jest.mock('@/lib/db', () => ({
-  db: {
+// Mock the database client (Prisma)
+jest.mock('@/lib/db', () => {
+  const prismaMock = {
     produceListing: {
       create: jest.fn(),
       findMany: jest.fn(),
     },
-    // Mock other tables/operations as needed by your API route
-  },
-}));
+  };
+  return {
+    __esModule: true,
+    default: prismaMock,
+  };
+});
+
+// Get access to the mocked client after mocking
+import prisma from '@/lib/db';
 
 const mockGetAuth = getAuth as jest.Mock;
 
 describe('/api/listings API Route', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-  });
+    });
+  
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
 
   describe('POST /api/listings', () => {
     it('should create a new listing for an authenticated user with valid data', async () => {
@@ -45,7 +54,7 @@ describe('/api/listings API Route', () => {
         listingDate: new Date('2024-01-01T10:00:00.000Z'),
         isActive: true,
       };
-      (db.produceListing.create as jest.Mock).mockResolvedValue(mockDbResponse);
+      (prisma.produceListing.create as jest.Mock).mockResolvedValue(mockDbResponse);
 
       const request = new NextRequest('http://localhost/api/listings', {
         method: 'POST',
@@ -71,7 +80,7 @@ describe('/api/listings API Route', () => {
       }));
       expect(new Date(jsonResponse.listingDate).toISOString()).toEqual(mockDbResponse.listingDate.toISOString());
 
-      expect(db.produceListing.create).toHaveBeenCalledWith({
+      expect(prisma.produceListing.create).toHaveBeenCalledWith({
         data: {
           sellerUserId: 'user_test_id_123',
           cropTypeId: 'crop_type_uuid_abc',
@@ -105,7 +114,7 @@ describe('/api/listings API Route', () => {
       expect(response.status).toBe(401);
       const jsonResponse = await response.json();
       expect(jsonResponse).toEqual({ error: 'Unauthorized' });
-      expect(db.produceListing.create).not.toHaveBeenCalled();
+      expect(prisma.produceListing.create).not.toHaveBeenCalled();
     });
     it('should return 400 if input data is invalid (e.g., missing cropTypeId)', async () => {
       mockGetAuth.mockReturnValue({ userId: 'user_test_id_123' }); // Authenticated user
@@ -129,7 +138,7 @@ describe('/api/listings API Route', () => {
       expect(response.status).toBe(400);
       const jsonResponse = await response.json();
       expect(jsonResponse).toEqual({ error: 'Missing required fields' });
-      expect(db.produceListing.create).not.toHaveBeenCalled();
+      expect(prisma.produceListing.create).not.toHaveBeenCalled();
     });
 
     it('should return 500 if the database insertion fails', async () => {
@@ -142,7 +151,7 @@ describe('/api/listings API Route', () => {
 
       // Mock the database create method to throw an error
       const dbError = new Error('Database connection failed');
-      (db.produceListing.create as jest.Mock).mockRejectedValue(dbError);
+      (prisma.produceListing.create as jest.Mock).mockRejectedValue(dbError);
 
       const request = new NextRequest('http://localhost/api/listings', {
         method: 'POST',
@@ -157,7 +166,7 @@ describe('/api/listings API Route', () => {
       expect(response.status).toBe(500);
       const jsonResponse = await response.json();
       expect(jsonResponse).toEqual({ error: 'Failed to create listing' });
-      expect(db.produceListing.create).toHaveBeenCalledTimes(1); // Ensure it was called
+      expect(prisma.produceListing.create).toHaveBeenCalledTimes(1); // Ensure it was called
     });
   });
 
@@ -187,7 +196,7 @@ describe('/api/listings API Route', () => {
           cropType: { name_en: 'Rice' }
         },
       ];
-      (db.produceListing.findMany as jest.Mock).mockResolvedValue(mockDbListings);
+      (prisma.produceListing.findMany as jest.Mock).mockResolvedValue(mockDbListings);
 
       const request = new NextRequest('http://localhost/api/listings', {
         method: 'GET',
@@ -204,7 +213,7 @@ describe('/api/listings API Route', () => {
       expect(jsonResponse[1]).toHaveProperty('id', 'listing_uuid_2');
       
       // Verify findMany was called (can add more specific checks later for filters/pagination)
-      expect(db.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
+      expect(prisma.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
         where: { isActive: true }, // Assuming we only fetch active listings by default
         orderBy: { listingDate: 'desc' }, // Assuming default sort order
         include: { cropType: true } // Assuming we include cropType for names
@@ -223,7 +232,7 @@ describe('/api/listings API Route', () => {
       expect(response.status).toBe(401);
       const jsonResponse = await response.json();
       expect(jsonResponse).toEqual({ error: 'Unauthorized' });
-      expect(db.produceListing.findMany).not.toHaveBeenCalled();
+      expect(prisma.produceListing.findMany).not.toHaveBeenCalled();
     });
     it('should correctly retrieve localized crop names based on user language preference (mock session)', async () => {
       // Mock session with language preference (e.g., 'hi' for Hindi)
@@ -272,7 +281,7 @@ describe('/api/listings API Route', () => {
           }
         },
       ];
-      (db.produceListing.findMany as jest.Mock).mockResolvedValue(mockDbListingsLocalized);
+      (prisma.produceListing.findMany as jest.Mock).mockResolvedValue(mockDbListingsLocalized);
 
       // How do we signal the desired language to the GET handler in the test?
       // Option 1: Modify getAuth mock further (complex depending on Clerk setup)
@@ -301,7 +310,7 @@ describe('/api/listings API Route', () => {
 
     it('should return an empty array if no listings are found', async () => {
       mockGetAuth.mockReturnValue({ userId: 'user_test_id_789' });
-      (db.produceListing.findMany as jest.Mock).mockResolvedValue([]); // No listings
+      (prisma.produceListing.findMany as jest.Mock).mockResolvedValue([]); // No listings
 
       const request = new NextRequest('http://localhost/api/listings', {
         method: 'GET',
@@ -311,13 +320,13 @@ describe('/api/listings API Route', () => {
       expect(response.status).toBe(200);
       const jsonResponse = await response.json();
       expect(jsonResponse).toEqual([]);
-      expect(db.produceListing.findMany).toHaveBeenCalledTimes(1);
+      expect(prisma.produceListing.findMany).toHaveBeenCalledTimes(1);
     });
 
     it('should return 500 if the database query fails', async () => {
       mockGetAuth.mockReturnValue({ userId: 'user_test_id_101' });
       const dbError = new Error('Database query failed');
-      (db.produceListing.findMany as jest.Mock).mockRejectedValue(dbError);
+      (prisma.produceListing.findMany as jest.Mock).mockRejectedValue(dbError);
 
       const request = new NextRequest('http://localhost/api/listings', {
         method: 'GET',
@@ -327,7 +336,7 @@ describe('/api/listings API Route', () => {
       expect(response.status).toBe(500);
       const jsonResponse = await response.json();
       expect(jsonResponse).toEqual({ error: 'Failed to fetch listings' });
-      expect(db.produceListing.findMany).toHaveBeenCalledTimes(1);
+      expect(prisma.produceListing.findMany).toHaveBeenCalledTimes(1);
     });
 
 it('should handle filtering parameters (e.g., cropTypeId) if implemented', async () => {
@@ -335,7 +344,7 @@ it('should handle filtering parameters (e.g., cropTypeId) if implemented', async
       const mockDbListingsFiltered = [
         { id: 'listing_4', cropType: { name_en: 'Wheat' }, cropTypeId: 'crop_type_wheat', listingDate: new Date() },
       ];
-      (db.produceListing.findMany as jest.Mock).mockResolvedValue(mockDbListingsFiltered);
+      (prisma.produceListing.findMany as jest.Mock).mockResolvedValue(mockDbListingsFiltered);
 
       const request = new NextRequest('http://localhost/api/listings?cropTypeId=crop_type_wheat', { method: 'GET' });
       const response = await listingsGetHandler(request);
@@ -343,7 +352,7 @@ it('should handle filtering parameters (e.g., cropTypeId) if implemented', async
       const jsonResponse = await response.json();
       expect(jsonResponse.length).toBe(1);
       expect(jsonResponse[0].id).toBe('listing_4');
-      expect(db.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
+      expect(prisma.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
         where: { 
           isActive: true,
           cropTypeId: 'crop_type_wheat'
@@ -364,7 +373,7 @@ it('should handle filtering parameters (e.g., cropTypeId) if implemented', async
         { id: 'listing_3', cropType: { name_en: 'Onion' }, listingDate: new Date('2024-01-03') },
       ];
 
-      (db.produceListing.findMany as jest.Mock)
+      (prisma.produceListing.findMany as jest.Mock)
         .mockImplementationOnce(async (args) => {
           if (args.skip === 0 && args.take === 2) return mockDbListingsPage1;
           if (args.skip === 2 && args.take === 2) return mockDbListingsPage2;
@@ -372,14 +381,14 @@ it('should handle filtering parameters (e.g., cropTypeId) if implemented', async
         });
       
       // Test page 1
-      let request = new NextRequest('http://localhost/api/listings?page=1&amp;limit=2', { method: 'GET' });
+      let request = new NextRequest('http://localhost/api/listings?page=1&limit=2', { method: 'GET' });
       let response = await listingsGetHandler(request);
       expect(response.status).toBe(200);
       let jsonResponse = await response.json();
       expect(jsonResponse.length).toBe(2);
       expect(jsonResponse[0].id).toBe('listing_1');
       expect(jsonResponse[1].id).toBe('listing_2');
-      expect(db.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
+      expect(prisma.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
         skip: 0,
         take: 2,
         where: { isActive: true },
@@ -388,7 +397,7 @@ it('should handle filtering parameters (e.g., cropTypeId) if implemented', async
       }));
 
       // Test page 2
-      request = new NextRequest('http://localhost/api/listings?page=2&amp;limit=2', { method: 'GET' });
+      request = new NextRequest('http://localhost/api/listings?page=2&limit=2', { method: 'GET' });
       response = await listingsGetHandler(request);
       expect(response.status).toBe(200);
       jsonResponse = await response.json();
@@ -401,11 +410,11 @@ it('should handle filtering parameters (e.g., cropTypeId) if implemented', async
       // For now, let's adjust the expectation based on current mock behavior or refine the mock.
 
       // Re-setting up the mock for the second call to be more explicit for this test case
-      (db.produceListing.findMany as jest.Mock).mockResolvedValueOnce(mockDbListingsPage1); // for page 1
-      (db.produceListing.findMany as jest.Mock).mockResolvedValueOnce(mockDbListingsPage2); // for page 2
+      (prisma.produceListing.findMany as jest.Mock).mockResolvedValueOnce(mockDbListingsPage1); // for page 1
+      (prisma.produceListing.findMany as jest.Mock).mockResolvedValueOnce(mockDbListingsPage2); // for page 2
 
       // Re-run page 1 with fresh mock
-      request = new NextRequest('http://localhost/api/listings?page=1&amp;limit=2', { method: 'GET' });
+      request = new NextRequest('http://localhost/api/listings?page=1&limit=2', { method: 'GET' });
       await listingsGetHandler(request); // Call and discard, just to advance the mock
 
       // Actual test for page 2
@@ -415,7 +424,7 @@ it('should handle filtering parameters (e.g., cropTypeId) if implemented', async
       jsonResponse = await response.json();
       expect(jsonResponse.length).toBe(1);
       expect(jsonResponse[0].id).toBe('listing_3');
-       expect(db.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
+       expect(prisma.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
         skip: 2, // (2-1) * 2
         take: 2,
         where: { isActive: true },
@@ -424,30 +433,51 @@ it('should handle filtering parameters (e.g., cropTypeId) if implemented', async
       }));
 
       // Test invalid page/limit (e.g., page 0, negative limit) - should default or error
-      request = new NextRequest('http://localhost/api/listings?page=0&amp;limit=5', { method: 'GET' });
+      request = new NextRequest('http://localhost/api/listings?page=0&limit=5', { method: 'GET' });
       response = await listingsGetHandler(request);
       // Assuming the API defaults to page 1 or handles it gracefully
       // The exact behavior (error or default) depends on implementation.
       // For now, let's assume it defaults or the findMany mock handles it.
       // This part of the test needs the API to be implemented to be fully verifiable.
       // We'll expect a 200 for now and assume the findMany mock is called with default/corrected pagination.
-      (db.produceListing.findMany as jest.Mock).mockResolvedValueOnce(mockDbListingsPage1); // Default to page 1
+      (prisma.produceListing.findMany as jest.Mock).mockResolvedValueOnce(mockDbListingsPage1); // Default to page 1
       response = await listingsGetHandler(request);
       expect(response.status).toBe(200);
-       expect(db.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
+       expect(prisma.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
         skip: 0, // Defaulting page 0 to page 1 (skip 0)
         take: 5,
       }));
 
-      request = new NextRequest('http://localhost/api/listings?page=1&amp;limit=-1', { method: 'GET' });
-      (db.produceListing.findMany as jest.Mock).mockResolvedValueOnce(mockDbListingsPage1); // Default to a sensible limit
+      request = new NextRequest('http://localhost/api/listings?page=1&limit=-1', { method: 'GET' });
+      (prisma.produceListing.findMany as jest.Mock).mockResolvedValueOnce(mockDbListingsPage1); // Default to a sensible limit
       response = await listingsGetHandler(request);
       expect(response.status).toBe(200);
-      expect(db.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
+      expect(prisma.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
         skip: 0,
         take: 10, // Assuming API defaults negative limit to a standard e.g. 10
       }));
     });
-    it.todo('should handle filtering parameters (e.g., cropTypeId) if implemented');
+    it('should handle filtering parameters (e.g., cropTypeId) if implemented', async () => {
+      mockGetAuth.mockReturnValue({ userId: 'user_test_id_filtering' });
+      const mockDbListingsFiltered = [
+        { id: 'listing_4', cropType: { name_en: 'Wheat' }, cropTypeId: 'crop_type_wheat', listingDate: new Date() },
+      ];
+      (prisma.produceListing.findMany as jest.Mock).mockResolvedValue(mockDbListingsFiltered);
+
+      const request = new NextRequest('http://localhost/api/listings?cropTypeId=crop_type_wheat', { method: 'GET' });
+      const response = await listingsGetHandler(request);
+      expect(response.status).toBe(200);
+      const jsonResponse = await response.json();
+      expect(jsonResponse.length).toBe(1);
+      expect(jsonResponse[0].id).toBe('listing_4');
+      expect(prisma.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
+        where: {
+          isActive: true,
+          cropTypeId: 'crop_type_wheat'
+        },
+        orderBy: { listingDate: 'desc' },
+        include: { cropType: true },
+      }));
+    });
   });
 });

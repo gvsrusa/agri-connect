@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Models for Marketplace & Price Discovery feature
+
+model CropType {
+  id      String  @id @default(uuid())
+  name_en String
+  name_hi String?
+  name_mr String?
+  name_ta String?
+  name_te String?
+  name_kn String?
+  name_ml String?
+  name_pa String?
+  name_es String?
+
+  listings     ProduceListing[]
+  marketPrices MarketPrice[]
+}
+
+model ProduceListing {
+  id           String   @id @default(uuid())
+  sellerUserId String
+  cropTypeId   String
+  quantity     String
+  pricePerUnit String
+  description  String?
+  listingDate  DateTime @default(now())
+  isActive     Boolean  @default(true)
+
+  cropType CropType @relation(fields: [cropTypeId], references: [id])
+}
+
+model MarketPrice {
+  id         String   @id @default(uuid())
+  cropTypeId String
+  marketName String
+  price      String
+  unit       String
+  date       DateTime @default(now())
+  source     String?
+  location   String?
+
+  cropType CropType @relation(fields: [cropTypeId], references: [id])
+}

@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import SomeNewComponent from '@/components/marketplace/SomeNewComponent';
 
 // Mock next-i18next if this component uses translations
