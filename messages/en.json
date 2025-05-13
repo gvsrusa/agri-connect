@@ -4,6 +4,10 @@
     "description": "Connecting farmers with the resources they need."
   },
   "LanguageSwitcher": {
-    "languageSwitcherLabel": "Language"
+    "languageSwitcherLabel": "Language",
+    "updatePreferenceError": "Failed to update language preference. Please try again.",
+    "updatePreferenceErrorNetwork": "Network connection issue. Please check your internet and try again.",
+    "updatePreferenceErrorServer": "Could not save your preference due to a server issue. Please try again later.",
+    "updatePreferenceErrorUnknown": "An unexpected error occurred. Please try again."
   }
 }

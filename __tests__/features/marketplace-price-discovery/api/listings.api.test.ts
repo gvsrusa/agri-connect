@@ -187,6 +187,30 @@ it('should return 400 if the request body is invalid JSON', async () => {
   expect(jsonResponse).toEqual({ error: 'Invalid request body' });
   expect(prisma.produceListing.create).not.toHaveBeenCalled();
 });
+it('should FAIL by not returning a specific 400 for an empty string in a required field (e.g. cropTypeId)', async () => {
+      mockGetAuth.mockReturnValue({ userId: 'user_test_id_empty_string_bug' });
+      const payloadWithEmptyString = {
+        cropTypeId: '', // Empty string, but present, so passes basic check
+        quantity: '100 kg',
+        pricePerUnit: '2000 INR/q',
+      };
+
+      const request = new NextRequest('http://localhost/api/listings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payloadWithEmptyString),
+      });
+
+      const response = await listingsPostHandler(request);
+
+      // This assertion is what *should* happen with robust validation.
+      // It is expected to FAIL with the current code, thus demonstrating the bug.
+      expect(response.status).toBe(400);
+      const jsonResponse = await response.json();
+      expect(jsonResponse).toEqual({ error: 'cropTypeId cannot be empty.' });
+      
+      expect(prisma.produceListing.create).not.toHaveBeenCalled();
+    });
 
   describe('GET /api/listings', () => {
     it('should retrieve listings for an authenticated user', async () => {

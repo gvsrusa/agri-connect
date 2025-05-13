@@ -31,17 +31,20 @@ The architecture leverages `next-intl` for managing translations and locale hand
 
 ## 4. Component Breakdown (Frontend - Next.js/React)
 
-*   **`LanguageSelector` (Client Component):**
+*   **`LanguageSwitcher` (Client Component):**
     *   **Responsibility:** Displays the list of available languages (fetched dynamically or configured statically) and allows the user to select one. Likely implemented as a dropdown menu, placed in a shared layout component (e.g., Header or Footer).
     *   **Interaction:** On selection, it constructs the new path with the selected locale and uses standard `next/navigation` utilities (e.g., `router.push()` from `next/navigation`). The `next-intl` middleware subsequently processes this path-based locale, and `next-intl`'s mechanisms are responsible for cookie updates. If the user is logged in, it also triggers an asynchronous API call to update the user's profile.
+    *   **Error Handling & Logging:**
+        *   If the API call to update language preferences fails, specific user-facing error messages are displayed based on the failure type (e.g., network error, server error, unknown error). These messages use new translation keys from [`messages/en.json`](../../messages/en.json) (e.g., `updatePreferenceErrorNetwork`, `updatePreferenceErrorServer`, `updatePreferenceErrorUnknown`).
+        *   Structured JSON logging is performed for API errors using the utility at [`lib/logger.ts`](../../lib/logger.ts). Logs include details like component name, event, error message, status code, user ID (placeholder), and timestamp, replacing previous `console.error` calls.
 *   **Shared Layout Component (Server Component - e.g., `RootLayout`):**
-    *   **Responsibility:** Integrates the `NextIntlClientProvider`, fetching the appropriate locale and messages server-side based on the middleware's detection. Includes the `LanguageSelector` component.
+    *   **Responsibility:** Integrates the `NextIntlClientProvider`, fetching the appropriate locale and messages server-side based on the middleware's detection. Includes the `LanguageSwitcher` component.
 
 ## 5. Internationalization (i18n) Library Integration (`next-intl`)
 
 *   **Configuration:** Set up `next-intl` according to its documentation, defining supported locales (e.g., `['en', 'hi', 'mr', 'te', 'ta', 'kn', 'ml', 'pa']`) and the default locale ('en').
 *   **Middleware (`middleware.ts`):** Implement `next-intl` middleware to handle locale detection from the request (path, cookie, headers) and redirect/rewrite requests to include the locale prefix. This middleware is crucial for determining the active locale.
-*   **Translation Files:** Store translations in structured JSON files per locale (e.g., `messages/en.json`, `messages/hi.json`).
+*   **Translation Files:** Store translations in structured JSON files per locale (e.g., `messages/en.json`, `messages/hi.json`). The [`messages/en.json`](../../messages/en.json) file includes general keys like `updatePreferenceError` and more specific keys for API error messages such as `updatePreferenceErrorNetwork`, `updatePreferenceErrorServer`, and `updatePreferenceErrorUnknown`.
 *   **Provider Setup (`layout.tsx`):** Fetch locale and messages server-side using `getLocale` and `getMessages` from `next-intl/server` and configure `NextIntlClientProvider` as shown in [`docs/architecture/Authentication_UserProfile_Management_architecture.md:115`](docs/architecture/Authentication_UserProfile_Management_architecture.md:115).
 *   **Usage in Components:** Use `useTranslations` hook in Client Components and `getTranslator` in Server Components to access translated strings.
 
@@ -62,7 +65,7 @@ The middleware will then redirect or rewrite the URL to include the determined l
 *   **Guest Users / Session Persistence:** The selected language locale will be persisted primarily via the **`NEXT_LOCALE` cookie**, automatically managed by `next-intl`'s middleware and navigation functions when the locale path changes. This ensures consistency within the session.
 *   **Logged-in Users:**
     1.  **Cookie:** The `NEXT_LOCALE` cookie is still set for immediate session consistency.
-    2.  **Supabase Profile:** When a logged-in user changes the language via the `LanguageSelector`, an asynchronous `PUT` request is made to the existing `/api/user/profile` endpoint (defined in [`docs/architecture/Authentication_UserProfile_Management_architecture.md:39`](docs/architecture/Authentication_UserProfile_Management_architecture.md:39)) to update the `preferred_language` field in their `user_profiles` record. The request body should include `{ "preferred_language": "new_locale_code" }`.
+    2.  **Supabase Profile:** When a logged-in user changes the language via the `LanguageSwitcher`, an asynchronous `PUT` request is made to the existing `/api/user/profile` endpoint (defined in [`docs/architecture/Authentication_UserProfile_Management_architecture.md:39`](docs/architecture/Authentication_UserProfile_Management_architecture.md:39)) to update the `preferred_language` field in their `user_profiles` record. The request body should include `{ "preferred_language": "new_locale_code" }`.
     3.  **Loading Preference:** On subsequent visits/logins, the Locale Determination Logic (Step 2) will prioritize fetching this preference from the profile.
 
 ## 8. Data Flow (Language Change)
@@ -77,7 +80,9 @@ The middleware will then redirect or rewrite the URL to include the determined l
     *   It authenticates the user (via Clerk/NextAuth).
     *   It validates the payload.
     *   It updates the `preferred_language` field in the user's Supabase `user_profiles` record using the user's `clerk_user_id`.
-    *   It returns a success/error response. (The frontend might show a subtle notification on success/failure).
+    *   It returns a success/error response. If the API call fails, the `LanguageSwitcher` component will:
+        *   Display a specific, translated error message to the user based on the nature of the failure (e.g., network, server, unknown).
+        *   Perform structured JSON logging of the error details using the [`lib/logger.ts`](../../lib/logger.ts) utility.
 4.  **Navigation & Rendering:**
     *   The browser navigates to the new URL (e.g., `/hi/current-page`).
     *   The request hits the Next.js server.
@@ -86,7 +91,7 @@ The middleware will then redirect or rewrite the URL to include the determined l
         *   Server Components fetch translations for 'hi' using `getTranslator`.
         *   The `RootLayout` fetches 'hi' messages and configures `NextIntlClientProvider` with `locale='hi'`.
         *   Client Components render using the 'hi' locale context and translations provided by the `NextIntlClientProvider` and `useTranslations` hook.
-5.  **Result:** The user sees the page rendered in Hindi.
+5.  **Result:** The user sees the page rendered in Hindi. If the API preference update failed, they see a specific error message, and the error is logged with detailed information.
 
 ## 9. Dependencies
 
@@ -120,6 +125,22 @@ During testing of the [`LanguageSwitcher.tsx`](../../components/LanguageSwitcher
 *   The corresponding unit test in [`__tests__/components/LanguageSwitcher.test.tsx`](../../__tests__/components/LanguageSwitcher.test.tsx:1) was updated to mock or expect this absolute URL.
 
 This adjustment ensures that API calls made via `fetch` within components behave correctly in the JSDOM testing environment. Developers should be mindful of this behavior when writing tests for components that make `fetch` requests.
+
+### 10.2. Enhanced Error Handling and Logging in `LanguageSwitcher` (Related to CR `CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING` and `fix_critical_post_cr_bugs_followup`)
+
+*   **Context:** The error handling and logging within the `updatePreference` function in [`components/LanguageSwitcher.tsx`](../../components/LanguageSwitcher.tsx) has been significantly enhanced.
+*   **Enhancements:**
+    *   **Structured JSON Logging:** Instead of `console.error`, the component now utilizes a dedicated logging utility at [`lib/logger.ts`](../../lib/logger.ts) to perform structured JSON logging for errors encountered during API calls. These logs include comprehensive details such as component name, event, error message, HTTP status code, a placeholder for user ID, and a timestamp. This provides richer, more queryable error information for debugging and monitoring.
+    *   **Improved User-Facing API Failure Feedback:** The component displays more specific and informative error messages to the user based on the type of API failure (e.g., network error, server error, unknown error). This is achieved through new translation keys added to [`messages/en.json`](../../messages/en.json) (e.g., `updatePreferenceErrorNetwork`, `updatePreferenceErrorServer`, `updatePreferenceErrorUnknown`).
+    *   **Test Environment:** While mocking `fetch` calls remains a best practice for unit tests (see [`docs/Troubleshooting_Guide.md`](../Troubleshooting_Guide.md#13-error-aggregateerror--type-xmlhttprequest--in-languageswitcher-tests)), the new structured logger will capture any unmocked `fetch` failures, providing detailed logs instead of raw console errors.
+*   **Relevant Files:**
+    *   [`components/LanguageSwitcher.tsx`](../../components/LanguageSwitcher.tsx)
+    *   [`lib/logger.ts`](../../lib/logger.ts)
+    *   [`__tests__/components/LanguageSwitcher.test.tsx`](../../__tests__/components/LanguageSwitcher.test.tsx)
+    *   [`messages/en.json`](../../messages/en.json)
+    *   [`docs/comprehension_reports/LanguageSwitcher_error_handling_analysis_CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING.md`](../comprehension_reports/LanguageSwitcher_error_handling_analysis_CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING.md)
+    *   The previous `XMLHttpRequest` specific comprehension and debugging reports are still relevant for historical context of earlier error handling iterations.
+
 ## 10. Scalability & Maintainability
 
 *   **Adding Languages:** Adding support for new languages primarily involves:

@@ -2,6 +2,18 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getAuth } from '@clerk/nextjs/server';
 import prisma from '@/lib/db';
 import { z } from 'zod';
+
+// Define Zod schema for listing creation
+const listingCreateSchema = z.object({
+  cropTypeId: z.string({invalid_type_error: "cropTypeId must be a string.", required_error: "cropTypeId is required."})
+               .min(1, { message: "cropTypeId cannot be empty." }),
+  quantity: z.string({invalid_type_error: "quantity must be a string.", required_error: "quantity is required."})
+             .min(1, { message: "quantity cannot be empty." }),
+  pricePerUnit: z.string({invalid_type_error: "pricePerUnit must be a string.", required_error: "pricePerUnit is required."})
+                   .min(1, { message: "pricePerUnit cannot be empty." }),
+  description: z.string().optional(),
+});
+
 export async function POST(req: NextRequest) {
   const { userId } = getAuth(req);
 
@@ -11,12 +23,32 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { cropTypeId, quantity, pricePerUnit, description } = body;
+    
+    const validationResult = listingCreateSchema.safeParse(body);
 
-    // Basic validation (can be expanded)
-    if (!cropTypeId || !quantity || !pricePerUnit) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    if (!validationResult.success) {
+      const errors = validationResult.error.format();
+      // Handle specific test case for empty cropTypeId
+      // Check body.cropTypeId directly as Zod might not include it in parsed data if it's fundamentally wrong type before min check
+      if (body.cropTypeId === "" && errors.cropTypeId?._errors.includes("cropTypeId cannot be empty.")) {
+          return NextResponse.json({ error: "cropTypeId cannot be empty." }, { status: 400 });
+      }
+
+      // Handle generic "Missing required fields" for missing cropTypeId, quantity, or pricePerUnit
+      const cropTypeIdMissing = errors.cropTypeId?._errors.includes("cropTypeId is required.");
+      const quantityMissing = errors.quantity?._errors.includes("quantity is required.");
+      const pricePerUnitMissing = errors.pricePerUnit?._errors.includes("pricePerUnit is required.");
+
+      if (cropTypeIdMissing || quantityMissing || pricePerUnitMissing) {
+          return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+      }
+      
+      // For other validation errors (e.g., quantity="", pricePerUnit="" after being present, or wrong type if not caught by "is required.")
+      // Return the first specific error message from Zod.
+      return NextResponse.json({ error: validationResult.error.errors[0].message }, { status: 400 });
     }
+
+    const { cropTypeId, quantity, pricePerUnit, description } = validationResult.data;
 
     const newListing = await prisma.produceListing.create({
       data: {

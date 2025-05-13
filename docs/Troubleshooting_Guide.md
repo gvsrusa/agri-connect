@@ -35,6 +35,34 @@ This guide provides information on known issues, their causes, and resolutions e
     *   [`jest.setup.js`](../jest.setup.js)
     *   [`docs/architecture/Marketplace_Price_Discovery_architecture.md`](architecture/Marketplace_Price_Discovery_architecture.md) (Section 11.1)
 
+### 1.3. `[Error: AggregateError] { type: 'XMLHttpRequest' }` in `LanguageSwitcher` Tests
+
+*   **Context:** This error was observed in tests for [`components/LanguageSwitcher.tsx`](../components/LanguageSwitcher.tsx) (e.g., in [`__tests__/components/LanguageSwitcher.test.tsx`](../__tests__/components/LanguageSwitcher.test.tsx)) when `fetch` calls to `/api/user-profile` were not mocked.
+*   **Cause:** The JSDOM test environment attempts a real network request if `fetch` is not mocked. If the endpoint (e.g., `http://localhost/api/user-profile`) is not available during test execution, the `fetch` operation fails, leading to an `AggregateError` wrapping an `XMLHttpRequest` issue. This indicates a problem at the network request level.
+*   **Resolution & Recent Improvements (CR `fix_critical_post_cr_bugs_followup`):**
+    *   **Primary Resolution:** Mock `global.fetch` in the relevant tests to prevent actual network requests. The mock should simulate the expected API response (success or failure) as needed for the test case. This is the standard approach to avoid such errors during unit testing.
+    *   Example of mocking `fetch` to resolve successfully:
+        ```typescript
+        // In your test file (e.g., __tests__/components/LanguageSwitcher.test.tsx)
+        global.fetch = jest.fn(() =>
+          Promise.resolve({
+            ok: true,
+            json: () => Promise.resolve({ message: 'Preference updated' }),
+          })
+        ) as jest.Mock;
+        ```
+    *   **Enhanced Error Handling, Logging, and User Feedback (CR `CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING` & `fix_critical_post_cr_bugs_followup`):**
+        *   **Improved User-Facing API Failure Feedback:** The [`LanguageSwitcher`](../components/LanguageSwitcher.tsx) component now displays more specific error messages to the user based on the type of API failure (e.g., network error, server error, unknown error). These messages use new translation keys from [`messages/en.json`](../messages/en.json) (e.g., `updatePreferenceErrorNetwork`, `updatePreferenceErrorServer`, `updatePreferenceErrorUnknown`).
+        *   **Structured Error Logging:** API errors in the `LanguageSwitcher` are now logged using a structured JSON format via the new utility at [`lib/logger.ts`](../lib/logger.ts). This replaces previous `console.error` calls for these errors and includes details like component name, event, error message, status code, user ID (placeholder), and timestamp. This provides richer, more queryable error information.
+    *   These changes are detailed in the comprehension report: [`docs/comprehension_reports/LanguageSwitcher_error_handling_analysis_CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING.md`](comprehension_reports/LanguageSwitcher_error_handling_analysis_CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING.md). Historical context for previous error handling iterations can be found in earlier reports like [`docs/comprehension_reports/LanguageSwitcher_XMLHttpRequest_error_analysis_CR-fix_critical_post_cr_bugs_followup.md`](comprehension_reports/LanguageSwitcher_XMLHttpRequest_error_analysis_CR-fix_critical_post_cr_bugs_followup.md).
+*   **Relevant Files:**
+    *   [`components/LanguageSwitcher.tsx`](../components/LanguageSwitcher.tsx)
+    *   [`lib/logger.ts`](../lib/logger.ts)
+    *   [`__tests__/components/LanguageSwitcher.test.tsx`](../__tests__/components/LanguageSwitcher.test.tsx)
+    *   [`messages/en.json`](../messages/en.json)
+    *   [`docs/comprehension_reports/LanguageSwitcher_error_handling_analysis_CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING.md`](comprehension_reports/LanguageSwitcher_error_handling_analysis_CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING.md)
+    *   [`docs/debugging_reports/LanguageSwitcher_XMLHttpRequest_fix_diagnosis_CR-fix_critical_post_cr_bugs_followup.md`](debugging_reports/LanguageSwitcher_XMLHttpRequest_fix_diagnosis_CR-fix_critical_post_cr_bugs_followup.md) (for historical context)
+
 ## 2. Database Related
 
 ### 2.1. Simulated Database Error Handling in Tests

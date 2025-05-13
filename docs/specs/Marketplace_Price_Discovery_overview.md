@@ -29,7 +29,8 @@ This document outlines the specification for the Marketplace and Price Discovery
 ### 4.2. Produce Listing Management
 *   FR2.1: Users shall be able to create a new produce listing.
     *   Input fields: Crop Type (selectable list, localized), Quantity (e.g., "50 kg", unit might be part of crop type or a separate field), Price (per unit, currency ₹).
-    *   Form labels and validation messages must be in the user's selected language.
+    *   Client-side form labels and validation messages must be in the user's selected language.
+    *   Server-side validation is also implemented for the `/api/listings` endpoint (using Zod) to ensure data integrity, providing `400 Bad Request` responses for invalid submissions. This complements client-side checks.
 *   FR2.2: Listings shall be stored in the Supabase PostgreSQL database, associated with the seller's user ID.
 *   FR2.3: Users shall receive a confirmation message in their selected language upon successful listing creation.
 

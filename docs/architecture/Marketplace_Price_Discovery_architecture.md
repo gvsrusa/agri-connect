@@ -28,8 +28,14 @@ Leveraging Next.js API routes for backend logic:
 *   **`POST /api/listings`**:
     *   **Purpose**: Creates a new produce listing.
     *   **Auth**: Required (uses Clerk/NextAuth session).
-    *   **Request Body**: `{ cropTypeId: string, quantity: string, pricePerUnit: string, description?: string }`
-    *   **Response**: Success (201 Created) or Error (4xx/5xx).
+    *   **Request Body**: `{ cropTypeId: string, quantity: string, pricePerUnit: string, description?: string }` (See note on validation below)
+    *   **Validation**: Robust input validation is implemented using Zod via a `listingCreateSchema`. This ensures that all required fields are present and conform to expected data types and constraints (e.g., non-empty strings).
+    *   **Response**:
+        *   Success: `201 Created` with the created listing data.
+        *   Error:
+            *   `400 Bad Request`: If input validation fails (e.g., missing required fields, invalid data types). The response body will contain details about the validation errors.
+            *   `401 Unauthorized`: If the user is not authenticated.
+            *   `500 Internal Server Error`: For unexpected server-side issues.
 *   **`GET /api/listings`**:
     *   **Purpose**: Fetches active produce listings.
     *   **Auth**: Required.
@@ -150,7 +156,9 @@ Based on [`docs/specs/Marketplace_Price_Discovery_overview.md:109`](docs/specs/M
 ## 10. Security Considerations
 
 *   **Authentication/Authorization**: Handled by Clerk/NextAuth and Supabase RLS. Ensure API routes properly verify authentication status.
-*   **Input Validation**: Validate all user input on both the client-side (basic checks) and server-side (API routes) to prevent invalid data and potential injection attacks.
+*   **Input Validation**:
+    *   **Client-Side**: Basic checks should be performed in forms for immediate user feedback.
+    *   **Server-Side**: Crucial for security and data integrity. For the `POST /api/listings` endpoint, robust input validation is implemented using the Zod library with a defined `listingCreateSchema`. This ensures that incoming data for creating listings is strictly validated against expected types, formats, and presence of required fields (e.g., preventing empty strings for required fields like `cropTypeId`, `quantity`, `pricePerUnit`). Invalid requests result in a `400 Bad Request` response with error details. This server-side validation is critical to prevent invalid data entry and potential issues.
 *   **Data Privacy**: Ensure only non-sensitive data is exposed in listings (e.g., `farm_location_general`, not specific contact info). Adhere to PRD privacy requirements. RLS helps enforce this at the database level.
 
 ## 11. Testing Considerations & Known Issues
