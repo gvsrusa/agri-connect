@@ -5,21 +5,38 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import SomeNewComponent from '@/components/marketplace/SomeNewComponent';
+import { useTranslations } from 'next-intl';
 
-// Mock next-i18next if this component uses translations
-// jest.mock('next-i18next', () => ({
-//   useTranslation: () => ({
-//     t: (key: string) => key,
-//   }),
-// }));
+// Mock next-intl hook
+const mockMessages = {
+  'SomeNewComponent.placeholderHeading': 'SomeNewComponent Placeholder Text', // Actual text
+};
+
+jest.mock('next-intl', () => ({
+  useTranslations: jest.fn().mockImplementation((namespace: string) => (key: string) => {
+    const fullKey = `${namespace}.${key}`;
+    return mockMessages[fullKey as keyof typeof mockMessages] || key;
+  }),
+}));
 
 describe('SomeNewComponent', () => {
-  it('should render the placeholder heading', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    (useTranslations as jest.Mock).mockImplementation((namespace: string) => (key: string) => {
+        const fullKey = `${namespace}.${key}`;
+        return mockMessages[fullKey as keyof typeof mockMessages] || key;
+    });
+  });
+
+  it('should render the placeholder heading using translations', () => {
     render(<SomeNewComponent />);
-    const headingElement = screen.getByRole('heading', { name: /SomeNewComponent Placeholder/i });
+    // The component should use t('placeholderHeading')
+    const headingElement = screen.getByRole('heading', { name: mockMessages['SomeNewComponent.placeholderHeading'] });
     expect(headingElement).toBeInTheDocument();
   });
 
   // TODO: Add more tests as the component functionality is defined
   // e.g., test prop handling, state changes, event interactions, localization
+  it.todo('should handle some specific prop');
+  it.todo('should interact correctly when a button is clicked');
 });

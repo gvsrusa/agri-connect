@@ -1,16 +1,13 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
-// TODO: Define props for this component based on its purpose
-interface SomeNewComponentProps {
-  // exampleProp: string;
-}
+const SomeNewComponent: React.FC = () => {
+  const t = useTranslations('SomeNewComponent');
 
-const SomeNewComponent: React.FC<SomeNewComponentProps> = (props) => {
-  // TODO: Implement component logic and JSX
   return (
     <div>
-      <h2>SomeNewComponent Placeholder</h2>
-      {/* <p>{props.exampleProp}</p> */}
+      <h2 className="text-xl font-semibold">{t('placeholderHeading')}</h2>
+      {/* Future content for this component will go here */}
     </div>
   );
 };
