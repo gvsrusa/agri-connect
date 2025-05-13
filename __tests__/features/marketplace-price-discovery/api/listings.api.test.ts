@@ -330,84 +330,30 @@ describe('/api/listings API Route', () => {
       expect(db.produceListing.findMany).toHaveBeenCalledTimes(1);
     });
 
-it('should handle pagination parameters (page, limit) if implemented', async () => {
-      mockGetAuth.mockReturnValue({ userId: 'user_test_id_pagination' });
-      const mockDbListingsPage1 = [
-        { id: 'listing_1', cropType: { name_en: 'Tomato' }, listingDate: new Date('2024-01-05') },
-        { id: 'listing_2', cropType: { name_en: 'Potato' }, listingDate: new Date('2024-01-04') },
+it('should handle filtering parameters (e.g., cropTypeId) if implemented', async () => {
+      mockGetAuth.mockReturnValue({ userId: 'user_test_id_filtering' });
+      const mockDbListingsFiltered = [
+        { id: 'listing_4', cropType: { name_en: 'Wheat' }, cropTypeId: 'crop_type_wheat', listingDate: new Date() },
       ];
-      const mockDbListingsPage2 = [
-        { id: 'listing_3', cropType: { name_en: 'Onion' }, listingDate: new Date('2024-01-03') },
-      ];
+      (db.produceListing.findMany as jest.Mock).mockResolvedValue(mockDbListingsFiltered);
 
-      (db.produceListing.findMany as jest.Mock)
-        .mockImplementationOnce(async (args) => {
-          if (args.skip === 0 && args.take === 2) return mockDbListingsPage1;
-          if (args.skip === 2 && args.take === 2) return mockDbListingsPage2;
-          return [];
-        });
-      
-      // Test page 1
-      let request = new NextRequest('http://localhost/api/listings?page=1&limit=2', { method: 'GET' });
-      let response = await listingsGetHandler(request);
+      const request = new NextRequest('http://localhost/api/listings?cropTypeId=crop_type_wheat', { method: 'GET' });
+      const response = await listingsGetHandler(request);
       expect(response.status).toBe(200);
-      let jsonResponse = await response.json();
-      expect(jsonResponse.length).toBe(2);
-      expect(jsonResponse[0].id).toBe('listing_1');
-      expect(jsonResponse[1].id).toBe('listing_2');
-      expect(db.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
-        skip: 0,
-        take: 2,
-        where: { isActive: true },
-        orderBy: { listingDate: 'desc' },
-        include: { cropType: true },
-      }));
-
-      // Test page 2
-      request = new NextRequest('http://localhost/api/listings?page=2&limit=2', { method: 'GET' });
-      response = await listingsGetHandler(request);
-      expect(response.status).toBe(200);
-      jsonResponse = await response.json();
-
-      (db.produceListing.findMany as jest.Mock).mockResolvedValueOnce(mockDbListingsPage1);
-      (db.produceListing.findMany as jest.Mock).mockResolvedValueOnce(mockDbListingsPage2);
-
-      request = new NextRequest('http://localhost/api/listings?page=1&limit=2', { method: 'GET' });
-      await listingsGetHandler(request);
-
-      request = new NextRequest('http://localhost/api/listings?page=2&limit=2', { method: 'GET' });
-      response = await listingsGetHandler(request);
-      expect(response.status).toBe(200);
-      jsonResponse = await response.json();
+      const jsonResponse = await response.json();
       expect(jsonResponse.length).toBe(1);
-      expect(jsonResponse[0].id).toBe('listing_3');
-       expect(db.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
-        skip: 2,
-        take: 2,
-        where: { isActive: true },
+      expect(jsonResponse[0].id).toBe('listing_4');
+      expect(db.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
+        where: { 
+          isActive: true,
+          cropTypeId: 'crop_type_wheat'
+         },
         orderBy: { listingDate: 'desc' },
         include: { cropType: true },
-      }));
-
-      request = new NextRequest('http://localhost/api/listings?page=0&limit=5', { method: 'GET' });
-      response = await listingsGetHandler(request);
-      (db.produceListing.findMany as jest.Mock).mockResolvedValueOnce(mockDbListingsPage1);
-      response = await listingsGetHandler(request);
-      expect(response.status).toBe(200);
-       expect(db.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
-        skip: 0,
-        take: 5,
-      }));
-
-      request = new NextRequest('http://localhost/api/listings?page=1&limit=-1', { method: 'GET' });
-      (db.produceListing.findMany as jest.Mock).mockResolvedValueOnce(mockDbListingsPage1);
-      response = await listingsGetHandler(request);
-      expect(response.status).toBe(200);
-      expect(db.produceListing.findMany).toHaveBeenCalledWith(expect.objectContaining({
-        skip: 0,
-        take: 10,
       }));
     });
+
+
     it('should handle pagination parameters (page, limit) if implemented', async () => {
       mockGetAuth.mockReturnValue({ userId: 'user_test_id_pagination' });
       const mockDbListingsPage1 = [
