@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import SomeNewComponent from '@/components/marketplace/SomeNewComponent';
 import { useTranslations } from 'next-intl';
@@ -10,6 +10,8 @@ import { useTranslations } from 'next-intl';
 // Mock next-intl hook
 const mockMessages = {
   'SomeNewComponent.placeholderHeading': 'SomeNewComponent Placeholder Text', // Actual text
+  'SomeNewComponent.incrementButton': 'Increment Count',
+  'SomeNewComponent.currentCount': 'Current Count:',
 };
 
 jest.mock('next-intl', () => ({
@@ -29,14 +31,29 @@ describe('SomeNewComponent', () => {
   });
 
   it('should render the placeholder heading using translations', () => {
-    render(<SomeNewComponent />);
+    render(<SomeNewComponent initialCount={0} />);
     // The component should use t('placeholderHeading')
     const headingElement = screen.getByRole('heading', { name: mockMessages['SomeNewComponent.placeholderHeading'] });
     expect(headingElement).toBeInTheDocument();
   });
 
-  // TODO: Add more tests as the component functionality is defined
-  // e.g., test prop handling, state changes, event interactions, localization
-  it.todo('should handle some specific prop');
-  it.todo('should interact correctly when a button is clicked');
+  it('should handle the initialCount prop and display it', () => {
+    const initialCount = 5;
+    render(<SomeNewComponent initialCount={initialCount} />);
+    expect(screen.getByText(`${mockMessages['SomeNewComponent.currentCount']} ${initialCount}`)).toBeInTheDocument();
+  });
+
+  it('should interact correctly when the increment button is clicked', () => {
+    const initialCount = 3;
+    render(<SomeNewComponent initialCount={initialCount} />);
+
+    const incrementButton = screen.getByRole('button', { name: mockMessages['SomeNewComponent.incrementButton'] });
+    expect(screen.getByText(`${mockMessages['SomeNewComponent.currentCount']} ${initialCount}`)).toBeInTheDocument();
+
+    fireEvent.click(incrementButton);
+    expect(screen.getByText(`${mockMessages['SomeNewComponent.currentCount']} ${initialCount + 1}`)).toBeInTheDocument();
+
+    fireEvent.click(incrementButton);
+    expect(screen.getByText(`${mockMessages['SomeNewComponent.currentCount']} ${initialCount + 2}`)).toBeInTheDocument();
+  });
 });
