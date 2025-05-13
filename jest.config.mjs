@@ -10,7 +10,7 @@ const createJestConfig = nextJest({
 const config = {
   // Add more setup options before each test is run
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
-  testEnvironment: 'jest-environment-jsdom', // Enable jsdom for React component testing
+  testEnvironment: 'node', // Use 'node' for API tests, UI tests can override with @jest-environment jsdom
   // preset: 'ts-jest', // Keep commented out
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)

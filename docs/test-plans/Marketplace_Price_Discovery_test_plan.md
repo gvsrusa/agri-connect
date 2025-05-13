@@ -98,6 +98,17 @@ A multi-layered testing approach will be employed:
 
 ### 4.2 Integration Tests (Examples)
 
+#### 4.2.1 Note on API Route Testing (Post-`error-marketplace-test-env-blocker-20250512T234605Z`)
+
+Due to incompatibilities between the `next-test-api-route-handler` library and newer versions of Next.js, the approach for integration testing API routes (like [`/api/listings`](app/api/listings/route.ts:1)) has been updated:
+
+*   **Direct Handler Invocation:** Instead of using `next-test-api-route-handler`, tests now directly import and call the exported handler functions (e.g., `GET`, `POST`) from the route files (e.g., [`__tests__/features/marketplace-price-discovery/api/listings.api.test.ts`](__tests__/features/marketplace-price-discovery/api/listings.api.test.ts)). This requires mocking the `NextRequest` object and any other dependencies the handler relies on (like database clients or authentication checks).
+*   **Jest Environment:** The Jest test environment has been set to `'node'` in [`jest.config.mjs`](jest.config.mjs:1).
+*   **Fetch Polyfill:** The fetch polyfill used in [`jest.setup.js`](jest.setup.js:1) has been updated to `cross-fetch/polyfill` to ensure compatibility within the Node environment.
+
+This updated approach ensures API routes can still be effectively tested at the integration level despite the library change.
+
+*(Existing Integration Test Examples follow)*
 *   **API Route: `POST /api/listings`:**
     *   Test successful listing creation with valid data and authenticated user (mock Clerk session, mock Supabase client `insert`).
     *   Test failure when user is unauthenticated (401/403).

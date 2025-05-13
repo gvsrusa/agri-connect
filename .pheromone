@@ -5,7 +5,7 @@
       "signalType": "prioritize_feature_X_development",
       "target": "ExampleFeature",
       "category": "priority",
-      "strength": 1.58276415825,
+      "strength": 1.424487742425,
       "message": "Example: High priority task - focus development on ExampleFeature. Replace this message.",
       "data": {
         "prd_path": "docs/example_prd.md",
@@ -16,85 +16,14 @@
         "user_directive": "EXAMPLE DIRECTIVE: Focus solely on implementing ExampleFeature using the specified data sources. Overwrite this directive."
       },
       "timestamp_created": "YYYY-MM-DDTHH:MM:SSZ",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
-    },
-    {
-      "id": "integration-auth-profile-system-success-2025-05-12T17-55-00Z",
-      "signalType": "feature_integration_successful",
-      "target": "Authentication & User Profile Management",
-      "category": "integration",
-      "strength": 0.4721592720768,
-      "message": "Integration of 'Authentication & User Profile Management' into main_codebase reported as successful. Files were already present.",
-      "data": {
-        "feature_name": "Authentication & User Profile Management",
-        "integration_report_path": "docs/reports/integration/Integration_Status_Report_Authentication_UserProfile_Management_to_main_codebase.md",
-        "original_user_blueprint_or_change_request_path": "docs/specs/Authentication_UserProfile_Management_overview.md"
-      },
-      "timestamp_created": "2025-05-12T17:55:00Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
-    },
-    {
-      "id": "tasking-auth-profile-next-steps-20250512T181319Z",
-      "signalType": "tasking_next_steps_identified",
-      "target": "Authentication & User Profile Management",
-      "category": "tasking",
-      "strength": 0.4782969,
-      "message": "Further development or next steps identified for 'Authentication & User Profile Management' based on summary: refining API unit tests, standardizing UI error logging, adjust system test sensitivity.",
-      "data": {
-        "feature_name": "Authentication & User Profile Management",
-        "change_request_id": "CR-ConsoleError-AuthProfile-20250512",
-        "recommended_actions": [
-          "Refine API unit tests for error logging in generic catch blocks.",
-          "Standardize UI error logging practices.",
-          "Potentially adjust system test sensitivity to console.error output."
-        ],
-        "source_document": "[`docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md`](docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md:1)"
-      },
-      "timestamp_created": "2025-05-12T18:13:19Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
-    },
-    {
-      "id": "codequality-auth-profile-console-noise-20250512T181319Z",
-      "signalType": "code_quality_issue_identified",
-      "target": "Authentication & User Profile Management",
-      "category": "code_quality",
-      "strength": 0.4782969,
-      "message": "Code quality challenge identified for 'Authentication & User Profile Management': potential for continued console.error noise. Status: completed_with_issues.",
-      "data": {
-        "feature_name": "Authentication & User Profile Management",
-        "change_request_id": "CR-ConsoleError-AuthProfile-20250512",
-        "issue_description": "Potential for continued console.error noise in sensitive system tests from API ([`app/api/user-profile/route.ts`](app/api/user-profile/route.ts:1)) and UI diagnostic logging.",
-        "affected_files": ["[app/api/user-profile/route.ts](app/api/user-profile/route.ts:1)"],
-        "relevant_doc": "[`docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md`](docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md:1)"
-      },
-      "timestamp_created": "2025-05-12T18:13:19Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
-    },
-    {
-      "id": "featurestatus-auth-profile-cr-completed-issues-20250512T181319Z",
-      "signalType": "change_request_completed_with_issues",
-      "target": "Authentication & User Profile Management",
-      "category": "feature_status",
-      "strength": 0.69833729609375,
-      "message": "Change Request CR-ConsoleError-AuthProfile-20250512 for 'Authentication & User Profile Management' is completed with issues.",
-      "data": {
-        "feature_name": "Authentication & User Profile Management",
-        "change_request_id": "CR-ConsoleError-AuthProfile-20250512",
-        "status_details": "Overall status is 'completed_with_issues' due to potential for continued console noise in sensitive system tests, although the root cause is understood and documented.",
-        "documentation_references": [
-          "[`docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md`](docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md:1)",
-          "[`docs/test-plans/Authentication_UserProfile_Management_test_plan.md`](docs/test-plans/Authentication_UserProfile_Management_test_plan.md:1)"
-        ]
-      },
-      "timestamp_created": "2025-05-12T18:13:19Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "featurestatus-auth-profile-cr-completed-success-20250512T183210Z",
       "signalType": "change_request_completed_successfully",
       "target": "Authentication & User Profile Management",
       "category": "feature_status",
-      "strength": 0.735091890625,
+      "strength": 0.6634204312890625,
       "message": "Refinement cycle CR-ConsoleError-AuthProfile-20250512 completed successfully for 'Authentication & User Profile Management'.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -102,44 +31,14 @@
         "modified_code_paths": ["app/api/user-profile/route.ts", "components/profile/UserProfileFormWrapper.tsx"]
       },
       "timestamp_created": "2025-05-12T18:32:10Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
-    },
-    {
-      "id": "codequality-auth-profile-issue-resolved-20250512T183210Z",
-      "signalType": "code_issue_resolved",
-      "target": "Authentication & User Profile Management",
-      "category": "code_quality",
-      "strength": 0.531441,
-      "message": "Console error noise issue resolved in 'Authentication & User Profile Management' by switching to console.warn.",
-      "data": {
-        "feature_name": "Authentication & User Profile Management",
-        "change_request_id": "CR-ConsoleError-AuthProfile-20250512",
-        "resolution": "Switched console.error to console.warn for handled errors."
-      },
-      "timestamp_created": "2025-05-12T18:32:10Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
-    },
-    {
-      "id": "codequality-auth-profile-tests-passed-20250512T183210Z",
-      "signalType": "tests_passed_post_refinement",
-      "target": "Authentication & User Profile Management",
-      "category": "code_quality",
-      "strength": 0.531441,
-      "message": "All tests passed after refinement for 'Authentication & User Profile Management' (CR-ConsoleError-AuthProfile-20250512).",
-      "data": {
-        "feature_name": "Authentication & User Profile Management",
-        "change_request_id": "CR-ConsoleError-AuthProfile-20250512",
-        "test_paths": ["__tests__/features/auth-profile/auth-profile.api.test.ts", "__tests__/features/auth-profile/auth-profile.ui.test.tsx", "__tests__/components/profile/UserProfileForm.test.tsx"]
-      },
-      "timestamp_created": "2025-05-12T18:32:10Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "documentation-auth-profile-updated-20250512T183210Z",
       "signalType": "documentation_updated",
       "target": "Authentication & User Profile Management",
       "category": "documentation",
-      "strength": 0.885842380864,
+      "strength": 0.8507630225817856,
       "message": "Documentation updated for 'Authentication & User Profile Management' reflecting refined logging strategy (CR-ConsoleError-AuthProfile-20250512).",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -147,42 +46,42 @@
         "updated_doc_paths": ["docs/architecture/Authentication_UserProfile_Management_architecture.md", "docs/test-plans/Authentication_UserProfile_Management_test_plan.md", "docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md", "docs/comprehension_reports/auth_profile_error_logging_analysis_CR-ConsoleError-AuthProfile-20250512.md"]
       },
       "timestamp_created": "2025-05-12T18:32:10Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "feature-spec-ready-lang-switch-20250512T185208Z",
       "signalType": "feature_spec_ready",
       "target": "Language Switching Mechanism",
       "category": "documentation",
-      "strength": 0.885842380864,
+      "strength": 0.8507630225817856,
       "message": "Feature specification document is ready for Language Switching Mechanism.",
       "data": {
         "feature_name": "Language Switching Mechanism",
         "spec_path": "docs/specs/Language_Switching_Mechanism_overview.md"
       },
       "timestamp_created": "2025-05-12T18:52:08Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "feature-arch-ready-lang-switch-20250512T185208Z",
       "signalType": "feature_architecture_ready",
       "target": "Language Switching Mechanism",
       "category": "documentation",
-      "strength": 0.885842380864,
+      "strength": 0.8507630225817856,
       "message": "Feature architecture document is ready for Language Switching Mechanism.",
       "data": {
         "feature_name": "Language Switching Mechanism",
         "architecture_path": "docs/architecture/Language_Switching_Mechanism_architecture.md"
       },
       "timestamp_created": "2025-05-12T18:52:08Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "error-lang-switch-jest-config-20250512T210457Z",
       "signalType": "task_failed_critical_error",
       "target": "Language Switching Mechanism",
       "category": "error",
-      "strength": 0.783009375,
+      "strength": 0.5657242734375,
       "message": "Task failed for 'Language Switching Mechanism' due to critical coder error: Persistent Jest configuration issue (SyntaxError parsing next-intl). Requires debugging/configuration fix.",
       "data": {
         "feature_name": "Language Switching Mechanism",
@@ -195,14 +94,14 @@
         ]
       },
       "timestamp_created": "2025-05-12T21:04:57Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "tasking-debug-lang-switch-jest-config-20250512T210457Z",
       "signalType": "debugging_task_required",
       "target": "Language Switching Mechanism",
       "category": "tasking",
-      "strength": 0.78732,
+      "strength": 0.6377291999999999,
       "message": "Debugging task required for 'Language Switching Mechanism' to resolve Jest configuration error.",
       "data": {
         "feature_name": "Language Switching Mechanism",
@@ -214,28 +113,28 @@
         ]
       },
       "timestamp_created": "2025-05-12T21:04:57Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "codequality-lang-switch-challenge-resolved-20250512T213100Z",
       "signalType": "code_challenge_resolved",
       "target": "Language Switching Mechanism",
       "category": "code_quality",
-      "strength": 0.729,
+      "strength": 0.59049,
       "message": "Challenges encountered and resolved during development for 'Language Switching Mechanism'.",
       "data": {
         "feature_name": "Language Switching Mechanism",
         "change_request_id": "error-lang-switch-jest-config-20250512T210457Z"
       },
       "timestamp_created": "2025-05-12T21:31:00Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "featurestatus-lang-switch-cr-completed-success-20250512T213100Z",
       "signalType": "change_request_completed_successfully",
       "target": "Language Switching Mechanism",
       "category": "feature_status",
-      "strength": 0.857375,
+      "strength": 0.7737809375,
       "message": "Change Request error-lang-switch-jest-config-20250512T210457Z completed successfully for 'Language Switching Mechanism'.",
       "data": {
         "feature_name": "Language Switching Mechanism",
@@ -247,28 +146,28 @@
         ]
       },
       "timestamp_created": "2025-05-12T21:31:00Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "codequality-lang-switch-tests-passed-20250512T213100Z",
       "signalType": "tests_passed_post_refinement",
       "target": "Language Switching Mechanism",
       "category": "code_quality",
-      "strength": 0.729,
+      "strength": 0.59049,
       "message": "All tests passed after refinement for 'Language Switching Mechanism' (CR error-lang-switch-jest-config-20250512T210457Z).",
       "data": {
         "feature_name": "Language Switching Mechanism",
         "change_request_id": "error-lang-switch-jest-config-20250512T210457Z"
       },
       "timestamp_created": "2025-05-12T21:31:00Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "documentation-lang-switch-updated-20250512T213100Z",
       "signalType": "documentation_updated",
       "target": "Language Switching Mechanism",
       "category": "documentation",
-      "strength": 0.941192,
+      "strength": 0.9039207968,
       "message": "Documentation updated for 'Language Switching Mechanism' reflecting Jest config fix (CR error-lang-switch-jest-config-20250512T210457Z).",
       "data": {
         "feature_name": "Language Switching Mechanism",
@@ -278,14 +177,14 @@
         ]
       },
       "timestamp_created": "2025-05-12T21:31:00Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "featurestatus-lang-switch-impl-complete-20250512T214829Z",
       "signalType": "feature_implementation_part_completed",
       "target": "Language Switching Mechanism",
       "category": "feature_status",
-      "strength": 0.9025,
+      "strength": 0.81450625,
       "message": "Feature implementation part completed successfully by coder.",
       "data": {
         "feature_name": "Language Switching Mechanism",
@@ -301,28 +200,28 @@
         ]
       },
       "timestamp_created": "2025-05-12T21:48:29Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "codequality-lang-switch-tests-passing-20250512T214829Z",
       "signalType": "feature_tests_passing",
       "target": "Language Switching Mechanism",
       "category": "code_quality",
-      "strength": 0.81,
+      "strength": 0.6561,
       "message": "Coder reported passing tests for the implemented part.",
       "data": {
         "feature_name": "Language Switching Mechanism",
         "final_test_output": "Primary tests passing: __tests__/components/LanguageSwitcher.test.tsx"
       },
       "timestamp_created": "2025-05-12T21:48:29Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "integration-lang-switch-ready-20250512T214829Z",
       "signalType": "feature_ready_for_integration",
       "target": "Language Switching Mechanism",
       "category": "integration",
-      "strength": 0.8464,
+      "strength": 0.71639296,
       "message": "Completed code is ready for integration.",
       "data": {
         "feature_name": "Language Switching Mechanism",
@@ -338,14 +237,14 @@
         ]
       },
       "timestamp_created": "2025-05-12T21:48:29Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "error-unrelated-test-failure-auth-profile-api-20250512T214829Z",
       "signalType": "unrelated_test_failure_observed",
       "target": "Language Switching Mechanism",
       "category": "error",
-      "strength": 0.7225,
+      "strength": 0.52200625,
       "message": "Unrelated test suite failed during feature implementation cycle, requires separate attention.",
       "data": {
         "feature_name": "Language Switching Mechanism",
@@ -353,14 +252,14 @@
         "reason": "Attributed to Jest module mocking complexities, outside direct scope of current feature."
       },
       "timestamp_created": "2025-05-12T21:48:29Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "integration-lang-switch-verified-20250512T220419Z",
       "signalType": "feature_integration_verified",
       "target": "Language Switching Mechanism",
       "category": "integration",
-      "strength": 0.92,
+      "strength": 0.778688,
       "message": "Integration verification successful for 'Language Switching Mechanism'. All specified files confirmed present in main_codebase.",
       "data": {
         "feature_name": "Language Switching Mechanism",
@@ -377,14 +276,14 @@
         "integration_report_path": "docs/reports/integration/Integration_Status_Report_Language_Switching_Mechanism_to_main_codebase.md"
       },
       "timestamp_created": "2025-05-12T22:04:19Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "system-test-passed-lang-switch-20250512T220419Z",
       "signalType": "system_tests_passed_post_integration",
       "target": "Language Switching Mechanism",
       "category": "code_quality",
-      "strength": 0.9,
+      "strength": 0.729,
       "message": "System-wide tests (npm test) passed after integrating 'Language Switching Mechanism'. All 10 suites passed.",
       "data": {
         "feature_name": "Language Switching Mechanism",
@@ -392,14 +291,14 @@
         "test_summary": "10 suites passed"
       },
       "timestamp_created": "2025-05-12T22:04:19Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "codequality-auth-profile-unrelated-issue-resolved-20250512T220419Z",
       "signalType": "code_issue_resolved",
       "target": "Authentication & User Profile Management",
       "category": "code_quality",
-      "strength": 0.9,
+      "strength": 0.729,
       "message": "Unrelated test failure (error-unrelated-test-failure-auth-profile-api-20250512T214829Z) resolved during Language Switching Mechanism integration cycle.",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -407,14 +306,14 @@
         "affected_file": "__tests__/features/auth-profile/auth-profile.api.test.ts"
       },
       "timestamp_created": "2025-05-12T22:04:19Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "featurestatus-marketplace-ready-for-tdd-20250512T230415Z",
       "signalType": "feature_ready_for_tdd",
       "target": "Marketplace & Price Discovery",
       "category": "feature_status",
-      "strength": 0.95,
+      "strength": 0.857375,
       "message": "Test plan and initial test stubs generated for feature. Ready for TDD implementation.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -422,20 +321,137 @@
         "test_code_directory": "__tests__/features/marketplace-price-discovery/"
       },
       "timestamp_created": "2025-05-12T23:04:15Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "id": "tasking-marketplace-tdd-required-20250512T230415Z",
       "signalType": "tdd_implementation_required",
       "target": "Marketplace & Price Discovery",
       "category": "tasking",
-      "strength": 0.9,
+      "strength": 0.729,
       "message": "TDD implementation task required for feature.",
       "data": {
         "feature_name": "Marketplace & Price Discovery"
       },
       "timestamp_created": "2025-05-12T23:04:15Z",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
+    },
+    {
+      "id": "error-marketplace-test-env-blocker-20250512T234605Z",
+      "signalType": "critical_test_environment_error",
+      "target": "Marketplace & Price Discovery",
+      "category": "error",
+      "strength": 1.08375,
+      "message": "Critical test environment setup failure blocked TDD for 'Marketplace & Price Discovery'. TypeError encountered in next-test-api-route-handler.",
+      "data": {
+        "feature_name": "Marketplace & Price Discovery",
+        "error_details": "TypeError: Cannot set property url of #<NextRequest> which has only a getter at node_modules/next-test-api-route-handler/dist/src/index.js:141:57",
+        "affected_files": [
+          "app/api/listings/route.ts",
+          "jest.setup.js",
+          "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts"
+        ],
+        "investigation_needed": true
+      },
+      "timestamp_created": "2025-05-12T23:46:05Z",
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
+    },
+    {
+      "id": "tasking-marketplace-debug-test-env-20250512T234605Z",
+      "signalType": "debugging_task_required",
+      "target": "Marketplace & Price Discovery",
+      "category": "tasking",
+      "strength": 0.972,
+      "message": "Debugging/Investigation task required for 'Marketplace & Price Discovery' to resolve the test environment setup issue (next-test-api-route-handler).",
+      "data": {
+        "feature_name": "Marketplace & Price Discovery",
+        "blocker_description": "TypeError in next-test-api-route-handler prevents API route testing.",
+        "relevant_files": [
+          "app/api/listings/route.ts",
+          "jest.setup.js",
+          "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts",
+          "node_modules/next-test-api-route-handler/dist/src/index.js"
+        ]
+      },
+      "timestamp_created": "2025-05-12T23:46:05Z",
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
+    },
+    {
+      "id": "featurestatus-marketplace-tdd-blocked-20250512T234605Z",
+      "signalType": "feature_implementation_blocked",
+      "target": "Marketplace & Price Discovery",
+      "category": "feature_status",
+      "strength": 0.9025,
+      "message": "TDD implementation for 'Marketplace & Price Discovery' is blocked due to a critical test environment error.",
+      "data": {
+        "feature_name": "Marketplace & Price Discovery",
+        "reason": "Test environment setup failure (TypeError in next-test-api-route-handler)."
+      },
+      "timestamp_created": "2025-05-12T23:46:05Z",
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
+    },
+    {
+      "id": "codequality-marketplace-resolved-error-marketplace-test-env-blocker-20250512T234605Z-20250512T235857Z",
+      "signalType": "code_challenge_resolved",
+      "target": "Marketplace & Price Discovery",
+      "category": "code_quality",
+      "strength": 1.0,
+      "message": "Challenges encountered and resolved during development for 'Marketplace & Price Discovery'.",
+      "data": {
+        "feature_name": "Marketplace & Price Discovery",
+        "change_request_id": "error-marketplace-test-env-blocker-20250512T234605Z"
+      },
+      "timestamp_created": "2025-05-12T23:58:57Z",
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
+    },
+    {
+      "id": "featurestatus-marketplace-cr-completed-success-error-marketplace-test-env-blocker-20250512T234605Z-20250512T235857Z",
+      "signalType": "change_request_completed_successfully",
+      "target": "Marketplace & Price Discovery",
+      "category": "feature_status",
+      "strength": 1.0,
+      "message": "Refinement cycle error-marketplace-test-env-blocker-20250512T234605Z completed successfully for 'Marketplace & Price Discovery'.",
+      "data": {
+        "feature_name": "Marketplace & Price Discovery",
+        "change_request_id": "error-marketplace-test-env-blocker-20250512T234605Z",
+        "modified_code_paths": [
+            "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts",
+            "jest.setup.js",
+            "jest.config.mjs"
+        ]
+      },
+      "timestamp_created": "2025-05-12T23:58:57Z",
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
+    },
+    {
+      "id": "codequality-marketplace-techdebt-testing-utility-20250512T235857Z",
+      "signalType": "technical_debt_identified",
+      "target": "Marketplace & Price Discovery",
+      "category": "code_quality",
+      "strength": 1.0,
+      "message": "Technical debt identified related to testing utility maintenance for 'Marketplace & Price Discovery'.",
+      "data": {
+        "feature_name": "Marketplace & Price Discovery",
+        "description": "Impact analysis suggested technical debt related to testing utility maintenance.",
+        "related_report": "docs/comprehension_reports/error-marketplace-test-env-blocker-20250512T234605Z_analysis.md"
+      },
+      "timestamp_created": "2025-05-12T23:58:57Z",
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
+    },
+    {
+      "id": "documentation-marketplace-updated-error-marketplace-test-env-blocker-20250512T234605Z-20250512T235857Z",
+      "signalType": "documentation_updated",
+      "target": "Marketplace & Price Discovery",
+      "category": "documentation",
+      "strength": 1.0,
+      "message": "Documentation updated for 'Marketplace & Price Discovery' reflecting revised API testing approach (CR error-marketplace-test-env-blocker-20250512T234605Z).",
+      "data": {
+        "feature_name": "Marketplace & Price Discovery",
+        "change_request_id": "error-marketplace-test-env-blocker-20250512T234605Z",
+        "updated_doc_paths": ["docs/test-plans/Marketplace_Price_Discovery_test_plan.md"]
+      },
+      "timestamp_created": "2025-05-12T23:58:57Z",
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     }
   ],
   "documentation_registry": [
@@ -444,98 +460,98 @@
       "value": "docs/specs/Authentication_UserProfile_Management_overview.md",
       "type": "documentation_entry",
       "description": "Feature overview specification for Authentication & User Profile Management.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "code/app/api/user-profile/route.ts",
       "value": "app/api/user-profile/route.ts",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "docs/markdown/docs/reports/integration/Integration_Status_Report_Authentication_UserProfile_Management_to_main_codebase.md",
       "value": "docs/reports/integration/Integration_Status_Report_Authentication_UserProfile_Management_to_main_codebase.md",
       "type": "documentation_entry",
       "description": "Documentation entry for integration report.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "docs/markdown/docs/Master_Project_Plan.md",
       "value": "docs/Master_Project_Plan.md",
       "type": "documentation_entry",
       "description": "Documentation entry for Master Project Plan.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "code/__tests__/components/profile/UserProfileForm.test.tsx",
       "value": "__tests__/components/profile/UserProfileForm.test.tsx",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "code/components/profile/UserProfileForm.tsx",
       "value": "components/profile/UserProfileForm.tsx",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "code/components/profile/UserProfileFormWrapper.tsx",
       "value": "components/profile/UserProfileFormWrapper.tsx",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "code/types/userProfile.ts",
       "value": "types/userProfile.ts",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "feature/Authentication & User Profile Management/blueprint",
       "value": "docs/specs/Authentication_UserProfile_Management_overview.md",
       "type": "documentation_entry",
       "description": "Blueprint/Specification document associated with the feature.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "docs/markdown/docs/comprehension_reports/auth_profile_error_analysis.md",
       "value": "docs/comprehension_reports/auth_profile_error_analysis.md",
       "type": "documentation_entry",
       "description": "Documentation entry updated via Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "code/__tests__/features/auth-profile/auth-profile.api.test.ts",
       "value": "__tests__/features/auth-profile/auth-profile.api.test.ts",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "code/__tests__/features/auth-profile/auth-profile.ui.test.tsx",
       "value": "__tests__/features/auth-profile/auth-profile.ui.test.tsx",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "docs/markdown/docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md",
       "value": "docs/debugging_reports/CR-ConsoleError-AuthProfile-20250512_diagnosis.md",
       "type": "documentation_entry",
       "description": "Documentation entry updated via Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "docs/markdown/docs/test-plans/Authentication_UserProfile_Management_test_plan.md",
       "value": "docs/test-plans/Authentication_UserProfile_Management_test_plan.md",
       "type": "documentation_entry",
       "description": "Documentation entry updated via Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "feature/Authentication & User Profile Management/modified_files",
@@ -545,35 +561,35 @@
       ],
       "type": "documentation_entry",
       "description": "List of files modified for the feature during the last update.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "docs/markdown/docs/architecture/Authentication_UserProfile_Management_architecture.md",
       "value": "docs/architecture/Authentication_UserProfile_Management_architecture.md",
       "type": "documentation_entry",
       "description": "Documentation entry updated via Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "docs/markdown/docs/comprehension_reports/auth_profile_error_logging_analysis_CR-ConsoleError-AuthProfile-20250512.md",
       "value": "docs/comprehension_reports/auth_profile_error_logging_analysis_CR-ConsoleError-AuthProfile-20250512.md",
       "type": "documentation_entry",
       "description": "Documentation entry updated via Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "docs/markdown/docs/specs/Language_Switching_Mechanism_overview.md",
       "value": "docs/specs/Language_Switching_Mechanism_overview.md",
       "type": "documentation_entry",
       "description": "Documentation entry added via Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "docs/markdown/docs/architecture/Language_Switching_Mechanism_architecture.md",
       "value": "docs/architecture/Language_Switching_Mechanism_architecture.md",
       "type": "documentation_entry",
       "description": "Documentation entry updated via Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "feature/Language Switching Mechanism/modified_files",
@@ -589,112 +605,137 @@
       ],
       "type": "documentation_entry",
       "description": "List of files modified for the feature during the last update.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "feature/Language Switching Mechanism/blueprint",
       "value": "docs/specs/Language_Switching_Mechanism_overview.md",
       "type": "documentation_entry",
       "description": "Blueprint/Specification document associated with the feature.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "docs/markdown/lang-switch-jest-syntaxerror-analysis.md",
       "value": "docs/comprehension_reports/lang-switch-jest-syntaxerror-analysis.md",
       "type": "documentation_entry",
       "description": "Documentation entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "code/jest.config.mjs",
       "value": "jest.config.mjs",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "code/i18n.ts",
       "value": "i18n.ts",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "code/__tests__/components/LanguageSwitcher.test.tsx",
       "value": "__tests__/components/LanguageSwitcher.test.tsx",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "code/components/LanguageSwitcher.tsx",
       "value": "components/LanguageSwitcher.tsx",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "code/middleware.ts",
       "value": "middleware.ts",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "code/jest.setup.js",
       "value": "jest.setup.js",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "docs/markdown/docs/reports/integration/Integration_Status_Report_Language_Switching_Mechanism_to_main_codebase.md",
       "value": "docs/reports/integration/Integration_Status_Report_Language_Switching_Mechanism_to_main_codebase.md",
       "type": "documentation_entry",
       "description": "Documentation entry added via Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
-    },
-    {
-      "key": "docs/markdown/docs/specs/Marketplace_Price_Discovery_overview.md",
-      "value": "docs/specs/Marketplace_Price_Discovery_overview.md",
-      "type": "documentation_entry",
-      "description": "Documentation entry added via Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "docs/markdown/docs/architecture/Marketplace_Price_Discovery_architecture.md",
       "value": "docs/architecture/Marketplace_Price_Discovery_architecture.md",
       "type": "documentation_entry",
       "description": "Documentation entry added via Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
-    },
-    {
-      "key": "docs/markdown/docs/test-plans/Marketplace_Price_Discovery_test_plan.md",
-      "value": "docs/test-plans/Marketplace_Price_Discovery_test_plan.md",
-      "type": "documentation_entry",
-      "description": "Documentation entry added via Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "code/components/CreateListingForm.test.tsx",
       "value": "__tests__/features/marketplace-price-discovery/components/CreateListingForm.test.tsx",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
-      "key": "code/api/listings.api.test.ts",
+      "key": "docs/markdown/docs/specs/Marketplace_Price_Discovery_overview.md",
+      "value": "docs/specs/Marketplace_Price_Discovery_overview.md",
+      "type": "documentation_entry",
+      "description": "Documentation entry added/updated via Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
+    },
+    {
+      "key": "docs/markdown/docs/test-plans/Marketplace_Price_Discovery_test_plan.md",
+      "value": "docs/test-plans/Marketplace_Price_Discovery_test_plan.md",
+      "type": "documentation_entry",
+      "description": "Documentation entry added/updated via Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
+    },
+    {
+      "key": "code/app/api/listings/route.ts",
+      "value": "app/api/listings/route.ts",
+      "type": "documentation_entry",
+      "description": "Code file entry added/updated by Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
+    },
+    {
+      "key": "code/__tests__/features/marketplace-price-discovery/api/listings.api.test.ts",
       "value": "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts",
       "type": "documentation_entry",
       "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     },
     {
       "key": "feature/Marketplace & Price Discovery/blueprint",
-      "value": "docs/Master_Project_Plan.md",
+      "value": "./.swarm/payloads/error-marketplace-test-env-blocker-20250512T234605Z.json",
       "type": "documentation_entry",
-      "description": "Blueprint/Specification document associated with the feature.",
-      "last_updated_timestamp": "2025-05-12T23:04:15Z"
+      "description": "Blueprint/Change Request document associated with the feature.",
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
+    },
+    {
+      "key": "docs/markdown/docs/comprehension_reports/error-marketplace-test-env-blocker-20250512T234605Z_analysis.md",
+      "value": "docs/comprehension_reports/error-marketplace-test-env-blocker-20250512T234605Z_analysis.md",
+      "type": "documentation_entry",
+      "description": "Documentation entry added/updated by Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
+    },
+    {
+      "key": "feature/Marketplace & Price Discovery/modified_files",
+      "value": [
+        "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts",
+        "jest.setup.js",
+        "jest.config.mjs"
+      ],
+      "type": "documentation_entry",
+      "description": "List of files modified for the feature during the last update.",
+      "last_updated_timestamp": "2025-05-12T23:58:57Z"
     }
   ]
 }
