@@ -152,3 +152,20 @@ Based on [`docs/specs/Marketplace_Price_Discovery_overview.md:109`](docs/specs/M
 *   **Authentication/Authorization**: Handled by Clerk/NextAuth and Supabase RLS. Ensure API routes properly verify authentication status.
 *   **Input Validation**: Validate all user input on both the client-side (basic checks) and server-side (API routes) to prevent invalid data and potential injection attacks.
 *   **Data Privacy**: Ensure only non-sensitive data is exposed in listings (e.g., `farm_location_general`, not specific contact info). Adhere to PRD privacy requirements. RLS helps enforce this at the database level.
+
+## 11. Testing Considerations & Known Issues
+
+### 11.1. API Test Environment and `Response.json`
+
+A `TypeError: Response.json is not a function` was encountered in API tests for the [`/api/listings`](app/api/listings/route.ts:1) route, specifically within the Jest environment when testing [`__tests__/features/marketplace-price-discovery/api/listings.api.test.ts`](__tests__/features/marketplace-price-discovery/api/listings.api.test.ts:1).
+
+*   **Cause:** This issue was traced to interactions with `jest-fetch-mock` or the general Jest environment's handling of `NextResponse` objects.
+*   **Resolution:**
+    *   The [`jest.setup.js`](jest.setup.js:1) file was modified to disable `jest-fetch-mock` (`fetchMock.disableMocks()`). This resolved the immediate `TypeError`.
+    *   Error handling within the `POST` handler in [`app/api/listings/route.ts`](app/api/listings/route.ts:1) was improved to more gracefully handle invalid JSON request bodies, returning a 400 error with a clear message.
+
+Developers writing API tests, particularly those involving `fetch` or `NextResponse` objects, should be aware of potential conflicts with mocking libraries and ensure robust error handling in API routes.
+
+### 11.2. Database Interaction Tests
+
+Tests for *simulated* database errors (e.g., connection failures, query errors) within the API tests for listings ([`__tests__/features/marketplace-price-discovery/api/listings.api.test.ts`](__tests__/features/marketplace-price-discovery/api/listings.api.test.ts:1)) have been confirmed to be robust. These tests effectively mock the Prisma client and verify that the API route's error handling logic (e.g., returning 500 status codes) functions as expected when such mocked database errors occur. This provides confidence in the API's resilience to backend database issues.

@@ -124,7 +124,7 @@ describe('LanguageSwitcher Component', () => {
 
     // Assert that fetch was called with the correct parameters
     expect(mockFetch).toHaveBeenCalledTimes(1);
-    expect(mockFetch).toHaveBeenCalledWith('/api/user-profile', {
+    expect(mockFetch).toHaveBeenCalledWith('http://localhost/api/user-profile', {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -135,5 +135,28 @@ describe('LanguageSwitcher Component', () => {
     // Restore original fetch and clear the mock for other tests
     global.fetch = originalFetch;
     mockFetch.mockClear();
+  });
+it('reproduces TypeError from fetch with relative URL when language changes', async () => {
+    // This test is designed to FAIL if the bug (TypeError from fetch) is present.
+    // The failure indicates successful reproduction of the bug.
+    // We are not mocking global.fetch here, relying on JSDOM's default fetch.
+
+    render(<LanguageSwitcher />);
+    const dropdown = screen.getByRole('combobox');
+
+    // Act: Change language. This triggers updatePreference, which calls fetch.
+    fireEvent.change(dropdown, { target: { value: 'hi' } });
+
+    // Allow microtasks to process for the async fetch call and potential error.
+    // If fetch throws a TypeError and it's unhandled, Jest will fail the test.
+    await act(async () => {
+      // Ensure any promises from the event handler have a chance to resolve or reject.
+      await new Promise(resolve => setTimeout(resolve, 0));
+    });
+
+    // If the test reaches this point without an unhandled rejection,
+    // it implies the TypeError was not thrown or was handled in an unexpected way.
+    // In such a case, the bug is not reproduced by this test.
+    // No explicit Jest assertion is made here; the test's failure is the key indicator.
   });
 });

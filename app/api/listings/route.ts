@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error("Error creating listing:", error);
     // Distinguish between JSON parsing errors and DB errors
-    if (error instanceof SyntaxError) {
+    if (error && typeof error === 'object' && 'name' in error && error.name === 'SyntaxError') {
         return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
     }
     return NextResponse.json({ error: 'Failed to create listing' }, { status: 500 });

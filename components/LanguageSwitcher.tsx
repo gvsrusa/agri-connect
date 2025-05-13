@@ -28,7 +28,8 @@ export default function LanguageSwitcher() {
     // We might need to add Clerk's useAuth() here later if tests require it.
     const updatePreference = async (newLocale: string) => {
       try {
-        const response = await fetch('/api/user-profile', {
+        const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+        const response = await fetch(`${baseUrl}/api/user-profile`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

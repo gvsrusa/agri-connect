@@ -169,6 +169,24 @@ describe('/api/listings API Route', () => {
       expect(prisma.produceListing.create).toHaveBeenCalledTimes(1); // Ensure it was called
     });
   });
+it('should return 400 if the request body is invalid JSON', async () => {
+  mockGetAuth.mockReturnValue({ userId: 'user_test_id_invalid_body' });
+
+  const request = new NextRequest('http://localhost/api/listings', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: 'This is not valid JSON', // Invalid JSON
+  });
+
+  const response = await listingsPostHandler(request);
+  expect(response.status).toBe(400);
+
+  const jsonResponse = await response.json();
+  expect(jsonResponse).toEqual({ error: 'Invalid request body' });
+  expect(prisma.produceListing.create).not.toHaveBeenCalled();
+});
 
   describe('GET /api/listings', () => {
     it('should retrieve listings for an authenticated user', async () => {

@@ -5,7 +5,7 @@
       "signalType": "prioritize_feature_X_development",
       "target": "ExampleFeature",
       "category": "priority",
-      "strength": 0.9256344,
+      "strength": 0.731417412,
       "message": "Example: High priority task - focus development on ExampleFeature. Replace this message.",
       "data": {
         "prd_path": "docs/example_prd.md",
@@ -29,14 +29,14 @@
         "user_directive": "EXAMPLE DIRECTIVE: Focus solely on implementing ExampleFeature using the specified data sources. Overwrite this directive."
       },
       "timestamp_created": "YYYY-MM-DDTHH:MM:SSZ",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "documentation-auth-profile-updated-20250512T183210Z",
       "signalType": "documentation_updated",
       "target": "Authentication & User Profile Management",
       "category": "documentation",
-      "strength": 0.704650992,
+      "strength": 0.6567468127168,
       "message": "Documentation updated for 'Authentication & User Profile Management' reflecting refined logging strategy (CR-ConsoleError-AuthProfile-20250512).",
       "data": {
         "feature_name": "Authentication & User Profile Management",
@@ -49,61 +49,42 @@
         ]
       },
       "timestamp_created": "2025-05-12T18:32:10Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "feature-spec-ready-lang-switch-20250512T185208Z",
       "signalType": "feature_spec_ready",
       "target": "Language Switching Mechanism",
       "category": "documentation",
-      "strength": 0.704650992,
+      "strength": 0.6567468127168,
       "message": "Feature specification document is ready for Language Switching Mechanism.",
       "data": {
         "feature_name": "Language Switching Mechanism",
         "spec_path": "docs/specs/Language_Switching_Mechanism_overview.md"
       },
       "timestamp_created": "2025-05-12T18:52:08Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "feature-arch-ready-lang-switch-20250512T185208Z",
       "signalType": "feature_architecture_ready",
       "target": "Language Switching Mechanism",
       "category": "documentation",
-      "strength": 0.704650992,
+      "strength": 0.6567468127168,
       "message": "Feature architecture document is ready for Language Switching Mechanism.",
       "data": {
         "feature_name": "Language Switching Mechanism",
         "architecture_path": "docs/architecture/Language_Switching_Mechanism_architecture.md"
       },
       "timestamp_created": "2025-05-12T18:52:08Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
-    },
-    {
-      "id": "tasking-debug-lang-switch-jest-config-20250512T210457Z",
-      "signalType": "debugging_task_required",
-      "target": "Language Switching Mechanism",
-      "category": "tasking",
-      "strength": 0.5159232,
-      "message": "Debugging task required for 'Language Switching Mechanism' to resolve Jest configuration error.",
-      "data": {
-        "feature_name": "Language Switching Mechanism",
-        "blocker_description": "Jest SyntaxError parsing next-intl dependency, preventing test execution.",
-        "relevant_files": [
-          "jest.config.mjs",
-          "i18n.ts",
-          "__tests__/components/LanguageSwitcher.test.tsx"
-        ]
-      },
-      "timestamp_created": "2025-05-12T21:04:57Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "featurestatus-lang-switch-cr-completed-success-20250512T213100Z",
       "signalType": "change_request_completed_successfully",
       "target": "Language Switching Mechanism",
       "category": "feature_status",
-      "strength": 0.725410075,
+      "strength": 0.6046825926875001,
       "message": "Change Request error-lang-switch-jest-config-20250512T210457Z completed successfully for 'Language Switching Mechanism'.",
       "data": {
         "feature_name": "Language Switching Mechanism",
@@ -115,14 +96,14 @@
         ]
       },
       "timestamp_created": "2025-05-12T21:31:00Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "documentation-lang-switch-updated-20250512T213100Z",
       "signalType": "documentation_updated",
       "target": "Language Switching Mechanism",
       "category": "documentation",
-      "strength": 0.748667888,
+      "strength": 0.6990206396352,
       "message": "Documentation updated for 'Language Switching Mechanism' reflecting Jest config fix (CR error-lang-switch-jest-config-20250512T210457Z).",
       "data": {
         "feature_name": "Language Switching Mechanism",
@@ -132,14 +113,14 @@
         ]
       },
       "timestamp_created": "2025-05-12T21:31:00Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "featurestatus-lang-switch-impl-complete-20250512T214829Z",
       "signalType": "feature_implementation_part_completed",
       "target": "Language Switching Mechanism",
       "category": "feature_status",
-      "strength": 0.755085175,
+      "strength": 0.6314643704375001,
       "message": "Feature implementation part completed successfully by coder.",
       "data": {
         "feature_name": "Language Switching Mechanism",
@@ -162,88 +143,14 @@
         ]
       },
       "timestamp_created": "2025-05-12T21:48:29Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
-    },
-    {
-      "id": "codequality-lang-switch-tests-passing-20250512T214829Z",
-      "signalType": "feature_tests_passing",
-      "target": "Language Switching Mechanism",
-      "category": "code_quality",
-      "strength": 0.5266368,
-      "message": "Coder reported passing tests for the implemented part.",
-      "data": {
-        "feature_name": "Language Switching Mechanism",
-        "final_test_output": "Primary tests passing: __tests__/components/LanguageSwitcher.test.tsx"
-      },
-      "timestamp_created": "2025-05-12T21:48:29Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
-    },
-    {
-      "id": "integration-lang-switch-ready-20250512T214829Z",
-      "signalType": "feature_ready_for_integration",
-      "target": "Language Switching Mechanism",
-      "category": "integration",
-      "strength": 0.61071044,
-      "message": "Completed code is ready for integration.",
-      "data": {
-        "feature_name": "Language Switching Mechanism",
-        "modified_code_paths": [
-          "components/LanguageSwitcher.tsx",
-          "i18n.ts",
-          "middleware.ts",
-          "messages/en.json",
-          "messages/hi.json",
-          "messages/mr.json",
-          "messages/te.json",
-          "messages/ta.json",
-          "messages/kn.json",
-          "messages/ml.json",
-          "messages/pa.json",
-          "app/api/user-profile/route.ts",
-          "jest.setup.js",
-          "jest.config.mjs",
-          "__tests__/components/LanguageSwitcher.test.tsx"
-        ]
-      },
-      "timestamp_created": "2025-05-12T21:48:29Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
-    },
-    {
-      "id": "system-test-passed-lang-switch-20250512T220419Z",
-      "signalType": "system_tests_passed_post_integration",
-      "target": "Language Switching Mechanism",
-      "category": "code_quality",
-      "strength": 0.5691528,
-      "message": "System-wide tests (npm test) passed after integrating 'Language Switching Mechanism'. All 10 suites passed.",
-      "data": {
-        "feature_name": "Language Switching Mechanism",
-        "test_command": "npm test",
-        "test_summary": "10 suites passed"
-      },
-      "timestamp_created": "2025-05-12T22:04:19Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
-    },
-    {
-      "id": "codequality-auth-profile-unrelated-issue-resolved-20250512T220419Z",
-      "signalType": "code_issue_resolved",
-      "target": "Authentication & User Profile Management",
-      "category": "code_quality",
-      "strength": 0.5691528,
-      "message": "Unrelated test failure (error-unrelated-test-failure-auth-profile-api-20250512T214829Z) resolved during Language Switching Mechanism integration cycle.",
-      "data": {
-        "feature_name": "Authentication & User Profile Management",
-        "resolved_issue_id": "error-unrelated-test-failure-auth-profile-api-20250512T214829Z",
-        "affected_file": "__tests__/features/auth-profile/auth-profile.api.test.ts"
-      },
-      "timestamp_created": "2025-05-12T22:04:19Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "featurestatus-marketplace-ready-for-tdd-20250512T230415Z",
       "signalType": "feature_ready_for_tdd",
       "target": "Marketplace & Price Discovery",
       "category": "feature_status",
-      "strength": 0.78632735,
+      "strength": 0.659660528375,
       "message": "Test plan and initial test stubs generated for feature. Ready for TDD implementation.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -251,110 +158,42 @@
         "test_code_directory": "__tests__/features/marketplace-price-discovery/"
       },
       "timestamp_created": "2025-05-12T23:04:15Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
-    },
-    {
-      "id": "tasking-marketplace-tdd-required-20250512T230415Z",
-      "signalType": "tdd_implementation_required",
-      "target": "Marketplace & Price Discovery",
-      "category": "tasking",
-      "strength": 0.5691528,
-      "message": "TDD implementation task required for feature.",
-      "data": {
-        "feature_name": "Marketplace & Price Discovery"
-      },
-      "timestamp_created": "2025-05-12T23:04:15Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
-    },
-    {
-      "id": "error-marketplace-test-env-blocker-20250512T234605Z",
-      "signalType": "critical_test_environment_error",
-      "target": "Marketplace & Price Discovery",
-      "category": "error",
-      "strength": 0.4727427375,
-      "message": "Critical test environment setup failure blocked TDD for 'Marketplace & Price Discovery'. TypeError encountered in next-test-api-route-handler.",
-      "data": {
-        "feature_name": "Marketplace & Price Discovery",
-        "error_details": "TypeError: Cannot set property url of #<NextRequest> which has only a getter at node_modules/next-test-api-route-handler/dist/src/index.js:141:57",
-        "affected_files": [
-          "app/api/listings/route.ts",
-          "jest.setup.js",
-          "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts"
-        ],
-        "investigation_needed": true
-      },
-      "timestamp_created": "2025-05-12T23:46:05Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
-    },
-    {
-      "id": "tasking-marketplace-debug-test-env-20250512T234605Z",
-      "signalType": "debugging_task_required",
-      "target": "Marketplace & Price Discovery",
-      "category": "tasking",
-      "strength": 0.7108416,
-      "message": "Debugging/Investigation task required for 'Marketplace & Price Discovery' to resolve the test environment setup issue (next-test-api-route-handler).",
-      "data": {
-        "feature_name": "Marketplace & Price Discovery",
-        "blocker_description": "TypeError in next-test-api-route-handler prevents API route testing.",
-        "relevant_files": [
-          "app/api/listings/route.ts",
-          "jest.setup.js",
-          "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts",
-          "node_modules/next-test-api-route-handler/dist/src/index.js"
-        ]
-      },
-      "timestamp_created": "2025-05-12T23:46:05Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "featurestatus-marketplace-tdd-blocked-20250512T234605Z",
       "signalType": "feature_implementation_blocked",
       "target": "Marketplace & Price Discovery",
       "category": "feature_status",
-      "strength": 0.819216825,
+      "strength": 0.6893431845625,
       "message": "TDD implementation for 'Marketplace & Price Discovery' is blocked due to a critical test environment error.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
         "reason": "Test environment setup failure (TypeError in next-test-api-route-handler)."
       },
       "timestamp_created": "2025-05-12T23:46:05Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "codequality-marketplace-resolved-error-marketplace-test-env-blocker-20250512T234605Z-20250512T235857Z",
       "signalType": "code_challenge_resolved",
       "target": "Marketplace & Price Discovery",
       "category": "code_quality",
-      "strength": 0.8496,
+      "strength": 0.788176,
       "message": "Challenges encountered and resolved during development for 'Marketplace & Price Discovery'.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
         "change_request_id": "error-marketplace-test-env-blocker-20250512T234605Z"
       },
       "timestamp_created": "2025-05-12T23:58:57Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
-    },
-    {
-      "id": "codequality-marketplace-techdebt-testing-utility-20250512T235857Z",
-      "signalType": "technical_debt_identified",
-      "target": "Marketplace & Price Discovery",
-      "category": "code_quality",
-      "strength": 0.7272,
-      "message": "Technical debt identified related to testing utility maintenance for 'Marketplace & Price Discovery'.",
-      "data": {
-        "feature_name": "Marketplace & Price Discovery",
-        "description": "Impact analysis suggested technical debt related to testing utility maintenance.",
-        "related_report": "docs/comprehension_reports/error-marketplace-test-env-blocker-20250512T234605Z_analysis.md"
-      },
-      "timestamp_created": "2025-05-12T23:58:57Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "documentation-marketplace-updated-error-marketplace-test-env-blocker-20250512T234605Z-20250512T235857Z",
       "signalType": "documentation_updated",
       "target": "Marketplace & Price Discovery",
       "category": "documentation",
-      "strength": 0.82824976,
+      "strength": 0.7754510695040001,
       "message": "Documentation updated for 'Marketplace & Price Discovery' reflecting revised API testing approach (CR error-marketplace-test-env-blocker-20250512T234605Z).",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -364,42 +203,42 @@
         ]
       },
       "timestamp_created": "2025-05-12T23:58:57Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "tasking-marketplace-it-todo-2025-05-13T03-22-00Z",
       "signalType": "further_development_identified",
       "target": "Marketplace & Price Discovery",
       "category": "tasking",
-      "strength": 0.7272,
+      "strength": 0.4890320000000001,
       "message": "Further development or next steps identified for the feature (many tests are it.todo).",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
         "details": "Coder reported many tests are it.todo after refactoring."
       },
       "timestamp_created": "2025-05-13T03:22:00Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "codequality-marketplace-i18n-error-resolved-2025-05-13T03-22-00Z",
       "signalType": "code_challenge_resolved",
       "target": "Marketplace & Price Discovery",
       "category": "code_quality",
-      "strength": 0.7272,
+      "strength": 0.788176,
       "message": "Challenges encountered and resolved during development ('Cannot find module' errors for next-i18next).",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
         "change_request_id": "CR-NextI18Next-TestFix-20250513T031309Z"
       },
       "timestamp_created": "2025-05-13T03:22:00Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "featurestatus-marketplace-cr-completed-CR-NextI18Next-TestFix-20250513T031309Z-2025-05-13T03-22-00Z",
       "signalType": "change_request_completed_successfully",
       "target": "Marketplace & Price Discovery",
       "category": "feature_status",
-      "strength": 0.89026875,
+      "strength": 0.753467546875,
       "message": "Refinement cycle CR-NextI18Next-TestFix-20250513T031309Z completed successfully for 'Marketplace & Price Discovery'.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -414,14 +253,14 @@
         ]
       },
       "timestamp_created": "2025-05-13T03:22:00Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "codequality-marketplace-techdebt-i18n-alignment-2025-05-13T03-22-00Z",
       "signalType": "technical_debt_identified",
       "target": "Marketplace & Price Discovery",
       "category": "code_quality",
-      "strength": 0.7272,
+      "strength": 0.4890320000000001,
       "message": "Technical debt identified in test environment alignment (next-i18next vs next-intl) for 'Marketplace & Price Discovery'.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -429,14 +268,14 @@
         "related_report": "docs/comprehension_reports/marketplace_i18n_test_error_analysis.md"
       },
       "timestamp_created": "2025-05-13T03:22:00Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "documentation-marketplace-testplan-updated-CR-NextI18Next-TestFix-20250513T031309Z-2025-05-13T03-22-00Z",
       "signalType": "documentation_updated",
       "target": "Marketplace & Price Discovery",
       "category": "documentation",
-      "strength": 0.82824976,
+      "strength": 0.7754510695040001,
       "message": "Documentation updated for 'Marketplace & Price Discovery' test plan regarding i18n library usage (CR-NextI18Next-TestFix-20250513T031309Z).",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -446,14 +285,14 @@
         ]
       },
       "timestamp_created": "2025-05-13T03:22:00Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "featurestatus-marketplacediscovery-implcompleted-20250513T152147Z",
       "signalType": "feature_implementation_part_completed",
       "target": "Marketplace & Price Discovery",
       "category": "feature_status",
-      "strength": 0.928625,
+      "strength": 0.7880840625,
       "message": "Feature implementation part completed successfully by coder.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -463,28 +302,28 @@
         ]
       },
       "timestamp_created": "2025-05-13T15:21:47Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "codequality-marketplacediscovery-testspassing-20250513T152147Z",
       "signalType": "feature_tests_passing",
       "target": "Marketplace & Price Discovery",
       "category": "code_quality",
-      "strength": 0.792,
+      "strength": 0.5415200000000001,
       "message": "Coder reported passing tests for the implemented part.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
         "final_test_output": "all 57 tests for the `__tests__/features/marketplace-price-discovery/` directory now pass."
       },
       "timestamp_created": "2025-05-13T15:21:47Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "integration-marketplacediscovery-readyforintegration-20250513T152147Z",
       "signalType": "feature_ready_for_integration",
       "target": "Marketplace & Price Discovery",
       "category": "integration",
-      "strength": 0.8450288,
+      "strength": 0.6352323763200001,
       "message": "Completed code is ready for integration.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -494,27 +333,27 @@
         ]
       },
       "timestamp_created": "2025-05-13T15:21:47Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "codequality-marketplacediscovery-challengeresolved-20250513T152147Z",
       "signalType": "code_challenge_resolved",
       "target": "Marketplace & Price Discovery",
       "category": "code_quality",
-      "strength": 0.792,
+      "strength": 0.74152,
       "message": "Challenges encountered and resolved during development.",
       "data": {
         "feature_name": "Marketplace & Price Discovery"
       },
       "timestamp_created": "2025-05-13T15:21:47Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "error-integration-marketplace-missing-source-20250513T153500Z",
       "signalType": "integration_failed_missing_source",
       "target": "Marketplace & Price Discovery",
       "category": "error",
-      "strength": 1.1475,
+      "strength": 0.67906875,
       "message": "Critical integration failure for 'Marketplace & Price Discovery': Source codebase at 'features/marketplace-price-discovery/dist' not found.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -523,14 +362,14 @@
         "reason": "Source codebase not found, preventing file system operations."
       },
       "timestamp_created": "2025-05-13T15:35:00Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "tasking-marketplace-system-test-blocked-20250513T153500Z",
       "signalType": "system_test_blocked_by_integration_failure",
       "target": "Marketplace & Price Discovery",
       "category": "tasking",
-      "strength": 1.08,
+      "strength": 0.7748,
       "message": "System tests for 'Marketplace & Price Discovery' blocked due to integration failure. Planned command 'npm test' not executed.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -539,14 +378,14 @@
         "reason": "Integration failure (missing source codebase)."
       },
       "timestamp_created": "2025-05-13T15:35:00Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "featurestatus-marketplace-integration-failed-20250513T153500Z",
       "signalType": "feature_integration_failed",
       "target": "Marketplace & Price Discovery",
       "category": "feature_status",
-      "strength": 1.21125,
+      "strength": 0.943153125,
       "message": "Integration of 'Marketplace & Price Discovery' into 'main_codebase' failed. Release readiness unconfirmed.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -555,14 +394,14 @@
         "reason": "Missing source codebase at features/marketplace-price-discovery/dist"
       },
       "timestamp_created": "2025-05-13T15:35:00Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "integration-marketplacediscovery-verified-2025-05-13T15-37-25-000Z",
       "signalType": "feature_integration_verified",
       "target": "Marketplace & Price Discovery",
       "category": "integration",
-      "strength": 0.92,
+      "strength": 0.6983280000000001,
       "message": "Integration of 'Marketplace & Price Discovery' verified; components __tests__/features/marketplace-price-discovery/components/SomeNewComponent.test.tsx, components/marketplace/SomeNewComponent.tsx confirmed present.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -572,14 +411,14 @@
         ]
       },
       "timestamp_created": "2025-05-13T15:37:25.000Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "systemtest-marketplacediscovery-passed-caveat-2025-05-13T15-37-25-000Z",
       "signalType": "system_tests_passed_with_caveats",
       "target": "Marketplace & Price Discovery",
       "category": "code_quality",
-      "strength": 0.9,
+      "strength": 0.629,
       "message": "System-wide tests (18 suites) passed for 'Marketplace & Price Discovery', but with console error: ReferenceError: fetch is not defined.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -588,14 +427,14 @@
         "caveat": "Console error: ReferenceError: fetch is not defined in LanguageSwitcher"
       },
       "timestamp_created": "2025-05-13T15:37:25.000Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "error-marketplacediscovery-fetch-langswitcher-2025-05-13T15-37-25-000Z",
       "signalType": "runtime_error_in_test_environment",
       "target": "Marketplace & Price Discovery",
       "category": "error",
-      "strength": 1.02,
+      "strength": 0.58695,
       "message": "Console error 'ReferenceError: fetch is not defined' in components/LanguageSwitcher.tsx:45 during 'Marketplace & Price Discovery' tests.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -604,14 +443,14 @@
         "context": "System-wide tests for Marketplace & Price Discovery"
       },
       "timestamp_created": "2025-05-13T15:37:25.000Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "id": "tasking-marketplacediscovery-investigate-fetcherror-2025-05-13T15-37-25-000Z",
       "signalType": "investigation_task_required",
       "target": "Marketplace & Price Discovery",
       "category": "tasking",
-      "strength": 0.9,
+      "strength": 0.629,
       "message": "Further investigation needed for 'ReferenceError: fetch is not defined' in components/LanguageSwitcher.tsx:45, noted during 'Marketplace & Price Discovery' tests.",
       "data": {
         "feature_name": "Marketplace & Price Discovery",
@@ -620,7 +459,243 @@
         "reason": "Ensuring full component reliability in test environment."
       },
       "timestamp_created": "2025-05-13T15:37:25.000Z",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "id": "codequality-langswitch-fetchresolved-2025-05-13T10:57:30.000Z",
+      "signalType": "code_challenge_resolved",
+      "target": "Language Switching Mechanism",
+      "category": "code_quality",
+      "strength": 0.8,
+      "message": "Bug 'ReferenceError: fetch is not defined' in LanguageSwitcher tests resolved by implementing fetch mock in Jest setup.",
+      "data": {
+        "feature_name": "Language Switching Mechanism",
+        "change_request_id": "error-marketplacediscovery-fetch-langswitcher-2025-05-13T15-37-25-000Z",
+        "resolved_issue": "ReferenceError: fetch is not defined in components/LanguageSwitcher.tsx during Jest tests.",
+        "resolution_details": "Implemented fetch mock within Jest setup, likely by modifying jest.setup.js and potentially installing jest-fetch-mock.",
+        "affected_files": [
+          "components/LanguageSwitcher.tsx",
+          "__tests__/components/LanguageSwitcher.test.tsx",
+          "jest.setup.js"
+        ]
+      },
+      "timestamp_created": "2025-05-13T10:57:30.000Z",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "id": "featurestatus-cr-completed-error-marketplacediscovery-fetch-langswitcher-2025-05-13T15-37-25-000Z",
+      "signalType": "change_request_completed_successfully",
+      "target": "Language Switching Mechanism",
+      "category": "feature_status",
+      "strength": 0.9,
+      "message": "Change Request error-marketplacediscovery-fetch-langswitcher-2025-05-13T15-37-25-000Z (bug fix for 'Language Switching Mechanism') completed successfully.",
+      "data": {
+        "feature_name": "Language Switching Mechanism",
+        "change_request_id": "error-marketplacediscovery-fetch-langswitcher-2025-05-13T15-37-25-000Z",
+        "original_user_directive_type": "bug",
+        "summary_of_fix": "Resolved 'ReferenceError: fetch is not defined' in components/LanguageSwitcher.tsx by mocking fetch in Jest setup. All tests in __tests__/components/LanguageSwitcher.test.tsx passing.",
+        "modified_code_paths": [
+          "components/LanguageSwitcher.tsx",
+          "__tests__/components/LanguageSwitcher.test.tsx",
+          "jest.setup.js"
+        ],
+        "documentation_updated": [
+          "docs/comprehension_reports/LanguageSwitcher_fetch_error_analysis.md"
+        ],
+        "original_user_blueprint_or_change_request_path": "error-marketplacediscovery-fetch-langswitcher-2025-05-13T15-37-25-000Z (Note: Direct file path for original payload not provided in this invocation; using CR ID as identifier for the initial user request to this orchestrator)"
+      },
+      "timestamp_created": "2025-05-13T10:57:30.000Z",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "id": "documentation-update-error-marketplacediscovery-fetch-langswitcher-2025-05-13T15-37-25-000Z-2025-05-13T10:57:30.000Z",
+      "signalType": "documentation_updated_post_cr",
+      "target": "Language Switching Mechanism",
+      "category": "documentation",
+      "strength": 0.96,
+      "message": "Documentation updated for 'Language Switching Mechanism' following CR error-marketplacediscovery-fetch-langswitcher-2025-05-13T15-37-25-000Z resolution.",
+      "data": {
+        "feature_name": "Language Switching Mechanism",
+        "change_request_id": "error-marketplacediscovery-fetch-langswitcher-2025-05-13T15-37-25-000Z",
+        "updated_doc_paths": [
+          "docs/comprehension_reports/LanguageSwitcher_fetch_error_analysis.md"
+        ],
+        "nature_of_update": "Addendum detailing the fix and ensuring the documentation accurately reflects the current testing strategy for components making API calls."
+      },
+      "timestamp_created": "2025-05-13T10:57:30.000Z",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "id": "tasking-languageswitchingmechanism-debugneeded-2025-05-13T16:08:00.000Z",
+      "signalType": "tasking_further_development_identified",
+      "target": "Language Switching Mechanism",
+      "category": "tasking",
+      "strength": 0.8,
+      "message": "Further development or next steps identified for the feature.",
+      "data": {
+        "feature_name": "Language Switching Mechanism",
+        "details": "New `TypeError: Only absolute URLs are supported` emerged from the `fetch` call at [`components/LanguageSwitcher.tsx:31`](components/LanguageSwitcher.tsx:31) after CR `error-marketplacediscovery-fetch-langswitcher-2025-05-13T15-37-25-000Z` fix.",
+        "triggering_cr_id": "error-marketplacediscovery-fetch-langswitcher-2025-05-13T15-37-25-000Z",
+        "affected_files": [
+          "components/LanguageSwitcher.tsx"
+        ]
+      },
+      "timestamp_created": "2025-05-13T16:08:00.000Z",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "id": "tasking-marketplacediscovery-debugneeded-2025-05-13T16:08:00.000Z",
+      "signalType": "tasking_further_development_identified",
+      "target": "Marketplace & Price Discovery",
+      "category": "tasking",
+      "strength": 0.8,
+      "message": "Further development or next steps identified for the feature.",
+      "data": {
+        "feature_name": "Marketplace & Price Discovery",
+        "details": "API tests ([`__tests__/features/marketplace-price-discovery/api/listings.api.test.ts`](__tests__/features/marketplace-price-discovery/api/listings.api.test.ts)) failed: `TypeError: Response.json is not a function` in [`app/api/listings/route.ts`](app/api/listings/route.ts); Database connection/query failures after CR `error-marketplacediscovery-fetch-langswitcher-2025-05-13T15-37-25-000Z` fix.",
+        "triggering_cr_id": "error-marketplacediscovery-fetch-langswitcher-2025-05-13T15-37-25-000Z",
+        "affected_files": [
+          "app/api/listings/route.ts",
+          "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts"
+        ]
+      },
+      "timestamp_created": "2025-05-13T16:08:00.000Z",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "id": "codequality-languageswitchingmechanism-newissue-2025-05-13T16:08:00.000Z",
+      "signalType": "codequality_issue_identified",
+      "target": "Language Switching Mechanism",
+      "category": "code_quality",
+      "strength": 0.8,
+      "message": "Challenges encountered and resolved during development.",
+      "data": {
+        "feature_name": "Language Switching Mechanism",
+        "issue_description": "New `TypeError: Only absolute URLs are supported` emerged from the `fetch` call at [`components/LanguageSwitcher.tsx:31`](components/LanguageSwitcher.tsx:31). This is an unresolved issue.",
+        "affected_files": [
+          "components/LanguageSwitcher.tsx"
+        ]
+      },
+      "timestamp_created": "2025-05-13T16:08:00.000Z",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "id": "codequality-marketplacediscovery-newissues-2025-05-13T16:08:00.000Z",
+      "signalType": "codequality_issues_identified",
+      "target": "Marketplace & Price Discovery",
+      "category": "code_quality",
+      "strength": 0.8,
+      "message": "Challenges encountered and resolved during development.",
+      "data": {
+        "feature_name": "Marketplace & Price Discovery",
+        "issue_description": "Multiple new unresolved issues: 1. `TypeError: Response.json is not a function` in [`app/api/listings/route.ts`](app/api/listings/route.ts). 2. Database-related errors ('Database connection failed', 'Database query failed'). Test file: [`__tests__/features/marketplace-price-discovery/api/listings.api.test.ts`](__tests__/features/marketplace-price-discovery/api/listings.api.test.ts)",
+        "affected_files": [
+          "app/api/listings/route.ts",
+          "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts"
+        ]
+      },
+      "timestamp_created": "2025-05-13T16:08:00.000Z",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "id": "cr-completed-fix_critical_post_cr_bugs-2025-05-13T16:50:00.000Z",
+      "signalType": "change_request_completed",
+      "target": "fix_critical_post_cr_bugs",
+      "category": "feature_status",
+      "strength": 1,
+      "message": "Change Request 'fix_critical_post_cr_bugs' completed successfully.",
+      "data": {
+        "change_request_id": "fix_critical_post_cr_bugs",
+        "status": "completed",
+        "original_change_request_payload_path": "change_requests/fix_critical_post_cr_bugs_payload.json"
+      },
+      "timestamp_created": "2025-05-13T16:50:00.000Z",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "id": "resolved-langswitcher-typeerror-2025-05-13T16:50:00.000Z",
+      "signalType": "issue_resolved_in_feature",
+      "target": "Language Switching Mechanism",
+      "category": "code_quality",
+      "strength": 1,
+      "message": "TypeError in LanguageSwitcher.tsx resolved for feature 'Language Switching Mechanism' as part of CR 'fix_critical_post_cr_bugs'.",
+      "data": {
+        "feature_name": "Language Switching Mechanism",
+        "issue_summary": "TypeError: Only absolute URLs are supported",
+        "affected_files": [
+          "components/LanguageSwitcher.tsx",
+          "__tests__/components/LanguageSwitcher.test.tsx"
+        ],
+        "change_request_id": "fix_critical_post_cr_bugs",
+        "modified_code_paths": [
+          "components/LanguageSwitcher.tsx",
+          "__tests__/components/LanguageSwitcher.test.tsx"
+        ]
+      },
+      "timestamp_created": "2025-05-13T16:50:00.000Z",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "id": "resolved-marketplace-api-typeerror-2025-05-13T16:50:00.000Z",
+      "signalType": "issue_resolved_in_feature",
+      "target": "Marketplace & Price Discovery",
+      "category": "code_quality",
+      "strength": 1,
+      "message": "TypeError in app/api/listings/route.ts resolved for feature 'Marketplace & Price Discovery' as part of CR 'fix_critical_post_cr_bugs'.",
+      "data": {
+        "feature_name": "Marketplace & Price Discovery",
+        "issue_summary": "TypeError: Response.json is not a function",
+        "affected_files": [
+          "jest.setup.js",
+          "app/api/listings/route.ts",
+          "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts"
+        ],
+        "change_request_id": "fix_critical_post_cr_bugs",
+        "modified_code_paths": [
+          "jest.setup.js",
+          "app/api/listings/route.ts",
+          "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts"
+        ]
+      },
+      "timestamp_created": "2025-05-13T16:50:00.000Z",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "id": "status-marketplace-db-simulated-tests-2025-05-13T16:50:00.000Z",
+      "signalType": "test_robustness_confirmed",
+      "target": "Marketplace & Price Discovery",
+      "category": "code_quality",
+      "strength": 1,
+      "message": "Tests for simulated database errors confirmed robust for 'Marketplace & Price Discovery' during CR 'fix_critical_post_cr_bugs'.",
+      "data": {
+        "feature_name": "Marketplace & Price Discovery",
+        "test_file": "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts",
+        "change_request_id": "fix_critical_post_cr_bugs"
+      },
+      "timestamp_created": "2025-05-13T16:50:00.000Z",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "id": "docs-updated-fix_critical_post_cr_bugs-2025-05-13T16:50:00.000Z",
+      "signalType": "documentation_updated_for_cr",
+      "target": "fix_critical_post_cr_bugs",
+      "category": "documentation",
+      "strength": 1,
+      "message": "Documentation updated for features as part of CR 'fix_critical_post_cr_bugs'.",
+      "data": {
+        "change_request_id": "fix_critical_post_cr_bugs",
+        "updated_docs": [
+          "docs/architecture/Language_Switching_Mechanism_architecture.md",
+          "docs/architecture/Marketplace_Price_Discovery_architecture.md",
+          "docs/Troubleshooting_Guide.md"
+        ],
+        "features_affected": [
+          "Language Switching Mechanism",
+          "Marketplace & Price Discovery"
+        ]
+      },
+      "timestamp_created": "2025-05-13T16:50:00.000Z",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     }
   ],
   "documentation_registry": [
@@ -635,8 +710,8 @@
       "key": "code/app/api/user-profile/route.ts",
       "value": "app/api/user-profile/route.ts",
       "type": "documentation_entry",
-      "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-13T15:35:00Z"
+      "description": "Entry for app/api/user-profile/route.ts processed by Scribe.",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "key": "docs/markdown/docs/reports/integration/Integration_Status_Report_Authentication_UserProfile_Management_to_main_codebase.md",
@@ -757,38 +832,25 @@
       "key": "docs/markdown/docs/architecture/Language_Switching_Mechanism_architecture.md",
       "value": "docs/architecture/Language_Switching_Mechanism_architecture.md",
       "type": "documentation_entry",
-      "description": "Documentation entry updated via Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "description": "Entry for docs/architecture/Language_Switching_Mechanism_architecture.md processed by Scribe.",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "key": "feature/Language Switching Mechanism/modified_files",
       "value": [
         "components/LanguageSwitcher.tsx",
-        "i18n.ts",
-        "middleware.ts",
-        "messages/en.json",
-        "messages/hi.json",
-        "messages/mr.json",
-        "messages/te.json",
-        "messages/ta.json",
-        "messages/kn.json",
-        "messages/ml.json",
-        "messages/pa.json",
-        "app/api/user-profile/route.ts",
-        "jest.setup.js",
-        "jest.config.mjs",
         "__tests__/components/LanguageSwitcher.test.tsx"
       ],
       "type": "documentation_entry",
-      "description": "List of files modified for the feature during the last update.",
-      "last_updated_timestamp": "2025-05-13T15:35:00Z"
+      "description": "Registry entry for modified_code_paths of Language Switching Mechanism.",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "key": "feature/Language Switching Mechanism/blueprint",
-      "value": "docs/specs/Language_Switching_Mechanism_overview.md",
+      "value": "error-marketplacediscovery-fetch-langswitcher-2025-05-13T15-37-25-000Z (Note: Direct file path for original payload not provided in this invocation; using CR ID as identifier for the initial user request to this orchestrator)",
       "type": "documentation_entry",
-      "description": "Blueprint/Specification document associated with the feature.",
-      "last_updated_timestamp": "2025-05-13T15:35:00Z"
+      "description": "Registry entry for original_user_blueprint_or_change_request_path of Language Switching Mechanism.",
+      "last_updated_timestamp": "2025-05-13T10:57:30.000Z"
     },
     {
       "key": "docs/markdown/lang-switch-jest-syntaxerror-analysis.md",
@@ -815,15 +877,15 @@
       "key": "code/__tests__/components/LanguageSwitcher.test.tsx",
       "value": "__tests__/components/LanguageSwitcher.test.tsx",
       "type": "documentation_entry",
-      "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "description": "Entry for __tests__/components/LanguageSwitcher.test.tsx processed by Scribe.",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "key": "code/components/LanguageSwitcher.tsx",
       "value": "components/LanguageSwitcher.tsx",
       "type": "documentation_entry",
-      "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "description": "Entry for components/LanguageSwitcher.tsx processed by Scribe.",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "key": "code/middleware.ts",
@@ -836,8 +898,8 @@
       "key": "code/jest.setup.js",
       "value": "jest.setup.js",
       "type": "documentation_entry",
-      "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-13T15:35:00Z"
+      "description": "Entry for jest.setup.js processed by Scribe.",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "key": "docs/markdown/docs/reports/integration/Integration_Status_Report_Language_Switching_Mechanism_to_main_codebase.md",
@@ -850,8 +912,8 @@
       "key": "docs/markdown/docs/architecture/Marketplace_Price_Discovery_architecture.md",
       "value": "docs/architecture/Marketplace_Price_Discovery_architecture.md",
       "type": "documentation_entry",
-      "description": "Documentation entry added via Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-13T15:35:00Z"
+      "description": "Entry for docs/architecture/Marketplace_Price_Discovery_architecture.md processed by Scribe.",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "key": "docs/markdown/docs/specs/Marketplace_Price_Discovery_overview.md",
@@ -864,15 +926,15 @@
       "key": "code/app/api/listings/route.ts",
       "value": "app/api/listings/route.ts",
       "type": "documentation_entry",
-      "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-13T15:35:00Z"
+      "description": "Entry for app/api/listings/route.ts processed by Scribe.",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "key": "code/__tests__/features/marketplace-price-discovery/api/listings.api.test.ts",
       "value": "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts",
       "type": "documentation_entry",
-      "description": "Code file entry added/updated by Pheromone Scribe.",
-      "last_updated_timestamp": "2025-05-13T15:35:00Z"
+      "description": "Entry for __tests__/features/marketplace-price-discovery/api/listings.api.test.ts processed by Scribe.",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "key": "feature/Marketplace & Price Discovery/blueprint",
@@ -891,12 +953,13 @@
     {
       "key": "feature/Marketplace & Price Discovery/modified_files",
       "value": [
-        "__tests__/features/marketplace-price-discovery/components/SomeNewComponent.test.tsx",
-        "components/marketplace/SomeNewComponent.tsx"
+        "jest.setup.js",
+        "app/api/listings/route.ts",
+        "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts"
       ],
       "type": "documentation_entry",
-      "description": "List of files modified for the feature during the last update.",
-      "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+      "description": "Registry entry for modified_code_paths of Marketplace & Price Discovery.",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     },
     {
       "key": "docs/markdown/marketplace_i18n_test_error_analysis.md",
@@ -974,6 +1037,48 @@
       "type": "documentation_entry",
       "description": "Code file entry for LanguageSwitcher updated by Pheromone Scribe.",
       "last_updated_timestamp": "2025-05-13T15:37:25.000Z"
+    },
+    {
+      "key": "docs/markdown/docs/comprehension_reports/LanguageSwitcher_fetch_error_analysis.md",
+      "value": "docs/comprehension_reports/LanguageSwitcher_fetch_error_analysis.md",
+      "type": "documentation_entry",
+      "description": "Entry for docs/comprehension_reports/LanguageSwitcher_fetch_error_analysis.md processed by Scribe.",
+      "last_updated_timestamp": "2025-05-13T10:57:30.000Z"
+    },
+    {
+      "key": "code/components/LanguageSwitcher.tsx:31",
+      "value": "components/LanguageSwitcher.tsx",
+      "type": "documentation_entry",
+      "description": "Code file entry for components/LanguageSwitcher.tsx:31 added by Pheromone Scribe.",
+      "last_updated_timestamp": "2025-05-13T16:08:00.000Z"
+    },
+    {
+      "key": "docs/markdown/fix_critical_LanguageSwitcher_TypeError_analysis.md",
+      "value": "docs/comprehension_reports/fix_critical_LanguageSwitcher_TypeError_analysis.md",
+      "type": "documentation_entry",
+      "description": "Entry for fix_critical_LanguageSwitcher_TypeError_analysis.md processed by Scribe.",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "key": "docs/markdown/fix_critical_Marketplace_API_DB_analysis.md",
+      "value": "docs/comprehension_reports/fix_critical_Marketplace_API_DB_analysis.md",
+      "type": "documentation_entry",
+      "description": "Entry for fix_critical_Marketplace_API_DB_analysis.md processed by Scribe.",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "key": "docs/markdown/Troubleshooting_Guide.md",
+      "value": "docs/Troubleshooting_Guide.md",
+      "type": "documentation_entry",
+      "description": "Entry for Troubleshooting_Guide.md processed by Scribe.",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
+    },
+    {
+      "key": "feature/fix_critical_post_cr_bugs/blueprint",
+      "value": "change_requests/fix_critical_post_cr_bugs_payload.json",
+      "type": "documentation_entry",
+      "description": "Registry entry for original_change_request_payload_path of fix_critical_post_cr_bugs.",
+      "last_updated_timestamp": "2025-05-13T16:50:00.000Z"
     }
   ]
 }

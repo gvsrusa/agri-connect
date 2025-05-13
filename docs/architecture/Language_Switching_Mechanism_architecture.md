@@ -110,6 +110,16 @@ A `SyntaxError` related to ESM module processing by Jest for `next-intl` was enc
     *   Due to complexities in mocking or setting up `next-intl`'s navigation context for Jest, the component was modified to use standard `next/navigation` hooks (`useRouter`, `usePathname`) for navigation. This simplified testing as standard Next.js navigation is more straightforward to mock or handle in Jest environments. The `next-intl` middleware remains responsible for handling the path-based locale changes triggered by these standard navigation actions.
 
 These changes ensure that components using `next-intl` can be reliably tested with Jest, and that the `LanguageSwitcher` component itself is testable using standard Next.js testing practices.
+
+### 10.1. JSDOM `fetch` Behavior and Absolute URLs
+
+During testing of the [`LanguageSwitcher.tsx`](../../components/LanguageSwitcher.tsx:1) component, specifically its API call to update user preferences, a `TypeError: Only absolute URLs are supported` was encountered. This issue arose because the `fetch` call within the component used a relative URL (`/api/user-profile`), and the JSDOM test environment's `fetch` implementation required an absolute URL.
+
+**Resolution:**
+*   The `fetch` call in [`components/LanguageSwitcher.tsx`](../../components/LanguageSwitcher.tsx:1) was modified to construct an absolute URL by prepending `window.location.origin`.
+*   The corresponding unit test in [`__tests__/components/LanguageSwitcher.test.tsx`](../../__tests__/components/LanguageSwitcher.test.tsx:1) was updated to mock or expect this absolute URL.
+
+This adjustment ensures that API calls made via `fetch` within components behave correctly in the JSDOM testing environment. Developers should be mindful of this behavior when writing tests for components that make `fetch` requests.
 ## 10. Scalability & Maintainability
 
 *   **Adding Languages:** Adding support for new languages primarily involves:
