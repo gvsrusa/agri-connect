@@ -5,7 +5,7 @@
       "signalType": "change_request_completed_successfully",
       "target": "fix_critical_post_cr_bugs_followup",
       "category": "feature_status",
-      "strength": 1.6245,
+      "strength": 1.3476806875,
       "message": "Change Request 'fix_critical_post_cr_bugs_followup' completed successfully for main_codebase, addressing critical bugs.",
       "data": {
         "change_request_id": "fix_critical_post_cr_bugs_followup",
@@ -39,71 +39,47 @@
         }
       },
       "timestamp_created": "2025-05-13T21:00:00.000Z",
-      "last_updated_timestamp": "%%PLACEHOLDER_TIMESTAMP%%"
-    },
-    {
-      "id": "codequality-langswitch-challengeresolved-2025-05-13T21:00:00.000Z",
-      "signalType": "code_challenge_resolved",
-      "target": "Language Switching Mechanism",
-      "category": "code_quality",
-      "strength": 0.81,
-      "message": "XMLHttpRequest error logging problem resolved in Language Switching Mechanism.",
-      "data": {
-        "feature_name": "Language Switching Mechanism",
-        "change_request_id": "fix_critical_post_cr_bugs_followup",
-        "resolution_details": "Successfully fixed the XMLHttpRequest error logging problem in components/LanguageSwitcher.tsx, confirmed by tests in __tests__/components/LanguageSwitcher.test.tsx.",
-        "affected_files": [
-          "components/LanguageSwitcher.tsx",
-          "__tests__/components/LanguageSwitcher.test.tsx"
-        ]
-      },
-      "timestamp_created": "2025-05-13T21:00:00.000Z",
-      "last_updated_timestamp": "%%PLACEHOLDER_TIMESTAMP%%"
-    },
-    {
-      "id": "codequality-marketplace-validationresolved-2025-05-13T21:00:00.000Z",
-      "signalType": "code_challenge_resolved",
-      "target": "Marketplace & Price Discovery",
-      "category": "code_quality",
-      "strength": 0.81,
-      "message": "API validation flaw resolved in Marketplace & Price Discovery using Zod.",
-      "data": {
-        "feature_name": "Marketplace & Price Discovery",
-        "change_request_id": "fix_critical_post_cr_bugs_followup",
-        "resolution_details": "Implemented robust Zod-based schema validation in app/api/listings/route.ts, resolving the validation flaw for syntactically correct but invalid JSON. Confirmed by tests in __tests__/features/marketplace-price-discovery/api/listings.api.test.ts.",
-        "affected_files": [
-          "app/api/listings/route.ts",
-          "__tests__/features/marketplace-price-discovery/api/listings.api.test.ts"
-        ]
-      },
-      "timestamp_created": "2025-05-13T21:00:00.000Z",
-      "last_updated_timestamp": "%%PLACEHOLDER_TIMESTAMP%%"
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
     },
     {
       "id": "cr-refinement-completed-fix_critical_post_cr_bugs_followup-%%PLACEHOLDER_ISO_TIMESTAMP%%",
       "signalType": "change_request_refinement_completed",
       "target": "fix_critical_post_cr_bugs_followup",
       "category": "feature_status",
-      "strength": 1.0,
+      "strength": 0.81225,
       "message": "Change Request 'fix_critical_post_cr_bugs_followup' refinement cycle completed successfully. Lingering technical debt in LanguageSwitcher noted regarding error logging and feedback.",
       "data": {
         "change_request_id": "fix_critical_post_cr_bugs_followup",
         "status": "completed_successfully",
         "summary_of_refinements": "Addressed user-facing error feedback in LanguageSwitcher and resolved related test failures. Documentation updated for LanguageSwitcher changes.",
-        "modified_code_paths": ["components/LanguageSwitcher.tsx", "__tests__/components/LanguageSwitcher.test.tsx"],
-        "documentation_updated_paths": ["components/LanguageSwitcher.tsx", "docs/Troubleshooting_Guide.md", "docs/CHANGELOG.md", "docs/architecture/Language_Switching_Mechanism_architecture.md", "docs/debugging_reports/LanguageSwitcher_XMLHttpRequest_fix_diagnosis_CR-fix_critical_post_cr_bugs_followup.md"],
-        "original_user_directive_details": { "user_directive_type": "bug_fix", "path_to_original_change_request_payload": "User task input for CR fix_critical_post_cr_bugs_followup", "original_project_root_path": "/Users/gvsrusa/PWA/agri-connect", "path_to_pheromone_file": "./.pheromone" },
+        "modified_code_paths": [
+          "components/LanguageSwitcher.tsx",
+          "__tests__/components/LanguageSwitcher.test.tsx"
+        ],
+        "documentation_updated_paths": [
+          "components/LanguageSwitcher.tsx",
+          "docs/Troubleshooting_Guide.md",
+          "docs/CHANGELOG.md",
+          "docs/architecture/Language_Switching_Mechanism_architecture.md",
+          "docs/debugging_reports/LanguageSwitcher_XMLHttpRequest_fix_diagnosis_CR-fix_critical_post_cr_bugs_followup.md"
+        ],
+        "original_user_directive_details": {
+          "user_directive_type": "bug_fix",
+          "path_to_original_change_request_payload": "User task input for CR fix_critical_post_cr_bugs_followup",
+          "original_project_root_path": "/Users/gvsrusa/PWA/agri-connect",
+          "path_to_pheromone_file": "./.pheromone"
+        },
         "notes": "Lingering technical debt: structured error logging and full user-facing error feedback for API failures in LanguageSwitcher remain incompletely implemented."
       },
-      "timestamp_created": "%%PLACEHOLDER_TIMESTAMP%%",
-      "last_updated_timestamp": "%%PLACEHOLDER_TIMESTAMP%%"
+      "timestamp_created": "2025-05-13T22:00:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
     },
     {
       "id": "techdebt-langswitcher-errorhandling-%%PLACEHOLDER_ISO_TIMESTAMP%%",
       "signalType": "technical_debt_identified",
       "target": "Language Switching Mechanism",
       "category": "code_quality",
-      "strength": 1.2,
+      "strength": 0.7938,
       "message": "Lingering technical debt in LanguageSwitcher: incomplete structured error logging and user-facing API failure feedback.",
       "data": {
         "feature_name": "Language Switching Mechanism",
@@ -112,114 +88,437 @@
         "source_agent": "@CodeComprehension_Assistant_V2",
         "change_request_id": "fix_critical_post_cr_bugs_followup"
       },
-      "timestamp_created": "%%PLACEHOLDER_TIMESTAMP%%",
-      "last_updated_timestamp": "%%PLACEHOLDER_TIMESTAMP%%"
+      "timestamp_created": "2025-05-13T22:00:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
     },
     {
       "id": "debug-success-langswitcher-xmlhttprequest-%%PLACEHOLDER_ISO_TIMESTAMP%%",
       "signalType": "debugging_completed_successfully",
       "target": "Language Switching Mechanism",
       "category": "feature_status",
-      "strength": 1.0,
+      "strength": 0.81225,
       "message": "Debugging of LanguageSwitcher XMLHttpRequest error completed successfully by @Debugger_Targeted.",
       "data": {
         "feature_name": "Language Switching Mechanism",
         "change_request_id": "fix_critical_post_cr_bugs_followup",
-        "modified_code_paths": ["components/LanguageSwitcher.tsx"],
+        "modified_code_paths": [
+          "components/LanguageSwitcher.tsx"
+        ],
         "debug_report": "docs/debugging_reports/LanguageSwitcher_XMLHttpRequest_fix_diagnosis_CR-fix_critical_post_cr_bugs_followup.md"
       },
-      "timestamp_created": "%%PLACEHOLDER_TIMESTAMP%%",
-      "last_updated_timestamp": "%%PLACEHOLDER_TIMESTAMP%%"
+      "timestamp_created": "2025-05-13T22:00:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
     },
     {
-      "id": "testpass-postdebug-langswitcher-%%PLACEHOLDER_ISO_TIMESTAMP%%",
-      "signalType": "tests_passing_post_debug",
-      "target": "Language Switching Mechanism",
+      "id": "cr-completed-CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING-2025-05-13T22:00:00.000Z",
+      "signalType": "change_request_completed_successfully",
+      "target": "CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING",
+      "category": "feature_status",
+      "strength": 0.857375,
+      "message": "Change Request 'CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING' completed successfully, addressing technical debt in LanguageSwitcher error handling.",
+      "data": {
+        "change_request_id": "CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING",
+        "status": "completed_successfully",
+        "affected_component": "components/LanguageSwitcher.tsx",
+        "summary_of_fixes": "Addressed incomplete structured error logging and inadequate user-facing feedback for API failures. Created new logger utility (lib/logger.ts), refactored error handling in components/LanguageSwitcher.tsx, added specific user messages (keys in messages/en.json), updated tests in __tests__/components/LanguageSwitcher.test.tsx.",
+        "modified_code_paths": [
+          "components/LanguageSwitcher.tsx",
+          "lib/logger.ts",
+          "messages/en.json",
+          "__tests__/components/LanguageSwitcher.test.tsx"
+        ],
+        "documentation_updated_paths": [
+          "docs/comprehension_reports/LanguageSwitcher_error_handling_analysis_CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING.md",
+          "docs/CHANGELOG.md",
+          "docs/architecture/Language_Switching_Mechanism_architecture.md",
+          "docs/Troubleshooting_Guide.md"
+        ],
+        "original_user_directive_details": {
+          "user_directive_type": "bug_fix",
+          "path_to_original_change_request_payload": "User task input for CR fix_critical_post_cr_bugs_followup",
+          "original_project_root_path": "/Users/gvsrusa/PWA/agri-connect",
+          "path_to_pheromone_file": "./.pheromone",
+          "change_request_identifier_for_scribe": "CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING"
+        }
+      },
+      "timestamp_created": "2025-05-13T22:00:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "coder-refinement-codequality-langswitch-2025-05-13T22:00:00.000Z",
       "category": "code_quality",
-      "strength": 1.0,
-      "message": "Tests related to LanguageSwitcher XMLHttpRequest error anticipated to pass after debugging by @Debugger_Targeted.",
+      "strength": 0.729,
+      "description": "Coder reported passing tests for the implemented part.",
+      "message": "Coder reported passing tests for LanguageSwitcher (components/LanguageSwitcher.tsx) error handling refinement.",
+      "data": {
+        "feature_name": "LanguageSwitcher Error Handling Refinement",
+        "final_test_output": "All tests passing after refactoring and test updates in __tests__/components/LanguageSwitcher.test.tsx.",
+        "change_request_id": "CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING"
+      },
+      "timestamp_created": "2025-05-13T22:00:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "coder-refinement-featurestatus-langswitch-2025-05-13T22:00:00.000Z",
+      "category": "feature_status",
+      "strength": 0.857375,
+      "description": "Feature implementation part completed successfully by coder.",
+      "message": "Refinement of error handling in LanguageSwitcher (components/LanguageSwitcher.tsx) completed successfully by coder.",
+      "data": {
+        "feature_name": "LanguageSwitcher Error Handling Refinement",
+        "modified_code_paths": [
+          "components/LanguageSwitcher.tsx",
+          "lib/logger.ts",
+          "messages/en.json",
+          "__tests__/components/LanguageSwitcher.test.tsx"
+        ],
+        "change_request_id": "CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING"
+      },
+      "timestamp_created": "2025-05-13T22:00:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "coder-refinement-integration-langswitch-2025-05-13T22:00:00.000Z",
+      "category": "integration",
+      "strength": 0.778688,
+      "description": "Completed code is ready for integration.",
+      "message": "Refined LanguageSwitcher (components/LanguageSwitcher.tsx) error handling code is integrated.",
+      "data": {
+        "feature_name": "LanguageSwitcher Error Handling Refinement",
+        "modified_code_paths": [
+          "components/LanguageSwitcher.tsx",
+          "lib/logger.ts",
+          "messages/en.json",
+          "__tests__/components/LanguageSwitcher.test.tsx"
+        ],
+        "change_request_id": "CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING"
+      },
+      "timestamp_created": "2025-05-13T22:00:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "docs-updated-langswitcher-errorhandling-2025-05-13T22:00:00.000Z",
+      "signalType": "documentation_updated",
+      "target": "Project Documentation",
+      "category": "documentation",
+      "strength": 0.941192,
+      "message": "Project documentation updated to reflect LanguageSwitcher (components/LanguageSwitcher.tsx) error handling improvements.",
+      "data": {
+        "updated_docs": [
+          "docs/CHANGELOG.md",
+          "docs/architecture/Language_Switching_Mechanism_architecture.md",
+          "docs/Troubleshooting_Guide.md"
+        ],
+        "related_feature": "LanguageSwitcher Error Handling",
+        "change_request_id": "CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING",
+        "summary_of_changes": "Reflected new structured error logging via lib/logger.ts and improved, specific user-facing error messages."
+      },
+      "timestamp_created": "2025-05-13T22:00:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "challenge-resolved-cr-techdebt-langswitcher-2025-05-13T22:00:00.000Z",
+      "category": "code_quality",
+      "strength": 0.729,
+      "description": "Challenges encountered and resolved during development.",
+      "message": "Challenges related to CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING (technical debt in LanguageSwitcher) were resolved.",
+      "data": {
+        "feature_name": "CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING",
+        "details": "Technical debt concerning error logging and user feedback in LanguageSwitcher was addressed through refactoring and new utility implementation."
+      },
+      "timestamp_created": "2025-05-13T22:00:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "systest-success-main_codebase-2025-05-13T19:19:24.000Z",
+      "signalType": "system_tests_passed",
+      "target": "main_codebase",
+      "category": "feature_status",
+      "strength": 0.9025,
+      "message": "System-wide tests for 'main_codebase' passed successfully following CR 'fix_critical_post_cr_bugs_followup'.",
+      "data": {
+        "change_request_id": "fix_critical_post_cr_bugs_followup",
+        "affected_features": [
+          "Language Switching Mechanism",
+          "Marketplace & Price Discovery"
+        ],
+        "test_command_executed": "npm test",
+        "test_command_expected": "pytest",
+        "test_result_summary": "18/18 suites passed, 134/143 tests passed, 9 skipped.",
+        "codebase_stability": "confirmed",
+        "original_project_directive_for_testing_phase": "Recent critical bug fixes and technical debt resolution under CR 'fix_critical_post_cr_bugs_followup' (which included addressing 'CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING') have been completed. The affected features include 'Language Switching Mechanism' and 'Marketplace & Price Discovery'. Please orchestrate a comprehensive round of system-wide tests on the 'main_codebase' to ensure overall stability and verify that these changes have not introduced regressions. Focus testing on the affected features but also ensure broad coverage. The standard test command for this project is 'pytest'."
+      },
+      "timestamp_created": "2025-05-13T19:19:24.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "systest-warning-consoleerrors-2025-05-13T19:19:24.000Z",
+      "signalType": "system_test_warnings_observed",
+      "target": "main_codebase",
+      "category": "code_quality",
+      "strength": 0.972,
+      "message": "Console errors (XMLHttpRequest, simulated database) observed during system tests on 'main_codebase', warranting further review.",
+      "data": {
+        "change_request_id": "fix_critical_post_cr_bugs_followup",
+        "warning_type": "console.error",
+        "details": "XMLHttpRequest and simulated database errors noted in test output from 'npm test'.",
+        "impact_on_tests": "Did not lead to test failures in this cycle.",
+        "recommendation": "Investigate to ensure no underlying issues persist."
+      },
+      "timestamp_created": "2025-05-13T19:19:24.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "task-investigate-consoleerrors-2025-05-13T19:19:24.000Z",
+      "signalType": "investigation_task_required",
+      "target": "main_codebase console errors",
+      "category": "tasking",
+      "strength": 0.972,
+      "message": "Task created to investigate console errors (XMLHttpRequest, simulated database) found during system testing of 'main_codebase'.",
+      "data": {
+        "related_cr": "fix_critical_post_cr_bugs_followup",
+        "issue_summary": "console.error messages related to XMLHttpRequest and simulated database errors observed in `npm test` output.",
+        "priority": "medium",
+        "suggested_action": "Review test logs, identify sources of errors, assess potential impact on long-term stability or functionality."
+      },
+      "timestamp_created": "2025-05-13T19:19:24.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "error-testfail-langswitch-2025-05-13T22:30:00.000Z",
+      "signalType": "system_test_failure",
+      "target": "Language Switching Mechanism",
+      "category": "error",
+      "strength": 1.08375,
+      "message": "System test failed for 'Language Switching Mechanism' in `__tests__/components/LanguageSwitcher.test.tsx`.",
       "data": {
         "feature_name": "Language Switching Mechanism",
-        "change_request_id": "fix_critical_post_cr_bugs_followup",
-        "final_test_output": "Debugger anticipated the failing test for XMLHttpRequest error logging would now pass.",
-        "affected_test_files": ["__tests__/components/LanguageSwitcher.test.tsx"]
+        "error_details": "Test 'LanguageSwitcher Component › logs structured error and shows specific message on API server error (500)' failed. Assertion mismatch: logger.error called 2 times, expected 1.",
+        "failed_test_file": "`__tests__/components/LanguageSwitcher.test.tsx`",
+        "failed_test_line": 210,
+        "failed_test_name": "LanguageSwitcher Component › logs structured error and shows specific message on API server error (500)",
+        "related_cr": [
+          "fix_critical_post_cr_bugs_followup",
+          "CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING"
+        ]
       },
-      "timestamp_created": "%%PLACEHOLDER_TIMESTAMP%%",
-      "last_updated_timestamp": "%%PLACEHOLDER_TIMESTAMP%%"
+      "timestamp_created": "2025-05-13T22:30:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
     },
     {
-      "id": "challresolve-marketplaceapi-validation-%%PLACEHOLDER_ISO_TIMESTAMP%%",
-      "signalType": "challenge_resolved",
-      "target": "Marketplace API",
-      "category": "code_quality",
-      "strength": 1.0,
-      "message": "Challenge resolved: Input validation bug in Marketplace API (app/api/listings/route.ts) was resolved.",
-      "data": {
-        "feature_name": "Marketplace API",
-        "change_request_id": "fix_critical_post_cr_bugs_followup",
-        "description": "Primary bug concerning input validation in the Marketplace API was resolved.",
-        "affected_files": ["app/api/listings/route.ts"]
-      },
-      "timestamp_created": "%%PLACEHOLDER_TIMESTAMP%%",
-      "last_updated_timestamp": "%%PLACEHOLDER_TIMESTAMP%%"
-    },
-    {
-      "id": "challresolve-langswitcher-xmlhttprequestfix-%%PLACEHOLDER_ISO_TIMESTAMP%%",
-      "signalType": "challenge_resolved",
+      "id": "task-debug-langswitch-testfail-2025-05-13T22:30:00.000Z",
+      "signalType": "debugging_task_required",
       "target": "Language Switching Mechanism",
-      "category": "code_quality",
-      "strength": 1.0,
-      "message": "Challenge resolved: Unreliable custom 'type' property on mocked error in components/LanguageSwitcher.tsx:51 was fixed.",
+      "category": "tasking",
+      "strength": 0.972,
+      "message": "Debugging task required for 'Language Switching Mechanism' due to test failure.",
       "data": {
         "feature_name": "Language Switching Mechanism",
-        "change_request_id": "fix_critical_post_cr_bugs_followup",
-        "description": "Root cause of failing test (unreliable custom `type` property on mocked error) was identified and fixed by @Debugger_Targeted.",
-        "affected_files": ["components/LanguageSwitcher.tsx"]
+        "reason": "Test 'LanguageSwitcher Component › logs structured error and shows specific message on API server error (500)' failed in `__tests__/components/LanguageSwitcher.test.tsx:210`."
       },
-      "timestamp_created": "%%PLACEHOLDER_TIMESTAMP%%",
-      "last_updated_timestamp": "%%PLACEHOLDER_TIMESTAMP%%"
+      "timestamp_created": "2025-05-13T22:30:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "error-console-xmlhttprequest-langswitch-2025-05-13T22:30:00.000Z",
+      "signalType": "console_error_observed",
+      "target": "Language Switching Mechanism",
+      "category": "error",
+      "strength": 0.7225,
+      "message": "XMLHttpRequest console error observed in `components/LanguageSwitcher.tsx`, related to failing test.",
+      "data": {
+        "feature_name": "Language Switching Mechanism",
+        "component": "`components/LanguageSwitcher.tsx`",
+        "error_type": "XMLHttpRequest AggregateError",
+        "related_test_failure": "`__tests__/components/LanguageSwitcher.test.tsx:210`"
+      },
+      "timestamp_created": "2025-05-13T22:30:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "task-review-skippedtests-main-2025-05-13T22:30:00.000Z",
+      "signalType": "review_skipped_tests_task",
+      "target": "main_codebase",
+      "category": "tasking",
+      "strength": 0.81,
+      "message": "Review of 9 skipped tests required to assess coverage and intent for main_codebase.",
+      "data": {
+        "count": 9,
+        "reason_for_review": "Ascertain if intentionally skipped or represent coverage gaps impacting release readiness."
+      },
+      "timestamp_created": "2025-05-13T22:30:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "featurestatus-compromised-langswitch-2025-05-13T22:30:00.000Z",
+      "signalType": "feature_stability_update",
+      "target": "Language Switching Mechanism",
+      "category": "feature_status",
+      "strength": 1.35375,
+      "message": "Stability of 'Language Switching Mechanism' compromised due to critical test failure.",
+      "data": {
+        "feature_name": "Language Switching Mechanism",
+        "status": "compromised",
+        "reason": "Critical test failure in `__tests__/components/LanguageSwitcher.test.tsx:210` (logger.error called 2 times, expected 1)."
+      },
+      "timestamp_created": "2025-05-13T22:30:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "featurestatus-passed-marketplacediscovery-2025-05-13T22:30:00.000Z",
+      "signalType": "feature_stability_update",
+      "target": "Marketplace & Price Discovery",
+      "category": "feature_status",
+      "strength": 0.9025,
+      "message": "All tests passed for 'Marketplace & Price Discovery' feature.",
+      "data": {
+        "feature_name": "Marketplace & Price Discovery",
+        "status": "stable_in_tests",
+        "note": "Observed console errors (simulated database errors from `app/api/market-prices/route.ts:67`, `app/api/crops/route.ts:36`, `app/api/markets/route.ts:37`) are part of a separate ongoing investigation."
+      },
+      "timestamp_created": "2025-05-13T22:30:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "releasereadiness-notready-main-2025-05-13T22:30:00.000Z",
+      "signalType": "release_readiness_update",
+      "target": "main_codebase",
+      "category": "feature_status",
+      "strength": 1.17325,
+      "message": "System not at full release readiness due to 'Language Switching Mechanism' failure.",
+      "data": {
+        "status": "not_ready",
+        "blocker_feature": "Language Switching Mechanism",
+        "blocker_reason": "Critical test failure in `__tests__/components/LanguageSwitcher.test.tsx:210`."
+      },
+      "timestamp_created": "2025-05-13T22:30:00.000Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z"
+    },
+    {
+      "id": "signal_20250513T201056931Z_s5g7h",
+      "category": "code_quality",
+      "description": "Challenges encountered and resolved during development.",
+      "strength": 0.9,
+      "timestamp": "2025-05-13T20:10:56.931Z",
+      "last_updated_timestamp": "2025-05-13T20:10:56.931Z",
+      "data": {
+        "feature_name": "Language Switching Mechanism"
+      },
+      "origin": {
+        "type": "interpretation_logic",
+        "rule_index": 2,
+        "condition_matched": {
+          "summary_keywords": [
+            "challenge",
+            "issue",
+            "resolved"
+          ]
+        }
+      }
     }
   ],
   "documentation_registry": {
     "docs/markdown/LanguageSwitcher_XMLHttpRequest_fix_diagnosis_CR-fix_critical_post_cr_bugs_followup.md": {
       "path": "docs/debugging_reports/LanguageSwitcher_XMLHttpRequest_fix_diagnosis_CR-fix_critical_post_cr_bugs_followup.md",
-      "last_updated": "%%PLACEHOLDER_TIMESTAMP%%"
+      "last_updated": "2025-05-13T22:30:00.000Z"
     },
     "docs/markdown/Troubleshooting_Guide.md": {
       "path": "docs/Troubleshooting_Guide.md",
-      "last_updated": "%%PLACEHOLDER_TIMESTAMP%%"
+      "last_updated": "2025-05-13T22:30:00.000Z"
     },
     "docs/markdown/CHANGELOG.md": {
       "path": "docs/CHANGELOG.md",
-      "last_updated": "%%PLACEHOLDER_TIMESTAMP%%"
+      "last_updated": "2025-05-13T22:30:00.000Z"
     },
     "docs/markdown/Language_Switching_Mechanism_architecture.md": {
       "path": "docs/architecture/Language_Switching_Mechanism_architecture.md",
-      "last_updated": "%%PLACEHOLDER_TIMESTAMP%%"
+      "last_updated": "2025-05-13T20:10:56.931Z"
     },
     "code/app/api/listings/route.ts": {
       "path": "app/api/listings/route.ts",
-      "last_updated": "%%PLACEHOLDER_TIMESTAMP%%"
+      "last_updated": "2025-05-13T22:30:00.000Z"
     },
     "code/components/LanguageSwitcher.tsx": {
       "path": "components/LanguageSwitcher.tsx",
-      "last_updated": "%%PLACEHOLDER_TIMESTAMP%%"
+      "last_updated": "2025-05-13T20:10:56.931Z"
     },
     "code/__tests__/components/LanguageSwitcher.test.tsx": {
       "path": "__tests__/components/LanguageSwitcher.test.tsx",
-      "last_updated": "%%PLACEHOLDER_TIMESTAMP%%"
+      "last_updated": "2025-05-13T20:10:56.931Z"
     },
     "feature/Language Switching Mechanism/modified_files": {
-      "value": ["components/LanguageSwitcher.tsx"],
-      "last_updated": "%%PLACEHOLDER_TIMESTAMP%%"
+      "value": [
+        "components/LanguageSwitcher.tsx"
+      ],
+      "last_updated": "2025-05-13T22:00:00.000Z"
     },
     "feature/fix_critical_post_cr_bugs_followup/modified_files": {
-      "value": ["components/LanguageSwitcher.tsx", "__tests__/components/LanguageSwitcher.test.tsx"],
-      "last_updated": "%%PLACEHOLDER_TIMESTAMP%%"
+      "value": [
+        "components/LanguageSwitcher.tsx",
+        "__tests__/components/LanguageSwitcher.test.tsx"
+      ],
+      "last_updated": "2025-05-13T22:00:00.000Z"
     },
     "feature/fix_critical_post_cr_bugs_followup/blueprint": {
       "value": "User task input for CR fix_critical_post_cr_bugs_followup",
-      "last_updated": "%%PLACEHOLDER_TIMESTAMP%%"
+      "last_updated": "2025-05-13T22:00:00.000Z"
+    },
+    "docs/markdown/LanguageSwitcher_error_handling_analysis_CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING.md": {
+      "path": "docs/comprehension_reports/LanguageSwitcher_error_handling_analysis_CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING.md",
+      "last_updated": "2025-05-13T22:30:00.000Z"
+    },
+    "code/lib/logger.ts": {
+      "path": "lib/logger.ts",
+      "last_updated": "2025-05-13T22:30:00.000Z"
+    },
+    "code/messages/en.json": {
+      "path": "messages/en.json",
+      "last_updated": "2025-05-13T22:30:00.000Z"
+    },
+    "feature/CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING/modified_files": {
+      "value": [
+        "components/LanguageSwitcher.tsx",
+        "lib/logger.ts",
+        "messages/en.json",
+        "__tests__/components/LanguageSwitcher.test.tsx"
+      ],
+      "last_updated": "2025-05-13T22:00:00.000Z"
+    },
+    "feature/CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING/blueprint": {
+      "value": "User task input for CR fix_critical_post_cr_bugs_followup",
+      "last_updated": "2025-05-13T22:00:00.000Z"
+    },
+    "code/app/api/market-prices/route.ts": {
+      "path": "app/api/market-prices/route.ts",
+      "last_updated": "2025-05-13T22:30:00.000Z"
+    },
+    "code/app/api/crops/route.ts": {
+      "path": "app/api/crops/route.ts",
+      "last_updated": "2025-05-13T22:30:00.000Z"
+    },
+    "code/app/api/markets/route.ts": {
+      "path": "app/api/markets/route.ts",
+      "last_updated": "2025-05-13T22:30:00.000Z"
+    },
+    "code/__tests__/features/marketplace-price-discovery/api/market-prices.api.test.ts": {
+      "path": "__tests__/features/marketplace-price-discovery/api/market-prices.api.test.ts",
+      "last_updated": "2025-05-13T22:30:00.000Z"
+    },
+    "code/__tests__/features/marketplace-price-discovery/api/reference-data.api.test.ts": {
+      "path": "__tests__/features/marketplace-price-discovery/api/reference-data.api.test.ts",
+      "last_updated": "2025-05-13T22:30:00.000Z"
+    },
+    "docs/markdown/docs/comprehension_reports/LanguageSwitcher_test_failure_analysis_cr_langswitcher_test_fix_20250513T143057.md": {
+      "path": "docs/comprehension_reports/LanguageSwitcher_test_failure_analysis_cr_langswitcher_test_fix_20250513T143057.md",
+      "last_updated": "2025-05-13T20:10:56.931Z"
+    },
+    "docs/markdown/docs/debugging_reports/cr_langswitcher_test_fix_20250513T143057_diagnosis.md": {
+      "path": "docs/debugging_reports/cr_langswitcher_test_fix_20250513T143057_diagnosis.md",
+      "last_updated": "2025-05-13T20:10:56.931Z"
+    },
+    "code/__tests__/components/LanguageSwitcher.test.tsx:210": {
+      "path": "__tests__/components/LanguageSwitcher.test.tsx",
+      "last_updated": "2025-05-13T20:10:56.931Z"
     }
   }
 }

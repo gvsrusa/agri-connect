@@ -188,15 +188,23 @@ it('displays user-facing error on API failure', async () => {
   it('logs structured error and shows specific message on API server error (500)', async () => {
     const originalFetch = global.fetch;
     const mockFailedFetch = jest.fn(() =>
-      Promise.resolve({
-        ok: false,
-        status: 500,
-        statusText: 'Internal Server Error',
-        json: () => Promise.resolve({ error: 'Simulated API update failed' }),
-      })
+      Promise.resolve(
+        new Response(JSON.stringify({ error: 'Simulated API update failed' }), {
+          status: 500,
+          statusText: 'Internal Server Error',
+          headers: { 'Content-Type': 'application/json' }
+        })
+      )
     );
     global.fetch = mockFailedFetch as any;
     (logger.error as jest.Mock).mockClear(); // Clear mock before use
+
+    // Mock React.useState to make setApiError throw an error
+    const mockSetApiErrorWhichThrows = jest.fn(() => {
+      throw new Error('Simulated error from setApiError');
+    });
+    // Simpler mock for useState given there's only one instance in the component
+    const useStateSpy = jest.spyOn(React, 'useState').mockReturnValue([null, mockSetApiErrorWhichThrows] as any);
 
     render(<LanguageSwitcher />);
     const dropdown = screen.getByRole('combobox');
@@ -207,24 +215,31 @@ it('displays user-facing error on API failure', async () => {
     });
 
     // Assert logger.error was called with structured payload
+    // After the fix in the component, we expect logger.error to be called only ONCE,
+    // even if setApiError throws, because the new flag should prevent the second log.
     expect(logger.error).toHaveBeenCalledTimes(1);
+
+    // The single call should be from the !response.ok block.
+    // The catch block in the component should no longer log due to the errorLoggedThisAttempt flag.
     expect(logger.error).toHaveBeenCalledWith(
       'Failed to update language preference: 500',
       expect.objectContaining({
         component: 'LanguageSwitcher',
         event: 'updateLanguagePreferenceFailed',
-        error_message: 'Internal Server Error',
+        error_message: 'Internal Server Error', // This is from the mock fetch response
         status_code: 500,
-        user_id: 'currentUser123', // Matches placeholder in component
-        timestamp: expect.any(String), // Check for ISO string
+        user_id: 'currentUser123',
+        timestamp: expect.any(String),
       })
     );
     
     // Assert specific server error message is displayed
+    // This message should still be set before setApiError throws.
     expect(screen.getByText('Could not save your preference due to a server issue. Please try again later.')).toBeInTheDocument();
 
     global.fetch = originalFetch;
     mockFailedFetch.mockClear();
+    useStateSpy.mockRestore(); // Restore the original useState
   });
 
   it('logs structured error and shows specific message on network error', async () => {

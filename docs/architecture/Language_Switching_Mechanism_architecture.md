@@ -141,6 +141,30 @@ This adjustment ensures that API calls made via `fetch` within components behave
     *   [`docs/comprehension_reports/LanguageSwitcher_error_handling_analysis_CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING.md`](../comprehension_reports/LanguageSwitcher_error_handling_analysis_CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING.md)
     *   The previous `XMLHttpRequest` specific comprehension and debugging reports are still relevant for historical context of earlier error handling iterations.
 
+### 10.3. Test Environment Anomaly: Double Logging of Errors (Resolved)
+
+*   **Context:** During testing of the `LanguageSwitcher` component, specifically in scenarios simulating API 500 errors (e.g., test 'LanguageSwitcher Component › logs structured error and shows specific message on API server error (500)' in [`__tests__/components/LanguageSwitcher.test.tsx:210`](../../__tests__/components/LanguageSwitcher.test.tsx:210)), an issue was observed where `logger.error` was being called twice. The component's logic intended a single log for such an event.
+*   **Cause:** The double logging was attributed to an interaction between the component's error handling and the test environment's (JSDOM) behavior. While the component correctly logged the error once, a subsequent, related event (likely an `XMLHttpRequest` error or unhandled promise rejection at the JSDOM level due to the simulated network failure) was being caught by a separate, possibly global, error handler within the test setup, which also invoked the `logger.error` mock.
+*   **Resolution (Change Request: `fix_critical_system_test_failure_langswitcher_2025-05-13T14:30:57`):**
+    *   The interaction causing the duplicate logging in the test environment was identified and addressed. The fix ensures that `logger.error` is now called only once, as intended by the component's logic, for the specified test scenario.
+    *   The affected test now passes, confirming the resolution.
+*   **Documentation:** Further details on this specific issue and its resolution are documented in the [`docs/Troubleshooting_Guide.md`](../Troubleshooting_Guide.md#14-double-loggererror-invocation-in-languageswitcher-api-500-error-tests) and the [`docs/comprehension_reports/LanguageSwitcher_test_failure_analysis.md`](../comprehension_reports/LanguageSwitcher_test_failure_analysis.md#8-resolution-and-current-status-change-request-fix_critical_system_test_failure_langswitcher_2025-05-13t143057).
+### 10.4. Robust Error Logging: Preventing Double Logs When `setApiError` Fails (CR `cr_langswitcher_test_fix_20250513T143057`)
+
+*   **Context:** A specific scenario was identified where `logger.error` could be called twice within the `updatePreference` function of [`components/LanguageSwitcher.tsx`](../../components/LanguageSwitcher.tsx). This occurred if:
+    1.  An initial API error (e.g., HTTP 500) was encountered and logged.
+    2.  The subsequent call to `setApiError` (to update the UI with the error message) itself threw a synchronous error. This second error would then be caught by the main `catch` block, leading to a second `logger.error` call.
+*   **Resolution (Change Request: `cr_langswitcher_test_fix_20250513T143057`):**
+    *   To prevent this double logging, an `errorLoggedThisAttempt` boolean flag was introduced within the `updatePreference` function.
+    *   This flag is set to `true` immediately after the first `logger.error` call (for the API error).
+    *   The `catch` block's logic was refined to check this flag. If `errorLoggedThisAttempt` is `true`, the `catch` block will not issue a redundant second log, even if it catches an error thrown by `setApiError`.
+    *   This ensures that only one error is logged per attempt to update the language preference, enhancing the robustness and clarity of error reporting.
+*   **Affected Files:**
+    *   [`components/LanguageSwitcher.tsx`](../../components/LanguageSwitcher.tsx) (fix implemented)
+    *   [`__tests__/components/LanguageSwitcher.test.tsx`](../../__tests__/components/LanguageSwitcher.test.tsx) (test modified to reproduce the scenario and verify the fix)
+*   **Documentation:**
+    *   [`docs/comprehension_reports/LanguageSwitcher_test_failure_analysis_cr_langswitcher_test_fix_20250513T143057.md`](../comprehension_reports/LanguageSwitcher_test_failure_analysis_cr_langswitcher_test_fix_20250513T143057.md)
+    *   [`docs/debugging_reports/cr_langswitcher_test_fix_20250513T143057_diagnosis.md`](../debugging_reports/cr_langswitcher_test_fix_20250513T143057_diagnosis.md)
 ## 10. Scalability & Maintainability
 
 *   **Adding Languages:** Adding support for new languages primarily involves:

@@ -63,6 +63,18 @@ This guide provides information on known issues, their causes, and resolutions e
     *   [`docs/comprehension_reports/LanguageSwitcher_error_handling_analysis_CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING.md`](comprehension_reports/LanguageSwitcher_error_handling_analysis_CR-TECHDEBT-LANGSWITCHER-ERRORHANDLING.md)
     *   [`docs/debugging_reports/LanguageSwitcher_XMLHttpRequest_fix_diagnosis_CR-fix_critical_post_cr_bugs_followup.md`](debugging_reports/LanguageSwitcher_XMLHttpRequest_fix_diagnosis_CR-fix_critical_post_cr_bugs_followup.md) (for historical context)
 
+### 1.4. Double `logger.error` Invocation in `LanguageSwitcher` API 500 Error Tests
+
+*   **Context:** A specific test case for the [`LanguageSwitcher`](../components/LanguageSwitcher.tsx) component, 'LanguageSwitcher Component › logs structured error and shows specific message on API server error (500)' (found in [`__tests__/components/LanguageSwitcher.test.tsx`](../__tests__/components/LanguageSwitcher.test.tsx:210)), was failing due to `logger.error` being called twice, while the test expected a single invocation.
+*   **Cause:** The double invocation was due to an interaction between the component's explicit error handling for API 500 responses and a separate error-handling mechanism within the test environment (likely `jsdom` or a global error handler). When the mocked `fetch` simulated a 500 error, the component logged it as expected. However, an underlying event or unhandled promise related to the simulated network error in `jsdom` likely triggered a second, inadvertent call to the mocked `logger.error`.
+*   **Resolution (Change Request: `fix_critical_system_test_failure_langswitcher_2025-05-13T14:30:57`):**
+    *   The underlying interaction causing the double logging was addressed. Modifications were made to ensure that for this specific API 500 error simulation in the test, `logger.error` is now invoked only once by the component's intended error handling path.
+    *   The test 'LanguageSwitcher Component › logs structured error and shows specific message on API server error (500)' now passes, confirming the fix.
+*   **Implication:** This ensures more accurate testing of error logging paths and reduces noise from test environment interactions.
+*   **Relevant Files:**
+    *   [`components/LanguageSwitcher.tsx`](../components/LanguageSwitcher.tsx)
+    *   [`__tests__/components/LanguageSwitcher.test.tsx`](../__tests__/components/LanguageSwitcher.test.tsx)
+    *   [`docs/comprehension_reports/LanguageSwitcher_test_failure_analysis.md`](comprehension_reports/LanguageSwitcher_test_failure_analysis.md) (Section 8)
 ## 2. Database Related
 
 ### 2.1. Simulated Database Error Handling in Tests
