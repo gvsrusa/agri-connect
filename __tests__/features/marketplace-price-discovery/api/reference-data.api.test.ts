@@ -23,9 +23,10 @@ jest.mock('@/lib/db', () => ({
 }));
 
 // Mock i18n utilities if used within the API route
-jest.mock('next-i18next/serverSideTranslations', () => ({
-  serverSideTranslations: jest.fn().mockResolvedValue({}),
-}));
+// For next-intl, API routes typically don't need specific i18n mocks for serverSideTranslations
+// as translations are handled differently (e.g. via getTranslator or by passing locale).
+// If the API route itself uses getTranslator, that might need mocking.
+// For now, removing the next-i18next mock.
 
 describe('Reference Data API Routes (/api/crops, /api/markets)', () => {
 

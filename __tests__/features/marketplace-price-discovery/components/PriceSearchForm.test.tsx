@@ -1,14 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 // import PriceSearchForm from '@/components/marketplace/PriceSearchForm'; // Adjust path as needed
-// import { useTranslation } from 'next-i18next'; // Mock this if used directly
-
-// Mock next-i18next
-jest.mock('next-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string) => key, // Simple mock translation function
-  }),
-}));
+// import { useTranslations } from 'next-intl'; // Mock this if used directly
 
 // Mock any necessary hooks, context providers, or API calls (e.g., for populating selectors)
 

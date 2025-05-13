@@ -1,24 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 // import PriceDisplay from '@/components/marketplace/PriceDisplay'; // Adjust path as needed
-// import { useTranslation } from 'next-i18next'; // Mock this if used directly
-
-// Mock next-i18next
-jest.mock('next-i18next', () => ({
-  useTranslation: () => ({
-    t: (key: string, options?: { [key: string]: any }) => {
-      // Simple mock: return key or replace placeholders if options provided
-      if (options) {
-        let result = key;
-        Object.keys(options).forEach(optKey => {
-          result = result.replace(`{{${optKey}}}`, options[optKey]);
-        });
-        return result;
-      }
-      return key;
-    },
-  }),
-}));
+// import { useTranslations } from 'next-intl'; // Mock this if used directly
 
 // Mock any necessary hooks or context providers
 

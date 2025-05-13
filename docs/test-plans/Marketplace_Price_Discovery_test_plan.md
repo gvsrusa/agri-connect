@@ -59,7 +59,11 @@ A multi-layered testing approach will be employed:
 *   **Test-Driven Development (TDD):** Tests (primarily unit and integration) will be written *before* the corresponding feature code, guiding the implementation.
 *   **Automation:** All unit and integration tests, and the majority of E2E tests, will be automated.
 *   **Manual Testing:** Exploratory testing will be performed manually to catch usability issues, visual glitches, and edge cases not covered by automation, especially focusing on the low-literacy/low-tech user experience. Accessibility checks will also be performed manually or with assistive tools.
-*   **Localization Testing:** Specific focus on verifying UI text, data display (crop names, market names, units, prices), and layout integrity across all supported languages (EN, HI, MR).
+*   **Localization Testing:** Specific focus on verifying UI text, data display (crop names, market names, units, prices), and layout integrity across all supported languages (EN, HI, MR), ensuring tests correctly utilize **`next-intl`**.
+    *   **Important Note on i18n Library:** It is crucial to use the project's standard internationalization library, **`next-intl`**, for all tests requiring i18n functionality (e.g., mocking translations, testing localized components).
+        Historically, some test suites for the 'Marketplace & Price Discovery' feature incorrectly attempted to use `next-i18next`, leading to "Cannot find module" errors. This has been resolved by refactoring the affected tests to align with `next-intl`.
+        Developers should ensure that any new or modified tests consistently use `next-intl` and its associated mocking strategies as documented in the `next-intl` official documentation and project examples.
+        Refer to the comprehension report [`docs/comprehension_reports/marketplace_i18n_test_error_analysis.md`](docs/comprehension_reports/marketplace_i18n_test_error_analysis.md:0) for more details on the past issue.
 *   **Cross-Browser/Device Testing:** E2E tests will be run on major browsers (Chrome, Firefox) and simulated mobile viewports. Manual checks on representative physical devices if available.
 
 ### 3.3 Tools & Frameworks
@@ -244,7 +248,7 @@ This updated approach ensures API routes can still be effectively tested at the 
 | FR1.1 / D1                | Authentication (via Clerk)        | Integration, E2E     | API route auth checks, Login steps in E2E tests                 |
 | FR2.2 / D2                | Listing Storage (Supabase)        | Integration          | `POST /api/listings` tests (mocked Supabase)                    |
 | FR4.3 / D3                | Price Data Retrieval (Source TBD) | Integration, E2E     | `GET /api/market-prices` tests, E2E-5, E2E-6                    |
-| FR5.4 / D4                | Localization Infrastructure       | Unit, Integration    | `next-i18next` usage tests, API localization tests              |
+| FR5.4 / D4                | Localization Infrastructure       | Unit, Integration    | `next-intl` usage tests, API localization tests                 |
 | NFR1 (Simplicity)         | Usability                         | Manual, E2E          | Exploratory testing, E2E flow verification                    |
 | NFR2 (Low Bandwidth)      | Performance                       | Manual               | DevTools network throttling checks                              |
 | NFR3 (Responsiveness)     | Responsiveness                    | E2E, Manual          | E2E-7, Viewport checks                                          |
@@ -256,7 +260,7 @@ This updated approach ensures API routes can still be effectively tested at the 
 | Arch: 4 (API Design)      | API Routes                        | Integration          | API route tests (`/api/*`)                                      |
 | Arch: 5 (Data Flow)       | Data Flow Verification            | Integration, E2E     | Component<>API tests, Full E2E scenarios                        |
 | Arch: 6 (DB Schema/RLS)   | Database Interactions & Security  | Integration, Manual  | API tests (mocked DB), RLS policy verification                  |
-| Arch: 7 (Multi-Lang)      | Localization Implementation       | Unit, Integration, E2E | Tests covering `next-i18next` and data localization             |
+| Arch: 7 (Multi-Lang)      | Localization Implementation       | Unit, Integration, E2E | Tests covering `next-intl` and data localization                |
 | Arch: 10 (Security)       | Security Measures                 | Integration, E2E     | Input validation, Auth checks, Privacy checks                   |
 
 ## 9. Entry/Exit Criteria
@@ -281,7 +285,7 @@ This updated approach ensures API routes can still be effectively tested at the 
 | Risk                                       | Likelihood | Impact | Mitigation Strategy                                                                                                |
 | :----------------------------------------- | :--------- | :----- | :----------------------------------------------------------------------------------------------------------------- |
 | External Price Data Source unavailable/unreliable | Medium     | High   | Develop using a mock/stubbed price data source. Build resilience in the UI for missing data. Define clear error handling. |
-| Localization errors (mistranslations, layout breaks) | Medium     | Medium | Use `next-i18next`. Thorough E2E testing across languages. Manual review by language speakers if possible. Responsive design practices. |
+| Localization errors (mistranslations, layout breaks) | Medium     | Medium | Use `next-intl`. Thorough E2E testing across languages. Manual review by language speakers if possible. Responsive design practices.    |
 | Usability issues for low-literacy users    | Medium     | High   | Early and frequent manual testing focusing on simplicity. Use clear icons. Potentially involve target users in feedback sessions if feasible. |
 | Performance issues on low bandwidth        | Low        | Medium | Optimize API responses and frontend assets. Test under simulated low-bandwidth conditions.                               |
 | Supabase RLS misconfiguration              | Low        | High   | Careful implementation and review of RLS policies. Integration tests verifying access control. Manual checks in Supabase UI. |
