@@ -1,10 +1,18 @@
 /** @jest-environment jsdom */
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import LanguageSwitcher from '@/components/LanguageSwitcher'; // Adjust path if needed
 import { usePathname, useRouter } from 'next/navigation'; // Mock these (Reverted)
 import { useLocale, useTranslations } from 'next-intl'; // Mock these
+
+// Mock fetch
+const mockFetch = jest.fn(() =>
+  Promise.resolve({
+    ok: true,
+    json: () => Promise.resolve({ message: 'Preference updated' }),
+  })
+);
 
 // Mock next/navigation
 jest.mock('next/navigation', () => ({ // Reverted
@@ -98,4 +106,34 @@ describe('LanguageSwitcher Component', () => {
   // Add more tests later:
   // - Test API call for logged-in users (requires mocking auth state)
   // - Test accessibility attributes
+  // This test is now modified to ensure fetch is mocked correctly and the API call is made.
+  it('calls fetch when language is changed and handles the API call', async () => {
+    const originalFetch = global.fetch;
+    global.fetch = mockFetch as any; // Assign the mock to global.fetch
+
+    render(<LanguageSwitcher />);
+    const dropdown = screen.getByRole('combobox');
+
+    // Act: Change language. This should trigger updatePreference.
+    fireEvent.change(dropdown, { target: { value: 'hi' } });
+
+    // Allow microtasks to process, e.g., for the fetch call and subsequent state updates
+    await act(async () => {
+      await new Promise(resolve => setTimeout(resolve, 0)); // Wait for next tick
+    });
+
+    // Assert that fetch was called with the correct parameters
+    expect(mockFetch).toHaveBeenCalledTimes(1);
+    expect(mockFetch).toHaveBeenCalledWith('/api/user-profile', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ preferred_language: 'hi' }),
+    });
+
+    // Restore original fetch and clear the mock for other tests
+    global.fetch = originalFetch;
+    mockFetch.mockClear();
+  });
 });
